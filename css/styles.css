@@ -1,0 +1,318 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*````````````````````````````````````````````````````````````````````````````````````````````````````````````*/
+/* 											Begin Neutralizing CSS 											  */
+/*............................................................................................................*/
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;}
+table {border-spacing:0; width: 100%;} fieldset,img {border:0;} address,caption,cite,code,dfn,em,strong,th,var {font-style:normal;}
+ol,ul {list-style:none;} caption,th {text-align:left;} h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
+q:before,q:after {content:'';} abbr,acronym { border:0;}
+
+/*````````````````````````````````````````````````````````````````````````````````````````````````````````````*/
+/* 											End Neutralizing CSS 											  */
+/*............................................................................................................*/
+
+*{
+	/*font-family:'Titillium Web', sans-serif;*/
+	/*font-family:'Dosis', sans-serif;*/
+	font-family:'Overlock', cursive;
+	/*font-family: 'Crete Round', serif;*/
+
+	color:#403c36;
+	/*font-weight:bold;*/
+}
+
+#wrapper {
+	width: 340px;
+	margin:0 auto;
+	padding:50px 0 0 ;
+}
+
+.pane{
+	background:url(img/bg_main.png) tan;
+	text-align:left;
+	height: 640px;
+	display: block;
+	position: relative;
+	border-radius: 8px 8px 5px 5px;
+}
+
+#paneList{
+    bottom: 0;
+    text-align:center;
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 8px;
+}
+
+#paneList.collapsed .pane {
+	height: 50px;
+	box-shadow: rgba(0, 0, 0, 0.31) 0 -2px 8px;
+	margin-bottom: -9px;
+}
+
+#paneList.collapsed .pane:nth-child(1){
+    margin-left:24px;
+    margin-right:24px;
+}
+
+#paneList.collapsed .pane:nth-child(2){
+    margin-left:12px;
+    margin-right:12px;
+}
+
+#paneList.collapsed .pane:last-child{
+	height: 250px;
+	margin-bottom: 0;
+}
+
+.dashHeader{ display:block; border-bottom: 1px solid rgba(0, 0, 0, .7); padding: 0;}
+.profileIcon:hover { background:rgba(255,255,255,.1); }
+.profileIcon:active{ background: rgba(255,255,255,.05); box-shadow: inset rgba(0,0,0,.5) 0 2px 15px; }
+.profileIcon { 
+	width: 40px;
+	height: 40px;
+    background:rgba(255,255,255,.05);
+	margin: 8px 8px 3px;
+	display: inline-block;
+	border: 1px solid rgba(255,255,255,.2);
+	cursor: pointer;
+	box-shadow: rgba(0, 0, 0, .4) 0 1px 3px;
+}
+.dashHeader h1 {
+	color:white;
+	font-size: 1.2em;
+	display: inline-block;
+	vertical-align: top;
+	line-height: 42px;
+	margin: 8px 0 0;
+	font-family: 'Crete Round', serif;
+}
+
+.dashHeader .status {
+	float: right;
+	text-align: right;
+	position: relative;
+	margin: 8px;
+	border: 1px solid rgba(0,0,0,.4);
+	background: rgba(0,0,0,.2);
+	padding: 3px;
+}
+.dashHeader .status h2 {
+	color: #DAD0BD;
+	padding: 0;
+	font-size: .75em;
+	position: absolute;
+	right: 0;
+	top: 2px;
+	width: 100%;
+	text-align: center;
+}
+.dashHeader .status span {
+	color:white;
+	padding: 0 12px;
+	line-height: 22px;
+	margin: 12px 0 0;
+	position: relative;
+	display: block;
+}
+
+.dashActions {
+	display: block;
+	text-align: center;
+	border-top: rgba(255, 255, 255, .1) 1px solid;
+	padding: 6px 0 0;
+}
+
+.dashActions .action:hover{ background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.2); }
+.dashActions .action:active{ 
+    background: rgba(255,255,255,.05); 
+    box-shadow: inset rgba(0,0,0,.5) 0 2px 15px; 
+    border-color: rgba(255,255,255,.1);
+    text-shadow:rgba(0,0,0,.8) 0 1px 0;
+}
+.dashActions .action{
+	margin: 11px 24px 0;
+	border: 1px solid rgba(255,255,255, .2);
+	border-radius: 3px;
+	padding: 8px;
+	background: rgba(255, 255, 255, .05);
+	cursor: pointer;
+	color: white;
+	text-shadow: rgba(0,0,0, .8) 0 -1px 0;
+	box-shadow: rgba(0, 0, 0, .4) 0 1px 3px;
+	font-family: 'Crete Round', serif;
+	font-size: .95em;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#container {
+	
+	min-height: 560px;
+	background: url(img/dash_bg.png);
+	width: 100%;
+	position: relative;
+	border-radius: 5px 5px 8px 8px;
+}
+
+.header {
+	display: block;
+	height: 46px;
+	background: url(img/header1_bg.png)repeat-x bottom;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+.header h1{
+    display:block;
+    color:#fff;   
+    line-height: 46px;
+    font-size: 1.1em;
+    text-align: center;
+    text-shadow: rgba(0,0,0,.4) 0 -1px 0;
+    font-family: 'Crete Round', serif;
+}
+
+.header button:hover {
+    background:rgba(0,0,0,.25);
+}
+.header button:active {
+    box-shadow:inset rgba(0,0,0,.2) 0 2px 12px;
+    border:1px solid rgba(0,0,0,.3);
+}
+.header button {
+    position: absolute;    
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .2);
+    color: white;
+    border: 1px solid rgba(0, 0, 0, .2);
+    font-size: .9em;
+    border-radius: 3px;
+    margin: 6px;
+    padding: 0 12px;
+    line-height: 30px;
+    text-shadow: rgba(0,0,0,.4) 0 -1px 0;
+    box-shadow: rgba(255,255,255,.3) 0 1px 0;
+    cursor: pointer;
+}
+
+.pulltab {
+	background: url(img/pull_tab.png) no-repeat bottom center;
+	height: 54px;
+	width: 60px;
+	position: absolute;
+}
+
+/*#header1 {
+	
+}*/
+
+#header2 {
+	display: none;
+	height: 57px;
+	background: url(img/header2_bg.png);
+}
+
+.listWrapper {
+    padding: 5px 12px;
+
+}
+
+.listHeader {
+	position: relative;
+}
+
+.listHeader h1 {
+	display: inline-block;
+	color: #887866;
+	text-shadow: #fff 0 1px 0;
+	font-size: 1.1em;
+	line-height: 38px;
+	padding: 5px 0 0 8px;
+}
+
+.listHeader .buttons {
+	position: absolute;
+	margin: 4px 2px 0 0;
+	top: 0;
+	right: 0;
+}
+
+ol.list {
+	font-family: 'Crete Round', serif;
+	-webkit-border-image: url(img/list_bg.png) 1 2 5;
+	border-width: 1px 2px 5px;
+}
+
+ol.list li{
+	padding: 8px 12px;
+	border-bottom:1px solid #e1d9cc;
+	border-top:1px solid #fff;
+	font-family: 'Crete Round', serif;
+}
+
+ol.list li:first-child{
+    border-top:none;
+}
+
+ol.list li:last-child{
+    border-bottom:none;
+    padding-bottom: 4px;
+}
+
+.buttons button {
+	background: none;
+	border: solid 5px #f00;
+	-webkit-border-image: url(img/btn_active.png) 5 5 5 5;
+	color: white;
+	text-shadow: rgba(0, 0, 0, .3) 0 -1px 0;
+	font-size: .9em;
+	padding: 0 10px 3px;
+	margin: 0 0 0 5px;
+	height:34px;
+	cursor: pointer;
+	float: left;
+}
+
+.buttons button:hover {
+	-webkit-border-image: url(img/btn_hover.png) 5 5 5 5;
+}
+
+.buttons button:active {
+	-webkit-border-image: url(img/btn_pressed.png) 5 5 5 5;
+	padding-top:2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
