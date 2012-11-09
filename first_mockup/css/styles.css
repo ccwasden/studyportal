@@ -15,13 +15,8 @@ q:before,q:after {content:'';} abbr,acronym { border:0;}
 /*............................................................................................................*/
 
 *{
-	/*font-family:'Titillium Web', sans-serif;*/
-	/*font-family:'Dosis', sans-serif;*/
 	font-family:'Overlock', cursive;
-	/*font-family: 'Crete Round', serif;*/
-
 	color:#403c36;
-	/*font-weight:bold;*/
 }
 
 #wrapper {
