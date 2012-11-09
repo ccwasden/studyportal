@@ -31,9 +31,9 @@ q:before,q:after {content:'';} abbr,acronym { border:0;}
 }
 
 .pane{
-	background:url(img/bg_main.png) tan;
+	background:url(img/bg_main.png) gray;
 	text-align:left;
-	height: 640px;
+	height: 560px;
 	display: block;
 	position: relative;
 	border-radius: 8px 8px 5px 5px;
@@ -223,7 +223,7 @@ q:before,q:after {content:'';} abbr,acronym { border:0;}
 }
 
 .listWrapper {
-    padding: 5px 12px;
+    padding: 16px 12px 0;
 
 }
 
@@ -237,12 +237,12 @@ q:before,q:after {content:'';} abbr,acronym { border:0;}
 	text-shadow: #fff 0 1px 0;
 	font-size: 1.1em;
 	line-height: 38px;
-	padding: 5px 0 0 8px;
+	padding: 0 0 0 8px;
 }
 
 .listHeader .buttons {
 	position: absolute;
-	margin: 4px 2px 0 0;
+	margin: 0 2px 0 0;
 	top: 0;
 	right: 0;
 }
@@ -257,7 +257,6 @@ ol.list li{
 	padding: 8px 12px;
 	border-bottom:1px solid #e1d9cc;
 	border-top:1px solid #fff;
-	font-family: 'Crete Round', serif;
 }
 
 ol.list li:first-child{
