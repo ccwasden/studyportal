@@ -186,6 +186,8 @@ body {
     font-size: 1.1em;
     text-align: center;
     text-shadow: rgba(0,0,0,.4) 0 -1px 0;
+    
+
     font-family: 'Crete Round', serif;
     position: relative;
 }
@@ -273,6 +275,12 @@ ol.list li{
 	border-bottom: 1px solid #E1D9CC;
 	border-top:1px solid #fff;
 	position: relative;
+}
+ol.list.arrow li:hover {
+    background-color: #FAF8F5;   
+}
+ol.list.arrow li:active {
+    background-color: #FFFFFF;
 }
 
 ol.list li:first-child{
@@ -483,7 +491,6 @@ ol.list li:last-child{
 	font-size: .9em;
 	background: #CCC0AA;
 	color: white;
-	font-weight: bold;
 	text-shadow: #A88B5C 0 -1px 0;
 	background: #ccc0aa; /* Old browsers */
 	background: -moz-linear-gradient(top, #ccc0aa 0%, #bcac91 100%); /* FF3.6+ */
@@ -495,6 +502,7 @@ ol.list li:last-child{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccc0aa', endColorstr='#bcac91',GradientType=0 ); /* IE6-9 */
 ;
 	border-bottom-color: #AA9571;
+	font-family: 'Crete Round', serif;
 }
 
 .list .checkbox {
