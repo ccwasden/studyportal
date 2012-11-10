@@ -270,7 +270,7 @@ ol.list {
 
 ol.list li{
 	padding: 8px 12px;
-	border-bottom: 1px solid #e1d9cc;
+	border-bottom: 1px solid #E1D9CC;
 	border-top:1px solid #fff;
 	position: relative;
 }
@@ -484,7 +484,7 @@ ol.list li:last-child{
 	background: #CCC0AA;
 	color: white;
 	font-weight: bold;
-	text-shadow: rgba(75, 50, 31, .3) 0 -1px 0;
+	text-shadow: #A88B5C 0 -1px 0;
 	background: #ccc0aa; /* Old browsers */
 	background: -moz-linear-gradient(top, #ccc0aa 0%, #bcac91 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ccc0aa), color-stop(100%,#bcac91)); /* Chrome,Safari4+ */
@@ -493,6 +493,8 @@ ol.list li:last-child{
 	background: -ms-linear-gradient(top, #ccc0aa 0%,#bcac91 100%); /* IE10+ */
 	background: linear-gradient(to bottom, #ccc0aa 0%,#bcac91 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccc0aa', endColorstr='#bcac91',GradientType=0 ); /* IE6-9 */
+;
+	border-bottom-color: #AA9571;
 }
 
 .list .checkbox {
