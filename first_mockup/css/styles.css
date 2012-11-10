@@ -41,10 +41,11 @@ body {
 .pane{
 	background:url(img/bg_main.png) gray;
 	text-align:left;
-	height: 560px;
+	min-height: 560px;
 	display: block;
 	position: relative;
 	border-radius: 8px 8px 5px 5px;
+	padding: 0 0 20px;
 }
 
 #paneList{
@@ -263,8 +264,9 @@ ol.list {
 
 ol.list li{
 	padding: 8px 12px;
-	border-bottom:1px solid #e1d9cc;
+	border-bottom: 1px solid #e1d9cc;
 	border-top:1px solid #fff;
+	position: relative;
 }
 
 ol.list li:first-child{
@@ -366,6 +368,7 @@ ol.list li:last-child{
 	border: 1px solid #d0c4b1;
 	border-width: 0 1px 1px;
 	box-shadow: rgba(0,0,0,.1) 0 1px 3px;
+	z-index: 5000;
 }
 
 .menu.open li{
@@ -391,6 +394,7 @@ ol.list li:last-child{
     top:0;
     left:0;
     background:rgba(0,0,0,.4);
+    z-index: 5001;
 }
 
 .dialog {
@@ -431,8 +435,24 @@ ol.list li:last-child{
     margin-top:8px;
 }
 
+.subtitle {
+    display:block;
+    font-size:.8em;
+    color: rgb(158, 139, 118);  
+}
 
 
+.list li.person {padding: 10px 46px 11px;}
+.list li.person:last-child {padding-bottom:11px;}
+.list li.person img {
+	width:32px;
+	height:32px;
+	border: 1px solid #e1d9cc;
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	background: #e1d9cc;
+}
 
 
 
