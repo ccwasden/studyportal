@@ -213,8 +213,8 @@ body {
     line-height: 30px;
     text-shadow: rgba(0,0,0,.4) 0 -1px 0;
     box-shadow: rgba(255,255,255,.3) 0 1px 0;
-
 }
+.header button.left { right:auto; left:0; z-index:2; }
 
 .pulltab img {
 
@@ -456,6 +456,8 @@ ol.list li:last-child{
 
 
 .list li.person {padding: 10px 46px 11px;}
+.list li.person.tall { padding-left: 53px; }
+.list li.person.tall img { top:10px; left: 8px;}
 .list li.person:last-child {padding-bottom:11px;}
 .list li.person img {
 	width:32px;
@@ -534,7 +536,7 @@ ol.list li:last-child{
 	height: 28px;
 	width: 28px;
 	font-size: .9em;
-	box-shadow: rgba(255, 255, 255, 0.46) 0 1px 1px;
+	box-shadow: rgba(255, 255, 255, 0.3) 0 1px 1px;
 	border: #6F2424 1px solid; /* Old browsers */  /* FF3.6+ */  /* Chrome,Safari4+ */  /* Chrome10+,Safari5.1+ */  /* Opera 11.10+ */  /* IE10+ */  /* W3C */  /* IE6-9 */;
 	background: #cc5151; /* Old browsers */ background: -moz-linear-gradient(top, #cc5151 0%, #a53333 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cc5151), color-stop(100%,#a53333)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top, #cc5151 0%,#a53333 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top, #cc5151 0%,#a53333 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top, #cc5151 0%,#a53333 100%); /* IE10+ */ background: linear-gradient(to bottom, #cc5151 0%,#a53333 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc5151', endColorstr='#a53333',GradientType=0 ); /* IE6-9 */;
 	font-weight: bold;
