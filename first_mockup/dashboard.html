@@ -14,45 +14,28 @@
 </head>
 <body>
 <div id="wrapper">
-<div id="container">
+<div id="container" class="dark">
 	<div class="dashHeader">
 		<div class="profileIcon"></div>
-		<h1>jasonbourne</h1>
+		<!-- <h1>jasonbourne</h1> -->
+		<div class="search"></div>
 		<span class="status">
-			<h2>Status</h2>
-			<span>Not Studying...</span>
+			<h2>Upcoming:</h2>
+			<span>No meetings...</span>
 		</span>
 	</div>
-	<div class="dashActions">
-		<div class="action" href="findStudyPartners.html">Find Study Partner</div>
-		<div class="action">New Group</div>
-		<div class="action">New Group Meeting</div>
-	</div>
-	<div id="paneList" class="collapsed">
-		<div class="pane">
-			<div class="header" href="studySchedule.html">
-				<!-- <div class="pulltab"></div> -->
-				<h1>Study Schedule</h1>
-			</div>
-		</div>
-		<div class="pane">
-			<div class="header" href="groups.html">
-				<!-- <div class="pulltab"></div> -->
-				<h1>Groups</h1>
-			</div>
-		</div>
-		<div class="pane" href="notifications.html">
-			<div class="header">
-				<div class="pulltab">
-					<img src="css/img/icon_book.png"/>
-				</div>
-				<h1>Notifications<span class="bubble topRight">3</span></h1>
+	
+		
+		<div class="pane dark">
+			<div class="header dark">
+				<h1>Notifications</h1>
+				<button>Clear All</button>
 			</div>
 			<!-- <div id="header2" class="header">
 				Header row 2
 			</div> -->
 			<div class="content">
-				<div class="listWrapper">
+				<div class="listWrapper dark">
 					<!-- <div class="listHeader">
 						<h1>No New Notifications...</h1>
 					</div> -->
@@ -62,8 +45,15 @@
 				    </ol>
 				</div>	
 			</div>
-		</div>
+	
+		
 	</div>
+	<table class="tabs">
+		<tr>
+			<td class="schedule"></td>
+			<td class="groups" href="groups.html"></td>
+		</tr>
+	</table>
 </div>
 </div>
 </body>
