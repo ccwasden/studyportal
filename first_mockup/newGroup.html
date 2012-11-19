@@ -14,18 +14,33 @@
 <body>
 <div id="wrapper">
 <div id="container">
-	<div class="pane">
-		<div class="header">
-			<div class="pulltab" href="dashboard.html">
-				<div class="icon"></div>
+		<div class="pane">
+			<div class="header">
+				<div class="pulltab" href="dashboard.html">
+					<div class="icon"></div>
+				</div>
+				<h1>Groups</h1>
+				<button href="newGroup.html">New Group</button>
 			</div>
-			<h1>New Group</h1>
-			<!--<div class="icon right menu" href="group-math112-menu.html"></div>-->
-			<!-- <button>Disband</button> -->
+			<div class="content">
+				<div class="listWrapper">
+				    <ol class="list arrow">
+					<li href="group-math112.html">Math 112<span class="subtitle">3 Members</span></li>
+					<li>Bio 221<span class="subtitle">5 Members</span></li>
+				    </ol>
+				</div>	
+			</div>
 		</div>
-		<div class="content">
-			<div class="listWrapper">
-			    <ol class="list leftRightDetail">
+	<table class="tabs">
+		<tr>
+			<td class="schedule"></td>
+			<td class="groups selected" href="dashboard.html" ></td>
+		</tr>
+	</table>
+	<div class="dialogContainer">
+		<div class="dialog form">
+			<h1>New Group</h1>
+			    <ol class="  leftRightDetail">
 					<li>
 						<h2>Name</h2><span><input id="name"></input></span>
 					</li>
@@ -46,16 +61,10 @@
 					</li>
 			    </ol>
 			</div>
-						
-		</div>
 	</div>
-	<table class="tabs">
-		<tr>
-			<td class="schedule"></td>
-			<td class="groups selected" href="groups.html" ></td>
-		</tr>
-	</table>
 </div>
 </div>
 </body>
 </html>
+
+

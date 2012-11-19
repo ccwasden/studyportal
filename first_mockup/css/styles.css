@@ -180,6 +180,7 @@ body {
 	border-radius: 5px 5px 8px 8px;
 	padding: 0 0 60px;
 }
+#container.noBottom { padding-bottom:0; }
 
 .header {
 	display: block;
@@ -363,6 +364,15 @@ ol.list li:last-child{
     padding-bottom: 8px;
 }
 
+
+
+.buttons button.fullWidth {
+    width:100%;
+    margin: 0;
+    height: 45px;
+    font-size: 1.2em;
+}
+
 .buttons button {
 	background: none;
 	border-width: 6px 4px;
@@ -388,11 +398,35 @@ ol.list li:last-child{
 	padding-top:2px;
 }
 
+.buttons button.disabled, .buttons button:disabled 
+    { -webkit-border-image: url(img/btn_diabled.png) 6 4; }
+
 /*li.leftRightDetail {
 	padding:0 0 
 }*/
 
-.list.leftRightDetail li h2 {
+.form h1 { font-size:1.2em;padding-bottom:8px; }
+
+.form .leftRightDetail {
+    text-align:left;
+}
+
+.form .leftRightDetail li h2 {
+    line-height:28px;
+    
+}
+
+.form .leftRightDetail li {
+    padding:3px 0;
+}
+
+.form .leftRightDetail li input { 
+    width:150px;    
+    padding:4px;
+    font-size:1em;
+}
+
+.leftRightDetail li h2 {
 	display: inline-block;
 	width: 35%;
 	text-align: right;
@@ -495,6 +529,9 @@ ol.list li:last-child{
     border: 1px solid white;
 }
 
+.dialog .datepicker input { padding:5px; width: 140px; }
+.datepicker span {line-height:42px; padding:0 2px;}
+
 .buttons {
 	clear:both;
 	overflow: hidden;
@@ -581,10 +618,18 @@ ol.list li:last-child{
 	font-family: 'Crete Round', serif;
 }
 
+.checkbox {
+     width: 34px;
+    height: 30px;
+    background: url(img/checkbox.png) no-repeat;
+
+     display: inline-block;
+}
+
 .list .checkbox {
     vertical-align: top;
 	
-    width: 34px;
+   
     float: right;
     height: 30px;
     position: absolute;
