@@ -407,7 +407,6 @@ ol.list li:last-child{
 
 .list.leftRightDetail li span {
 	display: inline-block;
-	width: 65%;
 	box-sizing:border-box;
 	padding: 0 0px;
 }
@@ -423,6 +422,9 @@ ol.list li:last-child{
 
 .icon.menu {
 	background: url(img/icon_menu.png) no-repeat center center;
+}
+
+.icon.edit {
 }
 
 .icon.menu.open {
