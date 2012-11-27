@@ -689,3 +689,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
 	padding-right: 36px;
 }
 
+.hidden {
+	display: none;
+}
+

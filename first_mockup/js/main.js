@@ -1,4 +1,24 @@
+var Templates = { } //Templates are stored here
 
+/**
+ * Function called on application initialization
+ */
+$(document).ready(function(){
+	//Get all templates
+	$.ajax({
+		url: "templates/getTemplates.php",
+		data: {
+		    method: "get"
+		},
+		async: false,
+		success: function(data){
+			Templates = $.parseJSON(data);
+		}
+	});
+	
+	//Render the first page in the app
+	Renderer.renderGroupsPage();
+});
 
 // makes it so any element that has an "href" attribute becomes a link on click
 $(document).click(function(eve){
@@ -14,5 +34,4 @@ $(document).click(function(eve){
 });
 
 
-// $(document).ready(function(){
-// });
+

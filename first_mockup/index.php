@@ -1,7 +1,3 @@
-<?php
-	//Some stuff might go here
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,47 +17,9 @@
 </head>
 <body>
 <div id="wrapper">
-<div id="container" class="dark">
-	<div class="dashHeader">
-		<div class="profileIcon"></div>
-		<!-- <h1>jasonbourne</h1> -->
-		<div class="search" href="search.html"></div>
-		<span class="status">
-			<h2>Upcoming:</h2>
-			<span>No meetings...</span>
-		</span>
+	<div id="container">
+	<!-- All page content will be rendered here -->
 	</div>
-	
-		
-		<div class="pane dark">
-			<div class="header dark">
-				<h1>Notifications</h1>
-				<button>Clear All</button>
-			</div>
-			<!-- <div id="header2" class="header">
-				Header row 2
-			</div> -->
-			<div class="content">
-				<div class="listWrapper dark">
-					<!-- <div class="listHeader">
-						<h1>No New Notifications...</h1>
-					</div> -->
-					<ol class="list arrow">
-						<li>Study Request<span class="subtitle">Sandra Bernard</span></li>
-						<li>Meeting Time Change<span class="subtitle">Math 112 - Tomorrow, 3pm</span></li>
-				    </ol>
-				</div>	
-			</div>
-	
-		
-	</div>
-	<table class="tabs">
-		<tr>
-			<td class="schedule" href="studySchedule.html"></td>
-			<td class="groups" href="groups.html"></td>
-		</tr>
-	</table>
-</div>
 </div>
 </body>
 </html>
