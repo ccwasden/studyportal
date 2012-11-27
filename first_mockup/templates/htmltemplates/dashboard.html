@@ -3,7 +3,11 @@
 	<div class="search"></div>
 	<span class="status">
 		<h2>Upcoming:</h2>
+		{{#if nextMeeting}}
 		<span>{{nextMeeting}}</span>
+		{{else}}
+		<span>No meetings...</span>
+		{{/if}}	
 	</span>
 </div>
 	
@@ -26,8 +30,8 @@
 </div>
 <table class="tabs">
 	<tr>
-		<td class="schedule" href="studySchedule.html"></td>
-		<td class="groups" href="groups.html"></td>
+		<td class="schedule"></td>
+		<td class="groups"></td>
 	</tr>
 </table>
 

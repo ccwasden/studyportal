@@ -1,7 +1,7 @@
 <div id="container">
 	<div class="pane">
 		<div class="header">
-			<div class="pulltab" href="dashboard.html">
+			<div class="pulltab">
 				<img src="css/img/icon_book.png"/>
 			</div>
 			<h1>Study Schedule</h1>				
@@ -11,7 +11,7 @@
 				<div class="listHeader">
 					<h1>Upcoming</h1>
 						<div class="buttons">
-							<button class="btn red" href="newStudyTime.html">+</button>
+							<button class="btn red">+</button>
 						</div>
 				</div>
 			    <ol class="list arrow">
@@ -24,9 +24,30 @@
 	
 	<table class="tabs">
 	<tr>
-		<td class="schedule selected" href="dashboard.html"></td>
-		<td class="groups" href="dashboard.html" ></td>
+		<td class="schedule selected"></td>
+		<td class="groups"></td>
 	</tr>
 	</table>
+
+	<div class="dialogContainer hidden">
+		<div class="dialog">
+			<div class ="description">New Study Time</div>
+			<div class="listHeader">
+						<h1>Upcoming</h1>
+							<input class="textfield" value="subjects go here"/>
+			</div>
+			
+			<div class="listHeader">
+						<h1>Time</h1>
+						<br>
+							<input type="text" id="datepicker" />
+			</div>
+			
+			<div class="buttons">
+				<button class="btn red">Save</button>
+				<button class="btn red">Cancel</button>
+			</div>
+		</div>
+	</div>
 	<!-- </div> -->
 </div>

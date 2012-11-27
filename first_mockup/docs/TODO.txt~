@@ -1,0 +1,5 @@
+David:
+-Remove all href links from templates
+-Dynamically render all templates using javascript object data
+-Figure out how to have global modal that gets re-rendered differently for each page
+-Piece out pages into modular rendering

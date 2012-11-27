@@ -17,7 +17,7 @@ $(document).ready(function(){
 	});
 	
 	//Render the first page in the app
-	Renderer.renderGroupsPage();
+	Renderer.renderDashboardPage();
 });
 
 // makes it so any element that has an "href" attribute becomes a link on click

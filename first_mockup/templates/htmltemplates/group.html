@@ -1,11 +1,13 @@
 <div id="container">
 	<div class="pane">
 		<div class="header">
-			<div class="pulltab" href="dashboard.html">
+			<div class="pulltab">
 				<div class="icon"></div>
 			</div>
 			<h1>{{groupName}}</h1>
-			<div class="icon right menu"></div>
+			<div class="icon right menu">
+				<ol><li>Rename Group</li><li>Disband Group</li></ol>
+			</div>
 		</div>
 		<div class="content">
 			<div class="listWrapper">
@@ -19,6 +21,8 @@
 				</li>
 			    </ol>
 			</div>
+			{{! If the person's a member of this group, render the whole page }}
+			{{#if members}}
 			<div class="listWrapper">
 				<div class="listHeader">
 					<h1>Members</h1>
@@ -44,7 +48,15 @@
 					<li>{{name}}<span class="subtitle">{{date}}</span></li>
 				{{/each}}
 			    </ol>
-			</div>	
+			</div>
+			{{! If the person's not a member, only render the join button }}
+			{{else}}
+			<div class="listWrapper">
+				<div class="buttons">
+					<button class="btn red fullWidth">Ask to Join</button>
+				</div>
+			</div>
+			{{/if}}
 		</div>
 	</div>
 	<table class="tabs">
@@ -53,4 +65,14 @@
 			<td class="groups selected"></td>
 		</tr>
 	</table>
+	<div class="dialogContainer hidden">
+		<div class="dialog">
+			<div class ="description">Enter Name:</div>
+			<input class="textfield" value="Math 112"/>
+			<div class="buttons">
+				<button class="btn red">Save</button>
+				<button class="btn red">Cancel</button>
+			</div>
+		</div>
+	</div>
 </div>

@@ -7,7 +7,11 @@ var Renderer = {
 	renderDashboardPage : function(){
 		var source = Templates.dashboard;
 		var template = Handlebars.compile(source);
-		$("#container").html(template());
+
+		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
+		var data = { }
+
+		$("#container").html(template(data));
 	},
 
 	renderGroupsPage : function(){
@@ -49,16 +53,39 @@ var Renderer = {
 		$("#container").html(template(data));
 	},
 
-	renderPersonPage : function() {
-			
+	renderProfilePage : function() {
+		var source = Templates.profile;
+		var template = Handlebars.compile(source);
+	
+		$("#container").html(template());		
+	},
+
+	renderStudySchedulePage : function() {
+		var source = Templates.studyschedule;
+		var template = Handlebars.compile(source);
+	
+		$("#container").html(template());	
 	},
 
 	renderMeetingPage : function() {
-			
+		var source = Templates.meetingdetails;
+		var template = Handlebars.compile(source);
+		
+		$("#container").html(template());	
 	},
 	
 	renderSearchPage : function() { 
-			
+		var source = Templates.search;
+		var template = Handlebars.compile(source);
+		
+		$("#container").html(template());		
+	},
+
+	renderStudyTimePage : function() {
+		var source = Templates.studytime;
+		var template = Handlebars.compile(source);
+		
+		$("#container").html(template());	
 	}
 
 	/*
