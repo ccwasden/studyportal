@@ -11,6 +11,7 @@
 	<!--Do we just want to host JQuery locally? -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="lib/handlebars-1.0.rc.1.js"></script>
+	<script src="js/data.js"></script>
 	<script src="js/renderer.js"></script>
 	<script src="js/main.js"></script>
 

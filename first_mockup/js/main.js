@@ -17,7 +17,7 @@ $(document).ready(function(){
 	});
 	
 	//Render the first page in the app
-	Renderer.renderDashboardPage();
+	Renderer.renderDashboardPage(Data.dashboard());
 });
 
 // makes it so any element that has an "href" attribute becomes a link on click
@@ -26,12 +26,27 @@ $(document).click(function(eve){
 	while(cur.prop("tagName") != "BODY"){ // traverse parent elements
 		var destination = cur.attr("href");
 		if(destination) {
-			window.location = destination;
+			redirect(destination);
 			break;
 		}
 		cur = cur.parent(); //intended element was likely a few elements up
 	}
 });
+
+function redirect(destination)
+{
+	switch(destination)
+	{
+		case "dashboard":
+			Renderer.renderDashboardPage(Data.dashboard());
+			break;
+		case "groups":
+			Renderer.renderGroupsPage(Data.groupsPage());
+			break;
+	}
+
+
+}
 
 
 

@@ -4,28 +4,18 @@
 //Define Renderer object
 var Renderer = {
 
-	renderDashboardPage : function(){
+	renderDashboardPage : function(data){
 		var source = Templates.dashboard;
 		var template = Handlebars.compile(source);
 
-		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
-		var data = { }
+		
 
 		$("#container").html(template(data));
 	},
 
-	renderGroupsPage : function(){
+	renderGroupsPage : function(data){
 		var source = Templates.groups;
 		var template = Handlebars.compile(source);
-	
-		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
-		var data = {
-			groups : [
-				{ name : "Math 112", numMembers : 3},
-				{ name : "Bio 221", numMembers : 5 },
-				{ name : "AmHtg 100", numMembers : 18 },			
-			]		
-		}
 		
 		$("#container").html(template(data));		
 	},
