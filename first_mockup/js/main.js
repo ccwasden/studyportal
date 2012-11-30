@@ -44,6 +44,16 @@ function redirect(destination)
 		case "groups":
 			Renderer.renderGroupsPage(Data.groupsPage());
 			break;
+		case "studyschedule":
+			Renderer.renderStudySchedulePage();
+			break;
+		case "search":
+			Renderer.renderSearchPage();
+			break;
+		case "profile":
+			Renderer.renderProfilePage();
+			break;
+			
 	}
 
 
