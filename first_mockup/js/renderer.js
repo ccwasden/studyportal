@@ -8,16 +8,14 @@ var Renderer = {
 		var source = Templates.dashboard;
 		var template = Handlebars.compile(source);
 
-		
-
-		$("#container").html(template(data));
+		$("#renderedContent").html(template(data));
 	},
 
 	renderGroupsPage : function(data){
 		var source = Templates.groups;
 		var template = Handlebars.compile(source);
 		
-		$("#container").html(template(data));		
+		$("#renderedContent").html(template(data));		
 	},
 
 	renderGroupPage : function(data){
@@ -27,42 +25,42 @@ var Renderer = {
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
 		
 
-		$("#container").html(template(data));
+		$("#renderedContent").html(template(data));
 	},
 
 	renderProfilePage : function() {
 		var source = Templates.profile;
 		var template = Handlebars.compile(source);
 	
-		$("#container").html(template());		
+		$("#renderedContent").html(template());		
 	},
 
 	renderStudySchedulePage : function() {
 		var source = Templates.studyschedule;
 		var template = Handlebars.compile(source);
 	
-		$("#container").html(template());	
+		$("#renderedContent").html(template());	
 	},
 
 	renderMeetingPage : function() {
 		var source = Templates.meetingdetails;
 		var template = Handlebars.compile(source);
 		
-		$("#container").html(template());	
+		$("#renderedContent").html(template());	
 	},
 	
 	renderSearchPage : function() { 
 		var source = Templates.search;
 		var template = Handlebars.compile(source);
 		
-		$("#container").html(template());		
+		$("#renderedContent").html(template());		
 	},
 
 	renderStudyTimePage : function() {
 		var source = Templates.studytime;
 		var template = Handlebars.compile(source);
 		
-		$("#container").html(template());	
+		$("#renderedContent").html(template());	
 	}
 
 	/*
