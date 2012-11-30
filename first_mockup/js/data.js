@@ -38,16 +38,26 @@ var Data = {
 			]
 		};
 		return data;
-	}
+	},
 	
-	profilePage : function(var person) {
+	profilePage : function(person) {
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
 		var meData = {
-			
+			me : "true",
+			name : "David Woodruff",
+			major : "Computer Science"
 		};
 		
 		var otherPersonData = {
-		
+			name : "Stonewall Jackson",
+			major : "Bayonet studies"
 		};
+		
+		if(person == "me"){
+			return meData;
+		}
+		else{
+			return otherPersonData;
+		}
 	}
 }
