@@ -51,7 +51,7 @@ function redirect(destination)
 			Renderer.renderSearchPage();
 			break;
 		case "profile":
-			Renderer.renderProfilePage();
+			Renderer.renderProfilePage(Data.profilePage());
 			break;					
 	}
 

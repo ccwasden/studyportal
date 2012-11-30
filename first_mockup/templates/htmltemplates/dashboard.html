@@ -18,13 +18,17 @@
 	</div>
 	<div class="content">
 		<div class="listWrapper dark">
-			<!-- <div class="listHeader">
-				<h1>No New Notifications...</h1>
-			</div> -->
-			<ol class="list arrow">
-				<li>Study Request<span class="subtitle">Sandra Bernard</span></li>
-				<li>Meeting Time Change<span class="subtitle">Math 112 - Tomorrow, 3pm</span></li>
-		    </ol>
+                    {{#if dashboardItems}}
+                    <ol class="list arrow">
+                        {{#each dashboardItems }}
+                            <li>{{title}}<span class="subtitle">{{subtitle}}</span></li>
+                        {{/each}}
+                    </ol>
+                    {{else}}
+                    <div class="listHeader">
+                        <h1>No New Notifications...</h1>
+                    </div>
+                    {{/if}}
 		</div>	
 	</div>
 </div>

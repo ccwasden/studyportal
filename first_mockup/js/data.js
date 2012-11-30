@@ -1,8 +1,14 @@
 var Data = {
 	dashboard : function(){
-	//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
-			var data = {};
-			return data;
+		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
+		var data = {
+			nextMeeting : "Tuesday at 3:00pm",
+			dashboardItems : [
+				{ title : "Study Request", subtitle: "Sandra Bernard" },
+				{ title : "Meeting Time Change", subtitle : "Math 112 - Tomorrow, 3pm" }
+			]
+		};
+		return data;
 	},
 	groupsPage : function(){
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
@@ -34,5 +40,14 @@ var Data = {
 		return data;
 	}
 	
-	
+	profilePage : function(var person) {
+		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
+		var meData = {
+			
+		};
+		
+		var otherPersonData = {
+		
+		};
+	}
 }
