@@ -52,7 +52,13 @@ function redirect(destination)
 			break;
 		case "profile":
 			Renderer.renderProfilePage();
-			break;					
+			break;	
+		case "showPopup":
+			$(".dialogContainer").show();
+			break;
+		case "hidePopup":
+			$(".dialogContainer").hide();
+			break;
 	}
 
 
