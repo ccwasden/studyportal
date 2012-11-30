@@ -5,7 +5,7 @@
 /* 											Begin Neutralizing CSS 											  */
 /*............................................................................................................*/
 
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;position: relative;width: 100%;box-sizing: border-box;}
 table {border-spacing:0; width: 100%;} fieldset,img {border:0;} address,caption,cite,code,dfn,em,strong,th,var {font-style:normal;}
 ol,ul {list-style:none;} caption,th {text-align:left;} h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
 q:before,q:after {content:'';} abbr,acronym { border:0;}
@@ -23,9 +23,12 @@ body {
     user-select: none;
 }
 
+html, body { height:100%; }
+
 *{
 	font-family:'Overlock', cursive;
 	color:#403c36;
+	height:auto;
 }
 
 *[href]{
@@ -33,22 +36,24 @@ body {
 }
 
 #wrapper {
-	width: 340px;
-	margin:0 auto;
-	padding: 50px 0;
+    height: 100%;
+    display: block;
+    right: 0;
+    left: 0;
+    top: 0;
+    position: relative;
 }
 
 .pane{
 	background:url(img/bg_main.png) gray;
 	text-align:left;
-	min-height: 520px;
-	display: block;
 	position: relative;
-	border-radius: 8px 8px 5px 5px;
-	padding: 0 0 20px;
+	padding: 0 0 80px;
 	box-sizing: border-box;
+	display: block;
+	min-height: 100%;
 }
-.pane.dark { background: rgba(0, 0, 0, 0.09); min-height: 460px;}
+.pane.dark { background: rgba(0, 0, 0, 0.09); width: 100%; margin-top: 12px;}
 
 #paneList{
     bottom: 0;
@@ -81,7 +86,7 @@ body {
 	margin-bottom: 50px;
 }
 
-.dashHeader{ display:block; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 0;}
+.dashHeader{ display:block; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 0; position: absolute; top: 0; width: 100%;}
 .profileIcon:hover { background:rgba(255,255,255,.1); }
 .profileIcon:active{ background: rgba(255,255,255,.05); box-shadow: inset rgba(0,0,0,.5) 0 2px 15px; }
 .profileIcon { 
@@ -172,13 +177,12 @@ body {
 }
 
 #container {
-	
-	min-height: 520px;
 	background: url(img/dash_bg.png);
 	width: 100%;
-	position: relative;
-	border-radius: 5px 5px 8px 8px;
-	padding: 0 0 60px;
+	padding: 45px 0 0;
+	box-sizing: border-box;
+	min-height: 100%;
+	height: 100%;
 }
 #container.noBottom { padding-bottom:0; }
 
@@ -186,14 +190,17 @@ body {
 	display: block;
 	height: 46px;
 	background: url(img/header1_bg.png)repeat-x bottom;
-	border-top-right-radius: 5px;
-	border-top-left-radius: 5px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 7;
 }
 
 .header h1 div{ display:block; }
 .header h1 div{ display:inline-block; }
 .pane.dark .header{
     background: none;
+    position: relative;
 }
 .pane<div class="header dark">				<h1>Notifications<span class="bubble topRight">3</span></h1>			</div>z.header{
 
@@ -255,7 +262,7 @@ body {
 
 .tabs { 
 	table-layout: fixed; 
-	position: absolute; 
+	position: fixed; 
 	bottom: 0; 
 	width:100%; 
 	box-sizing: border-box; 
@@ -269,7 +276,6 @@ body {
  /* IE6-9 */
 ;
 	border-top: 1px solid rgba(0, 0, 0, 0.26);
-	border-radius: 0 0 5px 5px;
 	background: url(img/bg_grad2.png);
 }
 .dark .tabs { border-top: 1px solid rgba(255, 255, 255, 0.61); }
