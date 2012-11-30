@@ -19,7 +19,17 @@
 <body>
 <div id="wrapper">
 	<div id="container">
-	<!-- All page content will be rendered here -->
+            <div id="renderedContent">
+            <!-- All page content will be rendered here -->
+            </div>
+        
+            <!-- Page icons go on all buttons -->
+            <table class="tabs">
+                <tr>
+                        <td class="schedule" href="studyschedule"></td>
+                        <td class="groups" href="groups"></td>
+                </tr>
+            </table>    
 	</div>
 </div>
 </body>

@@ -51,9 +51,14 @@ function redirect(destination)
 			Renderer.renderSearchPage();
 			break;
 		case "profile":
-			Renderer.renderProfilePage();
+			Renderer.renderProfilePage(Data.profilePage());
+			break;	
+		case "showPopup":
+			$(".dialogContainer").show();
 			break;
-			
+		case "hidePopup":
+			$(".dialogContainer").hide();
+			break;
 	}
 
 

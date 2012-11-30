@@ -4,24 +4,18 @@
 			<div class="icon" href="dashboard"></div>
 		</div>
 		<h1>Groups</h1>
-		<button>New Group</button>
+		<button href="showPopup">New Group</button>
 	</div>
 	<div class="content">
 		<div class="listWrapper">
 		    <ol class="list arrow">
 			{{#each groups}}
-				<li>{{name}}<span class="subtitle">{{numMembers}} Members</span></li>
+                            <li>{{name}}<span class="subtitle">{{numMembers}} Members</span></li>
 			{{/each}}
 		    </ol>
 		</div>	
 	</div>
 </div>
-<table class="tabs">
-	<tr>
-		<td class="schedule"></td>
-		<td class="groups selected"></td>
-	</tr>
-</table>
 <div class="dialogContainer hidden">
 	<div class="dialog form">
 		<h1>New Group</h1>
@@ -41,7 +35,7 @@
 			<li>
 				<div class="buttons">
 					<button class="btn red">Save</button>
-					<button class="btn red">Cancel</button>
+					<button class="btn red" href="hidePopup">Cancel</button>
 				</div>
 			</li>
 		</ol>
