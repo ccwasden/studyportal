@@ -16,7 +16,7 @@
 	<script src="js/main.js"></script>
 
 </head>
-<body>
+<body ontouchstart="">
 <div id="wrapper">
 	<div id="container">
             <div id="renderedContent">
