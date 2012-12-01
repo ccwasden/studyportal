@@ -14,10 +14,20 @@ var Data = {
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
 		var data = {
 			groups : [
-				{ name : "Math 112", numMembers : 3},
-				{ name : "Bio 221", numMembers : 5 },
-				{ name : "AmHtg 100", numMembers : 18 },			
-			]		
+			 	{ name : "Math 112", numMembers : 3},
+			 	{ name : "Bio 221", numMembers : 5 },
+			 	{ name : "AmHtg 100", numMembers : 18 },
+			 	{ name : "AmHtg 100", numMembers : 18 },
+			 	{ name : "AmHtg 100", numMembers : 18 },
+			 	{ name : "AmHtg 100", numMembers : 18 },
+			 	{ name : "AmHtg 100", numMembers : 181 },
+			 	{ name : "AmHtg 100", numMembers : 1 },
+			 	{ name : "AmHtg 100", numMembers : 1 },
+			 	{ name : "AmHtg 100", numMembers : 2 },
+			 	{ name : "AmHtg 100", numMembers : 32 },
+			 	{ name : "AmHtg 100", numMembers : 234 },
+			 	{ name : "Other", numMembers : 35 },			
+			]	                                    	
 		}
 		return data;
 	},

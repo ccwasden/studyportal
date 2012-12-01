@@ -5,7 +5,7 @@
 /* 											Begin Neutralizing CSS 											  */
 /*............................................................................................................*/
 
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;width: 100%;-webkit-box-sizing:border-box;box-sizing: border-box;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;width: 100%;-webkit-box-sizing:border-box;box-sizing: border-box;outline: none;}
 table {border-spacing:0; width: 100%;} fieldset,img {border:0;} address,caption,cite,code,dfn,em,strong,th,var {font-style:normal;}
 ol,ul {list-style:none;} caption,th {text-align:left;} h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
 q:before,q:after {content:'';} abbr,acronym { border:0;}
@@ -25,6 +25,7 @@ body {
 
 html, body {
     height: 100%;
+    overflow: hidden;
 }
 
 *{
@@ -43,20 +44,27 @@ html, body {
     right: 0;
     left: 0;
     top: 0;
-    position: relative;
+    position: absolute;
+    overflow: hidden;
 }
 
 .pane{
-	background:url(img/bg_main.png) gray;
 	text-align:left;
 	position: relative;
-	padding: 0 0 80px;
 	box-sizing: border-box;
 	-webkit-box-sizing:border-box;
 	display: block;
-	min-height: 100%;
+	height: 100%;
+	overflow: auto;
 }
-.pane.dark { background: rgba(0, 0, 0, 0.09); width: 100%; margin-top: 12px;}
+.pane.dark { background: rgba(0, 0, 0, 0.09); width: 100%;}
+#dashboard {
+    background: url(img/dash_bg.png);
+    color: white;
+    position: absolute;
+    height: 100%;
+    padding: 57px 0 64px;
+}
 
 #paneList{
     bottom: 0;
@@ -89,7 +97,7 @@ html, body {
 	margin-bottom: 50px;
 }
 
-.dashHeader{ display:block; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 0; position: absolute; top: 0; width: 100%;}
+.dashHeader{ display:block; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 0; top: 0; width: 100%; position: absolute;}
 .profileIcon:hover { background:rgba(255,255,255,.1); }
 .profileIcon:active{ background: rgba(255,255,255,.05); box-shadow: inset rgba(0,0,0,.5) 0 2px 15px; }
 .profileIcon { 
@@ -182,23 +190,35 @@ html, body {
 #container {
 	background: url(img/dash_bg.png);
 	width: 100%;
-	padding: 45px 0 0;
 	-webkit-box-sizing:border-box;
 	box-sizing: border-box;
 	min-height: 100%;
 	height: 100%;
+	padding: 0 0 64px;
+	position: relative;
+	top: 100%;
+	transition-duration:.5s;
+	-moz-transition-duration:.5s; /* Firefox */
+	-webkit-transition-duration:.5s; /* Safari and Chrome */
+	-o-transition-duration:.5s; /* Opera */
+	transition-timing-function: cubic-bezier(0, .92, 0.6, 1.0);
+	/*-moz-transition-timing-function: linear;
+	-webkit-transition-timing-function: linear;
+	-o-transition-timing-function: linear;*/
+;
+	z-index: 2;
 }
-#renderedContent { height:100%; box-sizing:border-box; -webkit-box-sizing: border-box;}
+#container.visible { top:0; }
+#renderedContent { height: 100%; box-sizing:border-box; -webkit-box-sizing: border-box; background: url(img/bg_main.png) gray; position: relative; display: inline-block; padding: 45px 0 0;}
 #container.noBottom { padding-bottom:0; }
 
 .header {
 	display: block;
 	height: 46px;
 	background: url(img/header1_bg.png)repeat-x bottom;
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	top: 0;
-	z-index: 7;
 }
 
 .header h1 div{ display:block; }
@@ -245,7 +265,7 @@ html, body {
     text-shadow: rgba(0,0,0,.4) 0 -1px 0;
     box-shadow: rgba(255,255,255,.3) 0 1px 0;
 }
-.pane.dark .header button { background: rgba(0, 0, 0, 0.05); border-color: rgba(255, 255, 255, 0.1); box-shadow: inset rgba(0, 0, 0, 0.73) 0 1px 2px; color: rgb(180, 180, 180);}
+.pane.dark .header button { background: rgba(0, 0, 0, 0.05); border-color: rgba(255, 255, 255, 0.1); box-shadow: inset rgba(0, 0, 0, 0.73) 0 1px 2px; color: rgb(180, 180, 180); z-index: 2;}
 .header button.left { right:auto; left:0; z-index:2; }
 
 .pulltab img {
@@ -267,7 +287,7 @@ html, body {
 
 .tabs { 
 	table-layout: fixed; 
-	position: fixed; 
+	position: absolute; 
 	bottom: 0; 
 	width:100%; 
 	-webkit-box-sizing:border-box;
@@ -283,6 +303,7 @@ html, body {
 ;
 	border-top: 1px solid rgba(0, 0, 0, 0.26);
 	background: url(img/bg_grad2.png);
+	z-index: 50;
 }
 .dark .tabs { border-top: 1px solid rgba(255, 255, 255, 0.61); }
 .tabs li.selected {background:darkRed;}
@@ -310,7 +331,7 @@ html, body {
 
 
 .listWrapper {
-    padding: 16px 12px 0;
+    padding: 16px 12px 12px;
 
 }
 
@@ -398,7 +419,7 @@ ol.list li:last-child{
 	padding: 0 10px 3px;
 	margin: 0 0 0 5px;
 	height:34px;
-	float: left;
+	float: right;
 }
 
 .buttons button:hover {
