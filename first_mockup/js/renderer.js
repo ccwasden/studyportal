@@ -8,7 +8,7 @@ var Renderer = {
 		var source = Templates.dashboard;
 		var template = Handlebars.compile(source);
 
-		$("#renderedContent").html(template(data));
+		$("#dashboard").html(template(data));
 	},
 
 	renderGroupsPage : function(data){

@@ -5,7 +5,7 @@
 /* 											Begin Neutralizing CSS 											  */
 /*............................................................................................................*/
 
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;width: 100%;-webkit-box-sizing:border-box;box-sizing: border-box;outline: none;}
 table {border-spacing:0; width: 100%;} fieldset,img {border:0;} address,caption,cite,code,dfn,em,strong,th,var {font-style:normal;}
 ol,ul {list-style:none;} caption,th {text-align:left;} h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
 q:before,q:after {content:'';} abbr,acronym { border:0;}
@@ -23,9 +23,15 @@ body {
     user-select: none;
 }
 
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
 *{
 	font-family:'Overlock', cursive;
 	color:#403c36;
+	height:auto;
 }
 
 *[href]{
@@ -33,22 +39,32 @@ body {
 }
 
 #wrapper {
-	width: 340px;
-	margin:0 auto;
-	padding: 50px 0;
+    height: 100%;
+    display: block;
+    right: 0;
+    left: 0;
+    top: 0;
+    position: absolute;
+    overflow: hidden;
 }
 
 .pane{
-	background:url(img/bg_main.png) gray;
 	text-align:left;
-	min-height: 520px;
-	display: block;
 	position: relative;
-	border-radius: 8px 8px 5px 5px;
-	padding: 0 0 20px;
 	box-sizing: border-box;
+	-webkit-box-sizing:border-box;
+	display: block;
+	height: 100%;
+	overflow: auto;
 }
-.pane.dark { background: rgba(0, 0, 0, 0.09); min-height: 460px;}
+.pane.dark { background: rgba(0, 0, 0, 0.09); width: 100%;}
+#dashboard {
+    background: url(img/dash_bg.png);
+    color: white;
+    position: absolute;
+    height: 100%;
+    padding: 57px 0 64px;
+}
 
 #paneList{
     bottom: 0;
@@ -81,7 +97,7 @@ body {
 	margin-bottom: 50px;
 }
 
-.dashHeader{ display:block; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 0;}
+.dashHeader{ display:block; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 0; top: 0; width: 100%; position: absolute;}
 .profileIcon:hover { background:rgba(255,255,255,.1); }
 .profileIcon:active{ background: rgba(255,255,255,.05); box-shadow: inset rgba(0,0,0,.5) 0 2px 15px; }
 .profileIcon { 
@@ -172,28 +188,44 @@ body {
 }
 
 #container {
-	
-	min-height: 520px;
 	background: url(img/dash_bg.png);
 	width: 100%;
+	-webkit-box-sizing:border-box;
+	box-sizing: border-box;
+	min-height: 100%;
+	height: 100%;
+	padding: 0 0 64px;
 	position: relative;
-	border-radius: 5px 5px 8px 8px;
-	padding: 0 0 60px;
+	top: 100%;
+	transition-duration:.5s;
+	-moz-transition-duration:.5s; /* Firefox */
+	-webkit-transition-duration:.5s; /* Safari and Chrome */
+	-o-transition-duration:.5s; /* Opera */
+	transition-timing-function: cubic-bezier(0, .92, 0.6, 1.0);
+	/*-moz-transition-timing-function: linear;
+	-webkit-transition-timing-function: linear;
+	-o-transition-timing-function: linear;*/
+;
+	z-index: 2;
 }
+#container.visible { top:0; }
+#renderedContent { height: 100%; box-sizing:border-box; -webkit-box-sizing: border-box; background: url(img/bg_main.png) gray; position: relative; display: inline-block; padding: 45px 0 0;}
 #container.noBottom { padding-bottom:0; }
 
 .header {
 	display: block;
 	height: 46px;
 	background: url(img/header1_bg.png)repeat-x bottom;
-	border-top-right-radius: 5px;
-	border-top-left-radius: 5px;
+	position: absolute;
+	width: 100%;
+	top: 0;
 }
 
 .header h1 div{ display:block; }
 .header h1 div{ display:inline-block; }
 .pane.dark .header{
     background: none;
+    position: relative;
 }
 .pane<div class="header dark">				<h1>Notifications<span class="bubble topRight">3</span></h1>			</div>z.header{
 
@@ -233,7 +265,7 @@ body {
     text-shadow: rgba(0,0,0,.4) 0 -1px 0;
     box-shadow: rgba(255,255,255,.3) 0 1px 0;
 }
-.pane.dark .header button { background: rgba(0, 0, 0, 0.05); border-color: rgba(255, 255, 255, 0.1); box-shadow: inset rgba(0, 0, 0, 0.73) 0 1px 2px; color: rgb(180, 180, 180);}
+.pane.dark .header button { background: rgba(0, 0, 0, 0.05); border-color: rgba(255, 255, 255, 0.1); box-shadow: inset rgba(0, 0, 0, 0.73) 0 1px 2px; color: rgb(180, 180, 180); z-index: 2;}
 .header button.left { right:auto; left:0; z-index:2; }
 
 .pulltab img {
@@ -258,6 +290,7 @@ body {
 	position: absolute; 
 	bottom: 0; 
 	width:100%; 
+	-webkit-box-sizing:border-box;
 	box-sizing: border-box; 
 	height: 65px;  /* Old browsers */
  /* FF3.6+ */
@@ -269,8 +302,8 @@ body {
  /* IE6-9 */
 ;
 	border-top: 1px solid rgba(0, 0, 0, 0.26);
-	border-radius: 0 0 5px 5px;
 	background: url(img/bg_grad2.png);
+	z-index: 50;
 }
 .dark .tabs { border-top: 1px solid rgba(255, 255, 255, 0.61); }
 .tabs li.selected {background:darkRed;}
@@ -295,11 +328,10 @@ body {
 	background: url(img/header2_bg.png);
 }
 
-.pane.dark .listWrapper { padding-top: 8px; }
-.pane.dark .list { background: rgba(0, 0, 0, 0.11); border-image: none; border: 1px solid rgba(255, 255, 255, 0.11);}
+
 
 .listWrapper {
-    padding: 16px 12px 0;
+    padding: 16px 12px 12px;
 
 }
 
@@ -329,6 +361,9 @@ ol.list {
 	-moz-border-image: url(img/list_bg.png) 2 3 6;
 	border-width: 2px 3px 6px;
 }
+
+.pane.dark .listWrapper { padding-top: 8px; }
+.pane.dark .list { background: black; background: rgba(0, 0, 0, 0.11); border-image: none; border: 1px solid rgba(255, 255, 255, 0.11); -webkit-border-image: none; -moz-border-image: none;}
 
 ol.list li{
 	padding: 8px 12px;
@@ -384,7 +419,7 @@ ol.list li:last-child{
 	padding: 0 10px 3px;
 	margin: 0 0 0 5px;
 	height:34px;
-	float: left;
+	float: right;
 }
 
 .buttons button:hover {
@@ -431,6 +466,7 @@ ol.list li:last-child{
 	width: 35%;
 	text-align: right;
 	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
 	padding: 0 12px 0 0;
 	font-size: .7em;
 	color: rgb(197, 112, 112);
@@ -441,6 +477,7 @@ ol.list li:last-child{
 
 .list.leftRightDetail li span {
 	display: inline-block;
+	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	padding: 0 0px;
 }
@@ -523,6 +560,7 @@ ol.list li:last-child{
     text-align:center;
     background: #f7f4ee;
     padding:12px 16px;
+    -webkit-box-sizing:border-box;
     box-sizing:border-box;
     border-radius:3px;
     box-shadow:rgba(0,0,0,.3) 0 1px 6px;
@@ -554,6 +592,7 @@ ol.list li:last-child{
 
 .dialog .textfield {
     width:100%;
+    -webkit-box-sizing:border-box;
     box-sizing:border-box;
     margin-top:8px;
 }
@@ -674,6 +713,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
 	text-align: center;
 	text-shadow: #272421 0 -1px 0;
 	box-sizing: border-box;
+	-webkit-box-sizing:border-box;
 	padding: 0 10px;
 	position:absolute;
 	top: 5px;
