@@ -38,9 +38,9 @@ var Data = {
 			]
 		};
 		return data;
-	}
+	},
 	
-	profilePage : function(var person) {
+	profilePage : function(person) {
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
 		var meData = {
 			
