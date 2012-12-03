@@ -1,3 +1,4 @@
+
 var Data = {
 	dashboard : function(){
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
@@ -70,4 +71,11 @@ var Data = {
 			return otherPersonData;
 		}
 	}
-}
+};
+
+//Data = JSON.parse("data.json", function(data) { Data = data; }; );
+
+$.getJSON("js/data.json",
+	function (json) {
+    	Data = json;// Otherwise, we'll keep the dud data.
+	});
