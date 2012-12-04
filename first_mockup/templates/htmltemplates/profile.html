@@ -1,14 +1,16 @@
-<div class="pane">
-	<div class="header">
-		<div class="pulltab" href="dashboard">
-			<img src="css/img/icon_backarrow.png"/>
-		</div>
-		<h1>Profile</h1>
-		<div class="icon right menu">
-                    <ol><li>Rename Group</li><li>Disband Group</li></ol>
-		</div>
-		<!-- <button>Disband</button> -->
+<div class="header">
+	<div class="pulltab" href="dashboard">
+		<img src="css/img/icon_backarrow.png"/>
 	</div>
+	<h1>Profile</h1>
+	<div class="icon right menu">
+                <ol><li>Rename Group</li><li>Disband Group</li></ol>
+	</div>
+	<!-- <button>Disband</button> -->
+</div>
+
+<div class="pane">
+	
 	<div class="content">
 	    	<div class="profileDetail">
 	    		<img class="profileImg"/>
@@ -26,42 +28,26 @@
 	    	<div class="listWrapper">
 	    		<div class="listHeader">
 	    			<h1>Study Schedule</h1>
-                                
-                                {{#if me}}
-                                <img />
-                                {{else}}
+                                {{#unless me}}
                                 <div class="buttons">
 	    				<button class="btn red">Ask to Study</button>
 	    			</div>
-                                {{/if}}
+                                {{/unless}}
 	    		</div>
 	    	    <ol class="list">
-	    			<li>
-						<div class="listHeader">
-							HW #3 - Math 112
-							<div class="buttons">
-								<button class="btn red">Ask to Study</button>
-							</div>
-						</div>
-						<span class="subtitle">Tomorrow 3pm</span>
-					</li>
-	    			<li>
-						<div class="listHeader">
-							HW #4, HW #5 - Math 112
-							<div class="buttons">
-								<button class="btn red">Ask to Study</button>
-							</div>
-						</div>
-						<span class="subtitle">Thurs Jan 5th, 11am</span>
-					</li>
-	    			<li>
-						<div class="listHeader">
-						Bio 212
-						<div class="buttons">
-							<button class="btn red">Ask to Study</button>
-						</div>
-						<span class="subtitle">Friday Jan 6th, 5 - 7pm</span>
-					</li>
+                                {{#each schedule}}
+                                <li>
+                                    <div class="listHeader">
+                                            {{title}}
+                                            {{#unless me}}
+                                            <div class="buttons">
+                                                    <button class="btn red">Ask to Study</button>
+                                            </div>
+                                            {{/unless}}
+                                    </div>
+                                    <span class="subtitle">{{subtitle}}</span>
+                                </li>
+                                {{/each}}
 	    	    </ol>
 	    	</div>
 	<!--	<div class="listWrapper">

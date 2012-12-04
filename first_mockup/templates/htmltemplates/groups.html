@@ -10,7 +10,7 @@
 		<div class="listWrapper">
 		    <ol class="list arrow">
 			{{#each groups}}
-                            <li>{{name}}<span class="subtitle">{{numMembers}} Members</span></li>
+                            <li href="group/{{id}}">{{name}}<span class="subtitle">{{numMembers}} Members</span></li>
 			{{/each}}
 		    </ol>
 		</div>	
@@ -19,7 +19,7 @@
 <div class="dialogContainer hidden">
 	<div class="dialog form">
 		<h1>New Group</h1>
-		<ol class="  leftRightDetail">
+		<ol class="leftRightDetail">
 			<li>
 				<h2>Name</h2><span><input id="name"></input></span>
 			</li>
