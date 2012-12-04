@@ -88,7 +88,7 @@ function redirect(destination)
 			break;
 		case "dashboard":
 		default:
-			if(destination[0] != "dashboard") 
+			if(destination[0] && destination[0] != "dashboard" ) 
 				alert("There is no case implemented in main.js --> redirect() for: "+destination[0]);
 			Renderer.renderDashboardPage(Data.dashboard());
 			visible = false;
