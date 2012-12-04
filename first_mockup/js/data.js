@@ -55,12 +55,20 @@ var Data = {
 		var meData = {
 			me : "true",
 			name : "David Woodruff",
-			major : "Computer Science"
+			major : "Computer Science",
+                        schedule : [
+                            {title:"HW #3 - Math 112", subtitle: "Tomorrow 3pm"},
+                            {title:"HW #4, HW #5 - Math 112", subtitle: "Thurs Jan 5th, 11am"}
+                        ]
 		};
 		
 		var otherPersonData = {
 			name : "Stonewall Jackson",
-			major : "Bayonet studies"
+			major : "Bayonet studies",
+                        schedule : [
+                            {title:"HW #1 - Bayonet practive", subtitle: "Todat 4pm"},
+                            {title:"Exam #1 - Give them the bayonet", subtitle: "Tues Jan 23rd, 8am"}
+                        ]
 		};
 		
 		if(person == "me"){

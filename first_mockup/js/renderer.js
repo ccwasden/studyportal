@@ -28,35 +28,35 @@ var Renderer = {
 		$("#renderedContent").html(template(data));
 	},
 
-	renderProfilePage : function() {
+	renderProfilePage : function(data) {
 		var source = Templates.profile;
 		var template = Handlebars.compile(source);
 	
-		$("#renderedContent").html(template());		
+		$("#renderedContent").html(template(data));		
 	},
 
-	renderStudySchedulePage : function() {
+	renderStudySchedulePage : function(data) {
 		var source = Templates.studyschedule;
 		var template = Handlebars.compile(source);
 	
 		$("#renderedContent").html(template());	
 	},
 
-	renderMeetingPage : function() {
+	renderMeetingPage : function(data) {
 		var source = Templates.meetingdetails;
 		var template = Handlebars.compile(source);
 		
 		$("#renderedContent").html(template());	
 	},
 	
-	renderSearchPage : function() { 
+	renderSearchPage : function(data) { 
 		var source = Templates.search;
 		var template = Handlebars.compile(source);
 		
 		$("#renderedContent").html(template());		
 	},
 
-	renderStudyTimePage : function() {
+	renderStudyTimePage : function(data) {
 		var source = Templates.studytime;
 		var template = Handlebars.compile(source);
 		
