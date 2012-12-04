@@ -46,7 +46,7 @@ var Renderer = {
 		var source = Templates.meetingdetails;
 		var template = Handlebars.compile(source);
 		
-		$("#renderedContent").html(template());	
+		$("#renderedContent").html(template(data));	
 	},
 	
 	renderSearchPage : function(data) { 

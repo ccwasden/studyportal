@@ -590,6 +590,10 @@ ol.list li:last-child{
     box-shadow: inset rgba(0,0,0,.09) 0 1px 3px;
 }
 
+.listHeader .textfield {
+ z-index: 6;   
+}
+
 .dialog .textfield {
     width:100%;
     -webkit-box-sizing:border-box;

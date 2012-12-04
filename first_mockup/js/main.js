@@ -30,7 +30,13 @@ $(document).ready(function(){
 		    $(window).bind('hashchange', function(e) {
 				var url = $.param.fragment(); // get the hash url
 				var destination = url.split("/"); // split on '/', this way we can store multilevel hashes
-				redirect(destination);
+				try {
+					redirect(destination);
+				} 
+				catch(e){
+					alert("Error: "+e);
+					history.go(-1);
+				}
 			});
 
 			//Force initial hash to be read
@@ -45,7 +51,10 @@ $(document).click(function(eve){
 	while(cur.prop("tagName") != "BODY"){ // traverse parent elements
 		var destination = cur.attr("href");
 		if(destination) {
-			window.location.hash = destination;
+			var destArray = destination.split("/");
+			if(destArray == "showPopup" || destArray == "hidePopup") // if popup/dialog, dont change hash
+				redirect(destArray);
+			else window.location.hash = destination;
 			break;
 		}
 		cur = cur.parent(); //intended element was likely a few elements up
@@ -54,11 +63,13 @@ $(document).click(function(eve){
 
 function redirect(destination)
 {
-	$("#container").addClass("visible");
-	switch(destination[0])
-	{
-		case "groups":
-			Renderer.renderGroupsPage(Data.groupsPage());
+	var visible = true;
+	switch(destination[0]) {
+		case "showPopup":
+			$(".dialogContainer").show();
+			break;
+		case "hidePopup":
+			$(".dialogContainer").hide();
 			break;
 		case "studyschedule":
 			Renderer.renderStudySchedulePage();
@@ -68,19 +79,27 @@ function redirect(destination)
 			break;
 		case "profile":
 			Renderer.renderProfilePage(Data.profilePage());
-			break;	
-		case "showPopup":
-			$(".dialogContainer").show();
 			break;
-		case "hidePopup":
-			$(".dialogContainer").hide();
+		case "groups":
+			Renderer.renderGroupsPage(Data.groupsPage());
+			break;	
+		case "group":
+			Renderer.renderGroupPage(Data.groupPage(destination[1]));
+			break;
+		case "meeting":
+			Renderer.renderMeetingPage(Data.meetingPage(destination[1]));
 			break;
 		case "dashboard":
 		default:
-			$("#container").removeClass("visible");
+			if(destination[0] && destination[0] != "dashboard" ) 
+				alert("There is no case implemented in main.js --> redirect() for: "+destination[0]);
 			Renderer.renderDashboardPage(Data.dashboard());
+			visible = false;
 			break;
 	}
+
+	if(visible) $("#container").addClass("visible");
+	else $("#container").removeClass("visible");
 
 	resetScrolling();
 }
