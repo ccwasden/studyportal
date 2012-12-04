@@ -111,13 +111,38 @@ var Data = {
 		if(!meetings[meetingId]) throw "no existing meeting of id: "+meetingId;
 		return meetings[meetingId];
 	},
+        
+        searchPage : function(){
+            var data = {
+                people : [
+                    {title: "John Cassidy", subtitle: "Bio 100"},
+                    {title: "Yogi Bear", subtitle: "Math 112"},
+                    {title: "Chuck norris", subtitle: "Engl 316"}
+                ],
+                groups : [
+                    {title: "Math 112", subtitle: "Math 112"},
+                    {title: "Business Wanabees", subtitle: "Bus 110"},
+                    {title: "One More Group", subtitle: "Phil 110"}
+                ]
+            };
+            return data;
+        },
+        
+        studySchedulePage : function(){
+            var data = {
+                studysessions : [
+                    "BIO 100 2pm - 4pm",
+                    "STAT 212 4pm - 4:30pm"
+                ]
+            };
+            return data;
+        },
 
 	// save group
 	// @return the group object with id, etc.
 	createGroup: function(name, description){
-
-	},
-
+            
+	}
 }
 
 
