@@ -86,6 +86,9 @@ function redirect(destination)
 		case "group":
 			Renderer.renderGroupPage(Data.groupPage(destination[1]));
 			break;
+		case "meeting":
+			Renderer.renderMeetingPage(Data.meetingPage(destination[1]));
+			break;
 		case "dashboard":
 		default:
 			if(destination[0] && destination[0] != "dashboard" ) 

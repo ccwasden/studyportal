@@ -36,8 +36,8 @@ var Data = {
 					"Johnny Depp"				
 				],
 				meetings: [
-					{ name: "HW #3", date: "Tomorrow 3pm" },
-					{ name: "HW #4, HW #5", date: "Thurs, Jan 5th"}		
+					{ name: "HW #3", date: "Tomorrow 3pm", meetingId:"MID-1" },
+					{ name: "HW #4, HW #5", date: "Thurs, Jan 5th", meetingId:"MID-2"}		
 				]
 			},
 			"5d2e5f19-6328-46bd-b6c4-b366d99b20e1": {
@@ -77,6 +77,31 @@ var Data = {
 		else{
 			return otherPersonData;
 		}
+	},
+	meetingPage: function(meetingId){
+		var meetings = {
+			"MID-1":{
+				name:"HW#3",
+				dateTime:"Tomorrow 3pm",
+				description:"the good stuff",
+				dateRange:"Mon 24th July - Wed 26th July",
+				coordinator:"Jason Barnes",
+				groupName:"Math 112",
+				currentDay:"Wednesday July 26th",
+				times:[
+					{time:"3pm",ratio:"0/3"},
+					{time:"4pm",ratio:"1/3",checked:"true"},
+					{time:"5pm",ratio:"0/3"},
+					{time:"6pm",ratio:"2/3",checked:"true"},
+					{time:"7pm",ratio:"2/3",checked:"true"},
+					{time:"8pm",ratio:"1/3"},
+					{time:"9pm",ratio:"0/3"}
+				]
+			}
+		}
+
+		if(!meetings[meetingId]) throw "no existing meeting of id: "+meetingId;
+		return meetings[meetingId];
 	},
 
 	// save group
