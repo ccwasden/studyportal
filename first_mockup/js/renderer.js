@@ -28,11 +28,11 @@ var Renderer = {
 		$("#renderedContent").html(template(data));
 	},
 
-	renderProfilePage : function() {
+	renderProfilePage : function(data) {
 		var source = Templates.profile;
 		var template = Handlebars.compile(source);
 	
-		$("#renderedContent").html(template());		
+		$("#renderedContent").html(template(data));		
 	},
 
 	renderStudySchedulePage : function() {
