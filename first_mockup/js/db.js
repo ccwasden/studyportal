@@ -13,21 +13,21 @@ function GetGUID(){
 var db = new Object();
 db.Person = [
 	{
-		id:GetGUID(),
+		id:'P1',
 		username:'tommy',
 		password:'1234',
 		name:'Tom Bombadil',
 		major:'Computer Science'
 	},
 	{
-		id:GetGUID(),
+		id:'P2',
 		username:'user',
 		password:'1234',
 		name:'Jason Bourne',
 		major:'Psychology'
 	},
 	{
-		id:GetGUID(),
+		id:'P3',
 		username:'hello',
 		password:'1234',
 		name:'Fred Flintstone',
@@ -36,14 +36,14 @@ db.Person = [
 ];
 db.Group = [
 	{
-		id:GetGUID(),
+		id:'G1',
 		name:'Math 112',
 		subject:'Math 112',
 		description:'The happenin place for all things Newtonian Calculus',
 		memberIds:[db.Person[1].id,db.Person[2].id]
 	},
 	{
-		id:GetGUID(),
+		id:'G2',
 		name:'Bio 221',
 		subject:'Biology',
 		description:'We love biology.',
@@ -52,7 +52,7 @@ db.Group = [
 ];
 db.Meeting=[
 	{
-		id:GetGUID(),
+		id:'M1',
 		groupId:db.Group[0].id,
 		name:'HW #13',
 		coordinatorId:db.Person[0].id,
@@ -76,13 +76,13 @@ db.MeetingTime = [
 ];
 db.StudyTime = [
 	{
-		id:GetGUID(),
+		id:'ST1',
 		subject:"Martial Arts",
 		time:new Date(2012, 12, 13, 8),
 		attendees:[db.Person[1].id]
 	},
         {
-            id:GetGUID(),
+            id:'ST2',
             subject:"Math 112",
             time:new Date(2012, 12, 5, 9),
             attendees:[db.Person[1].id]
@@ -90,14 +90,14 @@ db.StudyTime = [
 ];
 db.Notifications = [
 	{
-		id:GetGUID(),
+		id:'N1',
 		hashURL:"profile/" + db.Person[1].id,
 		personId:db.User,
 		title:"Study Request",
 		subtitle:"Jason Bourne"
 	},
 	{
-		id:GetGUID(),
+		id:'N2',
 		hashURL:"meeting/" + db.Meeting[0].id,
 		personId:db.User,
 		title:"Meeting Time Change",
