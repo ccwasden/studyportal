@@ -151,9 +151,9 @@ function meetingTime(meetingId, time){
 	});
 	if(db.MeetingTime.length == size){
 		db.MeetingTime.push({
-			meetingId = meetingId,
-			personId = db.User,
-			dateTime = time
+		   	meetingId: meetingId,
+		   	personId: db.User,
+		   	dateTime: time
 		});	
 	}
 }

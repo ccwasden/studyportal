@@ -44,7 +44,7 @@ $(document).ready(function(){
 				} 
 				catch(e){
 					console.error(e.stack);
-					alert("Error: "+e);
+					// alert("Error: "+e);
 					history.go(-1);
 				}
 			});
