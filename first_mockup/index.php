@@ -41,8 +41,8 @@
 	<!-- Page icons go on all buttons -->
 	<table class="tabs" id="tabs">
 	    <tr>
-	            <td class="schedule" href="studyschedule"></td>
-	            <td class="groups" href="groups"></td>
+            <td class="schedule" id="scheduleTab" href="studyschedule"></td>
+            <td class="groups" id="groupsTab" href="groups"></td>
 	    </tr>
 	</table> 
 	<!-- This is the holder for any modal rederings -->

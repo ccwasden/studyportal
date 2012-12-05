@@ -315,7 +315,7 @@ html, body {
 .tabs td{ text-align: center; color: white; border-right: 1px solid rgba(0, 0, 0, 0.24); position: relative;} 
 
 .tabs td:last-child{ border:none;} 
-.tabs td:hover {background-color:rgba(19, 51, 50, .05); }
+.tabs td:hover {background-color: rgba(19, 51, 50, .05); }
 .tabs td:active { background-color:rgba(19, 51, 50, .1); }
 
 .tabs td.selected {

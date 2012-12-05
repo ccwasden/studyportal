@@ -16,9 +16,12 @@
 						</div>
 				</div>
 			    <ol class="list arrow">
-                                {{#each studysessions}}
-				<li id="{{id}}">{{subject}} {{time}}</li>
-                                {{/each}}
+					{{#each studysessions}}
+					<li id="{{id}}">
+						<div class="title">{{subject}}</div> 
+						<div class="subtitle">{{time}}</div>
+					</li>
+	                {{/each}}
 			    </ol>
 			</div>	
 		</div>

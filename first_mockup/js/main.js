@@ -91,6 +91,7 @@ function redirect(destination)
                                 $("#subject").val(),
                                 $("#datepicker").val());
                         });
+            selectTab("schedule");
 			break;
 		case "search":
 			Renderer.renderSearchPage(Data.searchPage());
@@ -109,12 +110,15 @@ function redirect(destination)
 					$('#subject').val(),
 					$('#description').val());
 			});
+			selectTab("group");
 			break;	
 		case "group":
 			Renderer.renderGroupPage(Data.groupPage(destination[1]));
+			selectTab("group");
 			break;
 		case "meeting":
 			Renderer.renderMeetingPage(Data.meetingPage(destination[1]));
+			selectTab("group");
 			break;
 		case "dashboard":
 		default:
@@ -127,6 +131,7 @@ function redirect(destination)
 				redirect();
 			});
 			visible = false;
+			selectTab("");
 			break;
 	}
 
@@ -139,6 +144,13 @@ function redirect(destination)
 function resetScrolling(){
 	$('.pane').jScrollPane({verticalGutter: -6});
 	// $('.jspPane').css({width:'+=' + $('.jspTrack').width()});
+}
+
+function selectTab(tabName){
+	$('#groupsTab').removeClass('selected');
+	$('#scheduleTab').removeClass('selected');
+	if(tabName == "group") $('#groupsTab').addClass('selected');
+	if(tabName == "schedule") $('#scheduleTab').addClass('selected');
 }
 
 function attemptLoginFn(eve){
