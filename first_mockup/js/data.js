@@ -35,6 +35,17 @@ var Data = {
 	profilePage : function(personId) {
 		var person = get(db.Person, personId);
 		person.me = personId == db.User;
+                
+                person.schedule = [];
+                for(var i = 0; i < db.StudyTime.length; i++){ //Parse through study sessions
+                    for(var j = 0; j < db.StudyTime[i].attendees.length; j++){
+                        if(personId == db.StudyTime[i].attendees[j]){
+                            person.schedule.push({title: db.StudyTime[i].subject, subtitle: db.StudyTime[i].time, me: (personId == db.User)});
+                            break;
+                        }
+                    }
+                }
+                
 		return person;
 	},
 	meetingPage: function(meetingId){
@@ -44,7 +55,7 @@ var Data = {
 		meeting.times = getWhere(db.MeetingTime, function(time){return time.meetingId == meeting.id});
 		meeting.scheduledTimeString = longDate(meeting.dateTime);
 		$.each(meeting.times, function(i,time){ 
-			time.time = justTime(time.dateTime); 
+			time.time = justTime(time.dateTime);
 			time.ratio = db.MeetingTime.filter(function (item) {
 					return item.meetingId == meetingId && item.dateTime == time.dateTime;
 				}).length + "/" +
@@ -62,14 +73,22 @@ var Data = {
     },
     
     studySchedulePage : function(){
-        var data = {
-            studysessions : [
-                "BIO 100 2pm - 4pm",
-                "STAT 212 4pm - 4:30pm"
-            ]
-        };
-        return data;
-    },        
+        var studyTimes = {studysessions:[]};
+        for(var i = 0; i < db.StudyTime.length; i++){
+            for(var j = 0; j < db.StudyTime[i].attendees.length; j++){
+                if(db.StudyTime[i].attendees[j] == db.User){
+                    var currentStudyTime = db.StudyTime[i];
+                    studyTimes.studysessions.push(currentStudyTime);
+                    var time = currentStudyTime.time;
+                    if(typeof time.getMonth != 'undefined'){
+                        currentStudyTime.time = longDate(time); 
+                    }
+                    break;
+                }
+            }
+        }
+        return studyTimes;
+    }     
 };
 
 function get(table, id){
@@ -116,7 +135,7 @@ function saveNewStudyTime(subject, time){
 		time:time,
 		attendees:[db.User]
 	});
-	window.location.hash = 'studySchedule/'+newId;// TODO: Right?
+	window.location.hash = 'studyschedule/'+newId;// TODO: Right?
 }
 
 function clearNotifications(){
