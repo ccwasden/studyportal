@@ -91,7 +91,8 @@ function redirect(destination)
                                 $("#subject").val(),
                                 $("#datepicker").val());
                         });
-            selectTab("schedule");
+                        selectTab("schedule");
+                        $("#scheduleTab").attr('href', 'dashboard');
 			break;
 		case "search":
 			Renderer.renderSearchPage(Data.searchPage());
@@ -111,6 +112,7 @@ function redirect(destination)
 					$('#description').val());
 			});
 			selectTab("group");
+                        $("#groupsTab").attr('href', 'dashboard');
 			break;	
 		case "group":
 			Renderer.renderGroupPage(Data.groupPage(destination[1]));
@@ -132,6 +134,8 @@ function redirect(destination)
 			});
 			visible = false;
 			selectTab("");
+                        $("#groupsTab").attr('href', 'groups');
+                        $("#scheduleTab").attr('href', 'studyschedule');
 			break;
 	}
 
