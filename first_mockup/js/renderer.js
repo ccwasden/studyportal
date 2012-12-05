@@ -52,9 +52,14 @@ var Renderer = {
 	renderSearchPage : function(data) { 
 		var source = Templates.search;
 		var template = Handlebars.compile(source);
-		console.log(data);
 		$("#renderedContent").html(template(data));		
 	},
+        
+        renderSearchResults : function(data) {
+            var source = Templates.searchresults;
+            var template = Handlebars.compile(source);
+            $("#searchResults").html(template(data));
+        },
 
 	renderStudyTimePage : function(data) {
 		var source = Templates.studytime;

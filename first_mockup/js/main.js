@@ -94,6 +94,9 @@ function redirect(destination)
 			break;
 		case "search":
 			Renderer.renderSearchPage(Data.searchPage());
+                        $("#searchBtn").live('click', function(){
+                            Renderer.renderSearchResults(Data.searchResults()); 
+                        });
 			break;
 		case "profile":
 			Renderer.renderProfilePage(Data.profilePage(destination[1]));

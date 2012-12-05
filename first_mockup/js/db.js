@@ -40,14 +40,14 @@ db.Group = [
 		name:'Math 112',
 		subject:'Math 112',
 		description:'The happenin place for all things Newtonian Calculus',
-		memberIds:[db.Person[0].id,db.Person[1].id,db.Person[2].id]
+		memberIds:[db.Person[1].id,db.Person[2].id]
 	},
 	{
 		id:GetGUID(),
 		name:'Bio 221',
 		subject:'Biology',
 		description:'We love biology.',
-		memberIds:[db.Person[0].id,db.Person[2].id]
+		memberIds:[db.Person[2].id]
 	}
 ];
 db.Meeting=[
