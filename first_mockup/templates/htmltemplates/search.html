@@ -16,29 +16,11 @@
 				<div class="listHeader">
 					<input class="textfield" size="28">
 					<div class="buttons">
-						<button class="btn red">Search</button>
+						<button class="btn red" id="searchBtn">Search</button>
 					</div>
 				</div>
 			</div>
-			<div class="listWrapper">
-				<div class="listHeader">
-					<h1>People</h1>						
-				</div>
-			    <ol class="list arrow">
-                                {{#each people}}
-                                <li href="profile/{{id}}" class="person tall"><img/>{{title}}<span class="subtitle">{{subtitle}}</span></li>
-                                {{/each}}
-			    </ol>
-			</div>
-			<div class="listWrapper">
-				<div class="listHeader">
-					<h1>Groups</h1>						
-				</div>
-                            <ol class="list arrow">
-                                {{#each groups}}
-				<li href="group/{{id}}" class="tall"><img/>{{title}}<span class="subtitle">{{subtitle}}</span></li>
-				{{/each}}
-			    </ol>
-			</div>
+                    <div id="searchResults">
+                    </div>
 		</div>
 	</div>

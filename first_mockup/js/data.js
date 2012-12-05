@@ -65,6 +65,10 @@ var Data = {
 	},
         
     searchPage : function(){
+        return {};
+    },
+    
+    searchResults : function(){
         var data = {
             people : db.Person,
             groups : db.Group
