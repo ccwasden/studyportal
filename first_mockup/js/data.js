@@ -45,7 +45,7 @@ var Data = {
 		meeting.scheduledTimeString = longDate(meeting.dateTime);
 		$.each(meeting.times, function(i,time){ 
 			time.time = justTime(time.dateTime); 
-			time.ratio = "0/3";
+			time.ratio = "0/" + (get(db.Group, meeting.groupId)).memberIds.length;
 		});
 		return meeting;
 	},
