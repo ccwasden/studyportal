@@ -122,9 +122,7 @@ function getWhere(table, callback){
 
 function saveNewGroup(name, subject, description){
 	var newId = GetGUID();
-	// while(groups.hasOwnProperty[newId]){
-	//	newId = GetGUID();
-	// }
+	//TODO: initialize members with current person logged in. 
 	db.Group.push({
 		id:newId,
 		name:name,
