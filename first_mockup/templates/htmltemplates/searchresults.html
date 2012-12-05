@@ -1,0 +1,20 @@
+<div class="listWrapper">
+        <div class="listHeader">
+                <h1>People</h1>						
+        </div>
+    <ol class="list arrow">
+        {{#each people}}
+        <li href="profile/{{id}}" class="person tall"><img/>{{name}}<span class="subtitle">{{major}}</span></li>
+        {{/each}}
+    </ol>
+</div>
+<div class="listWrapper">
+        <div class="listHeader">
+                <h1>Groups</h1>						
+        </div>
+    <ol class="list arrow">
+        {{#each groups}}
+        <li href="group/{{id}}" class="tall"><img/>{{name}}<span class="subtitle">{{subject}}</span></li>
+        {{/each}}
+    </ol>
+</div>
