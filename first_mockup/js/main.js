@@ -94,6 +94,12 @@ function redirect(destination)
 			break;
 		case "groups":
 			Renderer.renderGroupsPage(Data.groupsPage());
+			$('#saveGroupBtn').click(function(){
+				saveNewGroup(
+					$('#name').val(),
+					$('#subject').val(),
+					$('#description').val());
+			});
 			break;	
 		case "group":
 			Renderer.renderGroupPage(Data.groupPage(destination[1]));

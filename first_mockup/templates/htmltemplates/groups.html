@@ -10,7 +10,7 @@
 		<div class="listWrapper">
 		    <ol class="list arrow">
 			{{#each groups}}
-                            <li href="group/{{id}}">{{name}}<span class="subtitle">{{numMembers}} Members</span></li>
+                <li href="group/{{id}}">{{name}}<span class="subtitle">{{memberIds.length}} Members</span></li>
 			{{/each}}
 		    </ol>
 		</div>	
@@ -31,8 +31,7 @@
 			</li>
 			<li>
 				<div class="buttons">
-					<button class="btn red" onClick="saveNewGroup($('#name').val(),
-					$('#subject').val(),$('#description').val());">Save</button>
+					<button class="btn red" id="saveGroupBtn">Save</button>
 					<button class="btn red" href="hidePopup">Cancel</button>
 				</div>
 			</li>

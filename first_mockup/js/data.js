@@ -1,34 +1,34 @@
-var groups = {
-			"8ea7a781-0104-41ac-b82a-3f2cbe438c23":{
-				id:"8ea7a781-0104-41ac-b82a-3f2cbe438c23",
-				groupName: "Math 112",
-				groupSubject: "Math 112",
-				groupDescription : "The happenin place for all things Newtonian Calculus",
-				members : [
-					"You",
-					"John Cassidy",
-					"Johnny Depp"				
-				],
-				meetings: [
-					{ name: "HW #3", date: "Tomorrow 3pm", meetingId:"MID-1" },
-					{ name: "HW #4, HW #5", date: "Thurs, Jan 5th", meetingId:"MID-2"}		
-				]
-			},
-			"5d2e5f19-6328-46bd-b6c4-b366d99b20e1": {
-				id:"5d2e5f19-6328-46bd-b6c4-b366d99b20e1",
-				groupName: "Bio 221",
-				groupSubject: "Biology",
-				groupDescription : "A sweet bio class",
-				members : [
-					"You",
-					"Dude1"
-				],
-				meetings: [
-					{ name: "HW #14", date: "Wednesday 3pm" }
-				]
-			}
-		};
-		
+// var groups = {
+//			"8ea7a781-0104-41ac-b82a-3f2cbe438c23":{
+//				id:"8ea7a781-0104-41ac-b82a-3f2cbe438c23",
+//				groupName: "Math 112",
+//				groupSubject: "Math 112",
+//				groupDescription : "The happenin place for all things Newtonian Calculus",
+//				members : [
+//					"You",
+//					"John Cassidy",
+//					"Johnny Depp"				
+//				],
+//				meetings: [
+//					{ name: "HW #3", date: "Tomorrow 3pm", meetingId:"MID-1" },
+//					{ name: "HW #4, HW #5", date: "Thurs, Jan 5th", meetingId:"MID-2"}		
+//				]
+//			},
+//			"5d2e5f19-6328-46bd-b6c4-b366d99b20e1": {
+//				id:"5d2e5f19-6328-46bd-b6c4-b366d99b20e1",
+//				groupName: "Bio 221",
+//				groupSubject: "Biology",
+//				groupDescription : "A sweet bio class",
+//				members : [
+//					"You",
+//					"Dude1"
+//				],
+//				meetings: [
+//					{ name: "HW #14", date: "Wednesday 3pm" }
+//				]
+//			}
+//		};
+  		
 
 
 var Data = {
@@ -44,23 +44,26 @@ var Data = {
 		return data;
 	},
 	groupsPage : function(){		
-		var groupsData = [];
-		
-		for(i in groups)
-		{
-			temp = {id:groups[i].id,name:groups[i].groupName, numMembers:groups[i].members.length};
-			groupsData.push(temp);
-		}
-		
-		groupsData = {groups:groupsData};
-		
+	    //TODO: filter by db.User (make sure current user is a member of each group) -- user $.grep() --> (jquery util fn)
+	    var groupsData = {groups:db.Group};
+	 //    $.map(groupsData, function(group){
+
+		//	return group;
+		// });
 		return groupsData;
 	},
 	groupPage : function(id){
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
+		var group = get(db.Group, id);
+		if(!group) throw "this group does not exist";
+		group.members = [];
+		group.isMember = true;
+		$.each(group.memberIds, function(i,memberId){
+			var person = get(db.Person, memberId);
+			if(person) group.members.push(person);
+		});
 		
-		if(!groups[id]) throw "this group does not exist";
-		return groups[id];
+		return group;
 	},
 	
 	profilePage : function(person) {
@@ -152,22 +155,26 @@ var Data = {
 	
 };
 
+function get(table, id){
+	var results = $.grep(table, function(row){return row.id==id});
+	if(results.length) return results[0];
+	return null;
+}
+
 function saveNewGroup(name, subject, description){
-	newId = GetGUID();
-	
-	while(groups.hasOwnProperty[newId])
-	{
-		newId = GetGUID();
-	}
-	groups[newId] = {
-				id:newId,
-				groupName:name,
-				groupSubject:subject,
-				groupDescription:description,
-				members:[],
-				meetings:[]
-				};
-	redirect(['groups']);
+	var newId = GetGUID();
+	// while(groups.hasOwnProperty[newId]){
+	//	newId = GetGUID();
+	// }
+	db.Group.push({
+		id:newId,
+		name:name,
+		subject:subject,
+		description:description,
+		members:[],
+		meetings:[]
+	});
+	window.location.hash = 'group/'+newId;
 }
 
 

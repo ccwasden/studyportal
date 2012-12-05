@@ -5,7 +5,7 @@ var db = {
 			name:'Math 112',
 			subject:'Math 112',
 			description:'The happenin place for all things Newtonian Calculus',
-			memberIds:['P1','P2']
+			memberIds:['P1','P2','P3']
 		},
 		{
 			id:'G2',
@@ -49,6 +49,20 @@ var db = {
 			password:'1234',
 			name:'Tom Bombadil',
 			major:'Computer Science'
+		},
+		{
+			id:'P2',
+			username:'user',
+			password:'1234',
+			name:'Jason Bourne',
+			major:'Psychology'
+		},
+		{
+			id:'P3',
+			username:'hello',
+			password:'1234',
+			name:'Fred Flinstone',
+			major:'Math'
 		}
 	]
 }

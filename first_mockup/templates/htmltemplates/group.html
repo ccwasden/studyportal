@@ -13,16 +13,16 @@
 		<div class="listWrapper">
 		    <ol class="list leftRightDetail">
 			<li>
-				<h2>Subject</h2><span>{{groupSubject}}</span>
+				<h2>Subject</h2><span>{{subject}}</span>
 			</li>
 
 			<li>
-				<h2>Description</h2><span>{{groupDescription}}</span>
+				<h2>Description</h2><span>{{description}}</span>
 			</li>
 		    </ol>
 		</div>
 		{{! If the person's a member of this group, render the whole page }}
-		{{#if members}}
+		{{#if isMember}}
 		<div class="listWrapper">
 			<div class="listHeader">
 				<h1>Members</h1>
@@ -32,7 +32,7 @@
 			</div>
 		    <ol class="list arrow">
 			{{#each members}}
-				<li class="person"><img/>{{this}}</li>
+				<li class="person"><img/>{{name}}</li>
 			{{/each}}
 		    </ol>
 		</div>
