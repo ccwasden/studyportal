@@ -87,7 +87,7 @@ function redirect(destination)
 		case "studyschedule":
 			Renderer.renderStudySchedulePage(Data.studySchedulePage());
                         $("#saveMeetingBtn").click(function(){
-                            saveNewMeeting(
+                            saveNewStudyTime(
                                 $("#subject").val(),
                                 $("#datepicker").val());
                         });

@@ -60,12 +60,15 @@ var Data = {
     
     studySchedulePage : function(){
         var studyTimes = {studysessions:[]};
+        
         for(var i = 0; i < db.StudyTime.length; i++){
             studyTimes.studysessions.push(db.StudyTime[i]);
             var time = studyTimes.studysessions[i].time;
-            studyTimes.studysessions[i].time = (time.getMonth()+1) + "/" 
-                + (time.getDay()+1) + "/" + (time.getFullYear()) + " " 
-                + (time.getHours() + 1) + "H";
+            if(typeof time.getMonth != 'undefined'){
+                studyTimes.studysessions[i].time = (time.getMonth()+1) + "/" 
+                   + (time.getDay()+1) + "/" + (time.getFullYear()) + " " 
+                    + (time.getHours() + 1) + "H";
+            }
         }
         return studyTimes;
     }     
