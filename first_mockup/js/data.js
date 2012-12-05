@@ -116,6 +116,10 @@ function saveNewStudyTime(subject, time){
 	window.location.hash = 'studySchedule/'+newId;// TODO: Right?
 }
 
+function clearNotifications(){
+	db.Notifications = [];
+	window.location.hash = 'dashboard/';
+}
 
 function shortDate(date){
 	return dateUtil.format(date, 'M d, Y');
