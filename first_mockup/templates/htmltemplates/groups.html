@@ -24,17 +24,15 @@
 				<h2>Name</h2><span><input id="name"></input></span>
 			</li>
 			<li>
-				<h2>Professor</h2><span><input id="professor"></input></span>
+				<h2>Subject</h2><span><input id="subject"></input></span>
 			</li>
 			<li>
-				<h2>Class</h2><span><input id="class"></input></span>
-			</li>
-			<li>
-				<h2>Section</h2><span><input id="section"></input></span>
+				<h2>Description</h2><span><input id="description"></input></span>
 			</li>
 			<li>
 				<div class="buttons">
-					<button class="btn red">Save</button>
+					<button class="btn red" onClick="saveNewGroup($('#name').val(),
+					$('#subject').val(),$('#description').val());">Save</button>
 					<button class="btn red" href="hidePopup">Cancel</button>
 				</div>
 			</li>

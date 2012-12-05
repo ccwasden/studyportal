@@ -1,30 +1,4 @@
-var Data = {
-	dashboard : function(){
-		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
-		var data = {
-			nextMeeting : "Tuesday at 3:00pm",
-			dashboardItems : [
-				{ title : "Study Request", subtitle: "Sandra Bernard" },
-				{ title : "Meeting Time Change", subtitle : "Math 112 - Tomorrow, 3pm" }
-			]
-		};
-		return data;
-	},
-	groupsPage : function(){
-		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
-		var data = {
-			groups : [
-			 	{ id:"8ea7a781-0104-41ac-b82a-3f2cbe438c23", name : "Math 112", numMembers : 3},
-			 	{ id:"5d2e5f19-6328-46bd-b6c4-b366d99b20e1", name : "Bio 221", numMembers : 5 },
-			 	{ id:"f64169c3-5053-439b-810d-c72cf81929f1", name : "AmHtg 100", numMembers : 18 },
-			 	{ id:"5a18e523-47f5-419a-8534-2e37917bf5c7", name : "Other", numMembers : 35 }
-			]		
-		}
-		return data;
-	},
-	groupPage : function(id){
-		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
-		var data = {
+var groups = {
 			"8ea7a781-0104-41ac-b82a-3f2cbe438c23":{
 				id:"8ea7a781-0104-41ac-b82a-3f2cbe438c23",
 				groupName: "Math 112",
@@ -54,8 +28,38 @@ var Data = {
 				]
 			}
 		};
-		if(!data[id]) throw "this group does not exist";
-		return data[id];
+
+
+var Data = {
+	dashboard : function(){
+		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
+		var data = {
+			nextMeeting : "Tuesday at 3:00pm",
+			dashboardItems : [
+				{ title : "Study Request", subtitle: "Sandra Bernard" },
+				{ title : "Meeting Time Change", subtitle : "Math 112 - Tomorrow, 3pm" }
+			]
+		};
+		return data;
+	},
+	groupsPage : function(){		
+		var groupsData = [];
+		
+		for(i in groups)
+		{
+			temp = {id:groups[i].id,name:groups[i].groupName, numMembers:groups[i].members.length};
+			groupsData.push(temp);
+		}
+		
+		groupsData = {groups:groupsData};
+		
+		return groupsData;
+	},
+	groupPage : function(id){
+		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
+		
+		if(!groups[id]) throw "this group does not exist";
+		return groups[id];
 	},
 	
 	profilePage : function(person) {
@@ -118,7 +122,27 @@ var Data = {
 
 	},
 
+};
+
+function saveNewGroup(name, subject, description){
+	newId = GetGUID();
+	
+	while(groups.hasOwnProperty[newId])
+	{
+		newId = GetGUID();
+	}
+	groups[newId] = {
+				id:newId,
+				groupName:name,
+				groupSubject:subject,
+				groupDescription:description,
+				members:[],
+				meetings:[]
+				};
+	redirect(['groups']);
 }
+
+
 
 
 

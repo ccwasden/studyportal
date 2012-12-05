@@ -117,3 +117,5 @@ function GetGUID(){
 	
 	return GUID;
 }
+
+
