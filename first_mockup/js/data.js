@@ -3,25 +3,22 @@ var Data = {
 	dashboard : function(){
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
 		var data = {
+			userId : db.User,
 			nextMeeting : "Tuesday at 3:00pm",
-			dashboardItems : [
-				{ title : "Study Request", subtitle: "Sandra Bernard" },
-				{ title : "Meeting Time Change", subtitle : "Math 112 - Tomorrow, 3pm" }
-			]
+			dashboardItems : db.Notifications
 		};
 		return data;
 	},
-	groupsPage : function(){		
-	    //TODO: filter by db.User (make sure current user is a member of each group) -- user $.grep() --> (jquery util fn)
-	    var groupsData = {groups:db.Group};
-	 //    $.map(groupsData, function(group){
-
-		//	return group;
-		// });
+	groupsPage : function(){
+	    var groupsData = {groups:[]};
+		for(var i = 0; i < db.Group.length; i++){
+			if($.inArray(db.User, db.Group[i].memberIds) != -1){
+				groupsData.groups.push(db.Group[i]);
+			}
+		}
 		return groupsData;
 	},
 	groupPage : function(id){
-		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
 		var group = get(db.Group, id);
 		if(!group) throw "this group does not exist";
 		group.members = [];
@@ -31,37 +28,25 @@ var Data = {
 			if(person) group.members.push(person);
 		});
 
-		group.meetings = getWhere(db.Meeting, function(row){ return row.groupId==group.id; });
+		group.meetings = getWhere(db.Meeting, function(row){ return row.groupId == id; });
 		return group;
 	},
 	
-	profilePage : function(person) {
-		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
-		var meData = {
-			me : "true",
-			name : "David Woodruff",
-			major : "Computer Science",
-                        schedule : [
-                            {title:"HW #3 - Math 112", subtitle: "Tomorrow 3pm"},
-                            {title:"HW #4, HW #5 - Math 112", subtitle: "Thurs Jan 5th, 11am"}
-                        ]
-		};
-		
-		var otherPersonData = {
-			name : "Stonewall Jackson",
-			major : "Bayonet studies",
-            schedule : [
-                {title:"HW #1 - Bayonet practive", subtitle: "Todat 4pm"},
-                {title:"Exam #1 - Give them the bayonet", subtitle: "Tues Jan 23rd, 8am"}
-            ]
-		};
-		
-		if(person == "me"){
-			return meData;
-		}
-		else{
-			return otherPersonData;
-		}
+	profilePage : function(personId) {
+		var person = get(db.Person, personId);
+		person.me = personId == db.User;
+                
+                person.schedule = [];
+                for(var i = 0; i < db.StudyTime.length; i++){ //Parse through study sessions
+                    for(var j = 0; j < db.StudyTime[i].attendees.length; j++){
+                        if(personId == db.StudyTime[i].attendees[j]){
+                            person.schedule.push({title: db.StudyTime[i].subject, subtitle: db.StudyTime[i].time, me: (personId == db.User)});
+                            break;
+                        }
+                    }
+                }
+                
+		return person;
 	},
 	meetingPage: function(meetingId){
 		var meeting = get(db.Meeting, meetingId);
@@ -70,44 +55,40 @@ var Data = {
 		meeting.times = getWhere(db.MeetingTime, function(time){return time.meetingId == meeting.id});
 		meeting.scheduledTimeString = longDate(meeting.dateTime);
 		$.each(meeting.times, function(i,time){ 
-			time.time = justTime(time.dateTime); 
-			time.ratio = "0/3";
+			time.time = justTime(time.dateTime);
+			time.ratio = db.MeetingTime.filter(function (item) {
+					return item.meetingId == meetingId && item.dateTime == time.dateTime;
+				}).length + "/" +
+				(get(db.Group, meeting.groupId)).memberIds.length;
 		});
 		return meeting;
 	},
         
     searchPage : function(){
         var data = {
-            people : [
-                {title: "John Cassidy", subtitle: "Bio 100"},
-                {title: "Yogi Bear", subtitle: "Math 112"},
-                {title: "Chuck norris", subtitle: "Engl 316"}
-            ],
-            groups : [
-                {title: "Math 112", subtitle: "Math 112"},
-                {title: "Business Wanabees", subtitle: "Bus 110"},
-                {title: "One More Group", subtitle: "Phil 110"}
-            ]
+            people : db.Person,
+            groups : db.Group
         };
         return data;
     },
     
     studySchedulePage : function(){
-        var data = {
-            studysessions : [
-                "BIO 100 2pm - 4pm",
-                "STAT 212 4pm - 4:30pm"
-            ]
-        };
-        return data;
-    },
-
-	// save group
-	// @return the group object with id, etc.
-	createGroup: function(name, description){
-
-	}           
-	
+        var studyTimes = {studysessions:[]};
+        for(var i = 0; i < db.StudyTime.length; i++){
+            for(var j = 0; j < db.StudyTime[i].attendees.length; j++){
+                if(db.StudyTime[i].attendees[j] == db.User){
+                    var currentStudyTime = db.StudyTime[i];
+                    studyTimes.studysessions.push(currentStudyTime);
+                    var time = currentStudyTime.time;
+                    if(typeof time.getMonth != 'undefined'){
+                        currentStudyTime.time = longDate(time); 
+                    }
+                    break;
+                }
+            }
+        }
+        return studyTimes;
+    }     
 };
 
 function get(table, id){
@@ -122,18 +103,45 @@ function getWhere(table, callback){
 
 function saveNewGroup(name, subject, description){
 	var newId = GetGUID();
-	//TODO: initialize members with current person logged in. 
 	db.Group.push({
 		id:newId,
 		name:name,
 		subject:subject,
 		description:description,
-		members:[],
-		meetings:[]
+		memberIds:[db.User]
 	});
 	window.location.hash = 'group/'+newId;
 }
 
+function saveNewMeeting(groupId, name, description, start, end){
+	var newId = GetGUID();
+	db.Meeting.push({
+		id:newId,
+		groupId:groupId,
+		coordinatorId:db.User,
+		name:name,
+		description:description,
+		dateRangeStart:start,
+		dateRangeEnd:end
+	});
+	window.location.hash = 'meeting/'+newId;
+}
+
+function saveNewStudyTime(subject, time){
+	var newId = GetGUID();
+	db.StudyTime.push({
+		id:newId,
+		subject:subject,
+		time:time,
+		attendees:[db.User]
+	});
+	window.location.hash = 'studyschedule/'+newId;// TODO: Right?
+}
+
+function clearNotifications(){
+	db.Notifications = [];
+	window.location.hash = 'dashboard/';
+}
 
 function shortDate(date){
 	return dateUtil.format(date, 'M d, Y');
@@ -146,7 +154,6 @@ function longDate(date){
 function justTime(date){
 	return dateUtil.format(date, 'g:i a');
 }
-
 
 
 

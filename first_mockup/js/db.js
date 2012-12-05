@@ -1,68 +1,106 @@
-var db = {
-	Group:[
-		{
-			id:'G1',
-			name:'Math 112',
-			subject:'Math 112',
-			description:'The happenin place for all things Newtonian Calculus',
-			memberIds:['P1','P2','P3']
-		},
-		{
-			id:'G2',
-			name:'Bio 221',
-			subject:'Biology',
-			description:'We love biology.',
-			memberIds:['P1','P3']
-		}
-	],
-	Meeting:[
-		{
-			id:'M1',
-			groupId:'G1',
-			name:'HW #13',
-			coordinatorId:'P1',
-			description:'The lamest assignment to grace earth.',
-			dateTime:new Date(2012, 11, 13, 12, 30),
-			dateRangeStart:new Date(2012, 11, 12),
-			dateRangeEnd:new Date(2012, 11, 14)
-		}
-	],
-	MeetingTime:[
-		{
-			meetingId:'M1',
-			personId:'P1',
-			dateTime:new Date(2012, 11, 13, 12, 30)
-		},
-		{
-			meetingId:'M1',
-			personId:'P1',
-			dateTime:new Date(2012, 11, 13, 13)
-		}
-	],
-	StudyTime:[
 
-	],
-	Person:[
-		{
-			id:'P1',
-			username:'tommy',
-			password:'1234',
-			name:'Tom Bombadil',
-			major:'Computer Science'
-		},
-		{
-			id:'P2',
-			username:'user',
-			password:'1234',
-			name:'Jason Bourne',
-			major:'Psychology'
-		},
-		{
-			id:'P3',
-			username:'hello',
-			password:'1234',
-			name:'Fred Flinstone',
-			major:'Math'
-		}
-	]
+
+
+function GetGUID(){
+	var GUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+		return v.toString(16);
+	});
+	
+	return GUID;
 }
+
+var db = new Object();
+db.Person = [
+	{
+		id:GetGUID(),
+		username:'tommy',
+		password:'1234',
+		name:'Tom Bombadil',
+		major:'Computer Science'
+	},
+	{
+		id:GetGUID(),
+		username:'user',
+		password:'1234',
+		name:'Jason Bourne',
+		major:'Psychology'
+	},
+	{
+		id:GetGUID(),
+		username:'hello',
+		password:'1234',
+		name:'Fred Flintstone',
+		major:'Math'
+	}
+];
+db.Group = [
+	{
+		id:GetGUID(),
+		name:'Math 112',
+		subject:'Math 112',
+		description:'The happenin place for all things Newtonian Calculus',
+		memberIds:[db.Person[0].id,db.Person[1].id,db.Person[2].id]
+	},
+	{
+		id:GetGUID(),
+		name:'Bio 221',
+		subject:'Biology',
+		description:'We love biology.',
+		memberIds:[db.Person[0].id,db.Person[2].id]
+	}
+];
+db.Meeting=[
+	{
+		id:GetGUID(),
+		groupId:db.Group[0].id,
+		name:'HW #13',
+		coordinatorId:db.Person[0].id,
+		description:'The lamest assignment to grace earth.',
+		dateTime:new Date(2012, 11, 13, 12, 30),
+		dateRangeStart:new Date(2012, 11, 12),
+		dateRangeEnd:new Date(2012, 11, 14)
+	}
+];
+db.MeetingTime = [
+	{
+		meetingId:db.Meeting[0].id,
+		personId:db.Person[0].id,
+		dateTime:new Date(2012, 11, 13, 12, 30)
+	},
+	{
+		meetingId:db.Meeting[0].id,
+		personId:db.Person[0].id,
+		dateTime:new Date(2012, 11, 13, 13)
+	}
+];
+db.StudyTime = [
+	{
+		id:GetGUID(),
+		subject:"Martial Arts",
+		time:new Date(2012, 12, 13, 8),
+		attendees:[db.Person[1].id]
+	},
+        {
+            id:GetGUID(),
+            subject:"Math 112",
+            time:new Date(2012, 12, 5, 9),
+            attendees:[db.Person[1].id]
+        }
+];
+db.Notifications = [
+	{
+		id:GetGUID(),
+		hashURL:"profile/" + db.Person[1].id,
+		personId:db.User,
+		title:"Study Request",
+		subtitle:"Jason Bourne"
+	},
+	{
+		id:GetGUID(),
+		hashURL:"meeting/" + db.Meeting[0].id,
+		personId:db.User,
+		title:"Meeting Time Change",
+		subtitle:"Math 112 - Tomorrow, 3pm"
+	}
+]

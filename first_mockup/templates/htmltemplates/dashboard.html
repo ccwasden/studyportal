@@ -1,5 +1,5 @@
 <div class="dashHeader">
-	<div class="profileIcon" href="profile"></div>
+	<div class="profileIcon" href="profile/{{userId}}"></div>
 	<div class="search" href="search"></div>
 	<span class="status">
 		<h2>Upcoming:</h2>
@@ -15,14 +15,14 @@
 	<div class="header dark">
 		<h1>Notifications</h1>
 		<button class="left" id="logout">Logout</button>
-		<button>Clear All</button>
+		<button onclick="clearNotifications()">Clear All</button>
 	</div>
 	<div class="content">
 		<div class="listWrapper dark">
                     {{#if dashboardItems}}
                     <ol class="list arrow">
                         {{#each dashboardItems }}
-                            <li>{{title}}<span class="subtitle">{{subtitle}}</span></li>
+                            <li href="{{hashURL}}">{{title}}<span class="subtitle">{{subtitle}}</span></li>
                         {{/each}}
                     </ol>
                     {{else}}

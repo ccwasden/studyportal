@@ -17,7 +17,7 @@
 				</div>
 			    <ol class="list arrow">
                                 {{#each studysessions}}
-				<li>{{this}}</li>
+				<li id="{{id}}">{{subject}} {{time}}</li>
                                 {{/each}}
 			    </ol>
 			</div>	
@@ -29,7 +29,7 @@
 			<div class ="description">New Study Time</div>
 			<div class="listHeader">
 						<h1>Upcoming</h1>
-							<input class="textfield" value="subjects go here"/>
+							<input class="textfield" id="subject" value="subjects go here"/>
 			</div>
 			
 			<div class="listHeader">
@@ -39,7 +39,7 @@
 			</div>
 			
 			<div class="buttons">
-				<button class="btn red">Save</button>
+				<button class="btn red" id="saveMeetingBtn">Save</button>
 				<button class="btn red" href="hidePopup">Cancel</button>
 			</div>
 		</div>
