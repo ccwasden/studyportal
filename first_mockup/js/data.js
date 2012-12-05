@@ -59,14 +59,16 @@ var Data = {
     },
     
     studySchedulePage : function(){
-        var data = {
-            studysessions : [
-                "BIO 100 2pm - 4pm",
-                "STAT 212 4pm - 4:30pm"
-            ]
-        };
-        return data;
-    },        
+        var studyTimes = {studysessions:[]};
+        for(var i = 0; i < db.StudyTime.length; i++){
+            studyTimes.studysessions.push(db.StudyTime[i]);
+            var time = studyTimes.studysessions[i].time;
+            studyTimes.studysessions[i].time = (time.getMonth()+1) + "/" 
+                + (time.getDay()+1) + "/" + (time.getFullYear()) + " " 
+                + (time.getHours() + 1) + "H";
+        }
+        return studyTimes;
+    }     
 };
 
 function get(table, id){
@@ -113,7 +115,7 @@ function saveNewStudyTime(subject, time){
 		time:time,
 		attendees:[db.User]
 	});
-	window.location.hash = 'studySchedule/'+newId;// TODO: Right?
+	window.location.hash = 'studyschedule/'+newId;// TODO: Right?
 }
 
 

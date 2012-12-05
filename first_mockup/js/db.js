@@ -80,7 +80,13 @@ db.StudyTime = [
 		subject:"Martial Arts",
 		time:new Date(2012, 12, 13, 8),
 		attendees:[db.Person[1].id]
-	}
+	},
+        {
+            id:GetGUID(),
+            subject:"Math 112",
+            time:new Date(2012, 12, 5, 9),
+            attendees:[db.Person[1].id]
+        }
 ];
 db.Notifications = [
 	{

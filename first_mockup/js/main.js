@@ -86,6 +86,11 @@ function redirect(destination)
 			break;
 		case "studyschedule":
 			Renderer.renderStudySchedulePage(Data.studySchedulePage());
+                        $("#saveMeetingBtn").click(function(){
+                            saveNewMeeting(
+                                $("#subject").val(),
+                                $("#datepicker").val());
+                        });
 			break;
 		case "search":
 			Renderer.renderSearchPage(Data.searchPage());
