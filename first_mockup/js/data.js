@@ -45,7 +45,7 @@ var Data = {
 		meeting.scheduledTimeString = longDate(meeting.dateTime);
 		$.each(meeting.times, function(i,time){ 
 			time.time = justTime(time.dateTime); 
-			time.ratio = "0/3";
+			time.ratio = "0/" + (get(db.Group, meeting.groupId)).memberIds.length;
 		});
 		return meeting;
 	},
@@ -118,6 +118,10 @@ function saveNewStudyTime(subject, time){
 	window.location.hash = 'studyschedule/'+newId;// TODO: Right?
 }
 
+function clearNotifications(){
+	db.Notifications = [];
+	window.location.hash = 'dashboard/';
+}
 
 function shortDate(date){
 	return dateUtil.format(date, 'M d, Y');
