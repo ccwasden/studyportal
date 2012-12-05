@@ -95,6 +95,7 @@ var Data = {
 		var meetings = {
 			"MID-1":{
 				name:"HW#3",
+				groupId:"8ea7a781-0104-41ac-b82a-3f2cbe438c23",
 				dateTime:"Tomorrow 3pm",
 				description:"the good stuff",
 				dateRange:"Mon 24th July - Wed 26th July",

@@ -66,6 +66,7 @@ html, body {
     padding: 57px 0 64px;
 }
 
+
 #paneList{
     bottom: 0;
     text-align:center;
@@ -195,23 +196,26 @@ html, body {
 	min-height: 100%;
 	height: 100%;
 	padding: 0 0 64px;
-	position: relative;
-	top: 100%;
-	transition-duration:.5s;
+
+	z-index: 2;
+}
+#container.visible { top:0; }
+#renderedContent, #modal, .mainModal { height: 100%; box-sizing:border-box; -webkit-box-sizing: border-box; background: url(img/bg_main.png) gray; position: relative; display: inline-block; padding: 45px 0 0;}
+#container.noBottom { padding-bottom:0; }
+#modal, .mainModal { z-index:51; }
+#container, #modal, .mainModal {
+    transition-duration:.5s;
 	-moz-transition-duration:.5s; /* Firefox */
 	-webkit-transition-duration:.5s; /* Safari and Chrome */
 	-o-transition-duration:.5s; /* Opera */
 	transition-timing-function: cubic-bezier(0, .92, 0.6, 1.0);
-	/*-moz-transition-timing-function: linear;
-	-webkit-transition-timing-function: linear;
-	-o-transition-timing-function: linear;*/
-;
-	z-index: 2;
+	-moz-transition-timing-function: cubic-bezier(0, .92, 0.6, 1.0);
+	-webkit-transition-timing-function: cubic-bezier(0, .92, 0.6, 1.0);
+	-o-transition-timing-function: cubic-bezier(0, .92, 0.6, 1.0);
+	
+    position: absolute;
+	top:100%;
 }
-#container.visible { top:0; }
-#renderedContent { height: 100%; box-sizing:border-box; -webkit-box-sizing: border-box; background: url(img/bg_main.png) gray; position: relative; display: inline-block; padding: 45px 0 0;}
-#container.noBottom { padding-bottom:0; }
-
 .header {
 	display: block;
 	height: 46px;
@@ -265,8 +269,8 @@ html, body {
     text-shadow: rgba(0,0,0,.4) 0 -1px 0;
     box-shadow: rgba(255,255,255,.3) 0 1px 0;
 }
-.pane.dark .header button { background: rgba(0, 0, 0, 0.05); border-color: rgba(255, 255, 255, 0.1); box-shadow: inset rgba(0, 0, 0, 0.73) 0 1px 2px; color: rgb(180, 180, 180); z-index: 2;}
-.header button.left { right:auto; left:0; z-index:2; }
+.pane.dark .header button { background: rgba(0, 0, 0, 0.05); border-color: rgba(255, 255, 255, 0.1); box-shadow: inset rgba(0, 0, 0, 0.34) 0 -1px 6px; color: rgb(180, 180, 180); z-index: 2;}
+.header button.left { right:auto; left: 8px; z-index:2; }
 
 .pulltab img {
 
@@ -355,8 +359,8 @@ html, body {
 	right: 0;
 }
 
-ol.list {
-	font-family: 'Crete Round', serif;
+.list {
+	font-size: 1.1em;
 	-webkit-border-image: url(img/list_bg.png) 2 3 6;
 	-moz-border-image: url(img/list_bg.png) 2 3 6;
 	border-width: 2px 3px 6px;
@@ -408,7 +412,7 @@ ol.list li:last-child{
     font-size: 1.2em;
 }
 
-.buttons button {
+.buttons button, .button {
 	background: none;
 	border-width: 6px 4px;
 	-webkit-border-image: url(img/btn_active.png) 6 4;
@@ -422,18 +426,18 @@ ol.list li:last-child{
 	float: right;
 }
 
-.buttons button:hover {
+.buttons button:hover, .button:hover {
 	-webkit-border-image: url(img/btn_hover.png) 6 4;
 	-moz-border-image: url(img/btn_hover.png) 6 4;
 }
 
-.buttons button:active {
+.buttons button:active, .button:active {
 	-webkit-border-image: url(img/btn_pressed.png) 6 4;
 	-moz-border-image: url(img/btn_pressed.png) 6 4;
 	padding-top:2px;
 }
 
-.buttons button.disabled, .buttons button:disabled 
+.buttons button.disabled, .buttons button:disabled, .button.disabled 
     { -webkit-border-image: url(img/btn_diabled.png) 6 4; }
 
 /*li.leftRightDetail {
@@ -735,5 +739,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
 
 .hidden {
 	display: none;
+}
+
+.list.login { padding:5px; clear:both; overflow: hidden; color: #998F7F;}
+.list.login input {
+	border: 1px solid #DFD9D1;
+
+	padding: 4px;
+	font-size: 1.1em;
+}
+
+.list.login .button {
+    display: block;
+	
+    float: none;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.list.login .remember input { display:inline-block; width: auto;}
+.list.login h3,.list.login label {font-size: .9em;color: #998F7F;margin: 0 0 6px;display: block;}
+ 
+.logo { background:url(img/logo.png) no-repeat center center; width:300px; height: 122px; margin: 12px auto 0;}
+#loginModal { padding:0; }
+
+.error {
+	color:red;
+	font-size:.8em;
+	margin: 2px 0 3px;
+	margin-bottom: 6;
 }
 

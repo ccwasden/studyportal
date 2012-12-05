@@ -1,4 +1,10 @@
 var Templates = { } //Templates are stored here
+var currentLocation = null;
+if(window.localStorage) {
+	var user = localStorage.getItem('User');
+	if(user) db.User = user;
+}
+
 
 /**
  * Function called on application initialization
@@ -14,6 +20,8 @@ $(document).ready(function(){
 		async: false,
 		success: function(data){
 			Templates = $.parseJSON(data);
+			$('#loginform').submit(attemptLoginFn);
+			
 
 			// on window resize, we need to make sure scrolling is still working
 		    $(window).bind('resize',
@@ -31,6 +39,7 @@ $(document).ready(function(){
 				var url = $.param.fragment(); // get the hash url
 				var destination = url.split("/"); // split on '/', this way we can store multilevel hashes
 				try {
+					currentLocation = destination;
 					redirect(destination);
 				} 
 				catch(e){
@@ -63,6 +72,9 @@ $(document).click(function(eve){
 
 function redirect(destination)
 {
+	if(!db.User){
+		$('#loginModal').css('top',0);
+	}
 	var visible = true;
 	switch(destination[0]) {
 		case "showPopup":
@@ -94,6 +106,11 @@ function redirect(destination)
 			if(destination[0] && destination[0] != "dashboard" ) 
 				alert("There is no case implemented in main.js --> redirect() for: "+destination[0]);
 			Renderer.renderDashboardPage(Data.dashboard());
+			$('#logout').on('click', function(){
+				if(window.localStorage) localStorage.removeItem('User');
+				db.User = "";
+				redirect();
+			});
 			visible = false;
 			break;
 	}
@@ -118,4 +135,29 @@ function GetGUID(){
 	return GUID;
 }
 
+function attemptLoginFn(eve){
+	$('#userError').html("");
+	$('#passError').html("");
 
+	var username = $('#username').attr('value').trim();
+	var password = $('#password').attr('value').trim();
+	var validUser = $.grep(db.Person, function(u){return u.username==username}).length;
+	var validPass = $.grep(db.Person, function(u){return u.password==password}).length;
+	if(!validUser) $('#userError').html("Invalid username");
+	if(!validPass) $('#passError').html("Invalid password");
+	if(!username) $('#userError').html("You must enter a user");
+
+	var foundUsers = $.grep(db.Person, function(u){
+		return u.username == username && u.password == password;
+	});
+
+	if(foundUsers.length) {
+		window.db.User = foundUsers[0].id;
+		$(window).trigger('hashchange');
+		var remember = $('#rememberMe').attr('checked');
+		if(remember && window.localStorage) 
+			localStorage.setItem('User', window.db.User);
+		$('#loginModal').css('top','100%');
+	}
+	return false;
+}
