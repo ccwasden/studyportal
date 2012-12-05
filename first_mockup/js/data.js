@@ -28,8 +28,7 @@ var groups = {
 				]
 			}
 		};
-		if(!data[id]) throw "this group does not exist";
-		return data[id];
+		
 
 
 var Data = {
@@ -148,10 +147,8 @@ var Data = {
 	// @return the group object with id, etc.
 	createGroup: function(name, description){
 
-	},
-
-	},            
-	}
+	}           
+	
 };
 
 function saveNewGroup(name, subject, description){
