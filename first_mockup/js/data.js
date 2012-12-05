@@ -3,16 +3,13 @@ var Data = {
 	dashboard : function(){
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
 		var data = {
+			userId : db.User,
 			nextMeeting : "Tuesday at 3:00pm",
-			dashboardItems : [
-				{ title : "Study Request", subtitle: "Sandra Bernard" },
-				{ title : "Meeting Time Change", subtitle : "Math 112 - Tomorrow, 3pm" }
-			]
+			dashboardItems : db.Notifications
 		};
 		return data;
 	},
-	groupsPage : function(){		
-	    //TODO: filter by db.User (make sure current user is a member of each group) -- user $.grep() --> (jquery util fn)
+	groupsPage : function(){
 	    var groupsData = {groups:[]};
 		for(var i = 0; i < db.Group.length; i++){
 			if($.inArray(db.User, db.Group[i].memberIds) != -1){
@@ -69,14 +66,7 @@ var Data = {
             ]
         };
         return data;
-    },
-
-	// save group
-	// @return the group object with id, etc.
-	createGroup: function(name, description){
-
-	}           
-	
+    },        
 };
 
 function get(table, id){
@@ -96,10 +86,34 @@ function saveNewGroup(name, subject, description){
 		name:name,
 		subject:subject,
 		description:description,
-		members:[user],
-		meetings:[]
+		memberIds:[db.User]
 	});
 	window.location.hash = 'group/'+newId;
+}
+
+function saveNewMeeting(groupId, name, description, start, end){
+	var newId = GetGUID();
+	db.Meeting.push({
+		id:newId,
+		groupId:groupId,
+		coordinatorId:db.User,
+		name:name,
+		description:description,
+		dateRangeStart:start,
+		dateRangeEnd:end
+	});
+	window.location.hash = 'meeting/'+newId;
+}
+
+function saveNewStudyTime(subject, time){
+	var newId = GetGUID();
+	db.StudyTime.push({
+		id:newId,
+		subject:subject,
+		time:time,
+		attendees:[db.User]
+	});
+	window.location.hash = 'studySchedule/'+newId;// TODO: Right?
 }
 
 

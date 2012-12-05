@@ -64,16 +64,37 @@ db.Meeting=[
 ];
 db.MeetingTime = [
 	{
-		meetingId:GetGUID(),
+		meetingId:db.Meeting[0].id,
 		personId:db.Person[0].id,
 		dateTime:new Date(2012, 11, 13, 12, 30)
 	},
 	{
-		meetingId:GetGUID(),
+		meetingId:db.Meeting[0].id,
 		personId:db.Person[0].id,
 		dateTime:new Date(2012, 11, 13, 13)
 	}
 ];
 db.StudyTime = [
-
+	{
+		id:GetGUID(),
+		subject:"Martial Arts",
+		time:new Date(2012, 12, 13, 8),
+		attendees:[db.Person[1].id]
+	}
 ];
+db.Notifications = [
+	{
+		id:GetGUID(),
+		hashURL:"profile/" + db.Person[1].id,
+		personId:db.User,
+		title:"Study Request",
+		subtitle:"Jason Bourne"
+	},
+	{
+		id:GetGUID(),
+		hashURL:"meeting/" + db.Meeting[0].id,
+		personId:db.User,
+		title:"Meeting Time Change",
+		subtitle:"Math 112 - Tomorrow, 3pm"
+	}
+]

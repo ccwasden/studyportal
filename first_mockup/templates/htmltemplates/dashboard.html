@@ -1,5 +1,5 @@
 <div class="dashHeader">
-	<div class="profileIcon" href="profile"></div>
+	<div class="profileIcon" href="profile/{{userId}}"></div>
 	<div class="search" href="search"></div>
 	<span class="status">
 		<h2>Upcoming:</h2>
@@ -22,7 +22,7 @@
                     {{#if dashboardItems}}
                     <ol class="list arrow">
                         {{#each dashboardItems }}
-                            <li>{{title}}<span class="subtitle">{{subtitle}}</span></li>
+                            <li href="{{hashURL}}">{{title}}<span class="subtitle">{{subtitle}}</span></li>
                         {{/each}}
                     </ol>
                     {{else}}

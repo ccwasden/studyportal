@@ -91,7 +91,7 @@ function redirect(destination)
 			Renderer.renderSearchPage(Data.searchPage());
 			break;
 		case "profile":
-			Renderer.renderProfilePage(Data.profilePage(db.User));
+			Renderer.renderProfilePage(Data.profilePage(destination[1]));
 			break;
 		case "groups":
 			Renderer.renderGroupsPage(Data.groupsPage());
