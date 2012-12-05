@@ -25,18 +25,19 @@
 					<h1>People</h1>						
 				</div>
 			    <ol class="list arrow">
-				<li class="person tall"><img/>John Cassidy<span class="subtitle">Bio 100</span></li>
-				<li class="person tall" ><img/>Yogi Bear<span class="subtitle">Math 112</span></li>
-				<li class="person tall"><img/>Chuck Norris<span class="subtitle">Engl 316</span></li>
+                                {{#each people}}
+                                <li href="profile/{{id}}" class="person tall"><img/>{{title}}<span class="subtitle">{{subtitle}}</span></li>
+                                {{/each}}
 			    </ol>
 			</div>
 			<div class="listWrapper">
 				<div class="listHeader">
 					<h1>Groups</h1>						
 				</div>
-			    <ol class="list arrow">
-				<li class="person tall"><img/>Math 112<span class="subtitle">Math 112</span></li>
-				<li class="person tall"><img/>Business Wanabees<span class="subtitle">Bus 110</span></li>
+                            <ol class="list arrow">
+                                {{#each groups}}
+				<li href="group/{{id}}" class="tall"><img/>{{title}}<span class="subtitle">{{subtitle}}</span></li>
+				{{/each}}
 			    </ol>
 			</div>
 		</div>
