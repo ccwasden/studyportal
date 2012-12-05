@@ -54,6 +54,7 @@ var Data = {
 		meeting.coordinator = get(db.Person, meeting.coordinatorId);
 		meeting.times = getWhere(db.MeetingTime, function(time){return time.meetingId == meeting.id});
 		meeting.scheduledTimeString = longDate(meeting.dateTime);
+		meeting.group = get(db.Group, meeting.groupId);
 		$.each(meeting.times, function(i,time){ 
 			time.time = justTime(time.dateTime);
 			time.ratio = db.MeetingTime.filter(function (item) {

@@ -55,7 +55,7 @@ db.Meeting=[
 		id:'M1',
 		groupId:db.Group[0].id,
 		name:'HW #13',
-		coordinatorId:db.Person[0].id,
+		coordinatorId:db.Person[1].id,
 		description:'The lamest assignment to grace earth.',
 		dateTime:new Date(2012, 11, 13, 12, 30),
 		dateRangeStart:new Date(2012, 11, 12),
