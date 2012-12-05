@@ -35,6 +35,17 @@ var Data = {
 	profilePage : function(personId) {
 		var person = get(db.Person, personId);
 		person.me = personId == db.User;
+                
+                person.schedule = [];
+                for(var i = 0; i < db.StudyTime.length; i++){ //Parse through study sessions
+                    for(var j = 0; j < db.StudyTime[i].attendees.length; j++){
+                        if(personId == db.StudyTime[i].attendees[j]){
+                            person.schedule.push({title: db.StudyTime[i].subject, subtitle: db.StudyTime[i].time, me: (personId == db.User)});
+                            break;
+                        }
+                    }
+                }
+                
 		return person;
 	},
 	meetingPage: function(meetingId){
@@ -60,14 +71,17 @@ var Data = {
     
     studySchedulePage : function(){
         var studyTimes = {studysessions:[]};
-        
         for(var i = 0; i < db.StudyTime.length; i++){
-            studyTimes.studysessions.push(db.StudyTime[i]);
-            var time = studyTimes.studysessions[i].time;
-            if(typeof time.getMonth != 'undefined'){
-                studyTimes.studysessions[i].time = (time.getMonth()+1) + "/" 
-                   + (time.getDay()+1) + "/" + (time.getFullYear()) + " " 
-                    + (time.getHours() + 1) + "H";
+            for(var j = 0; j < db.StudyTime[i].attendees.length; j++){
+                if(db.StudyTime[i].attendees[j] == db.User){
+                    var currentStudyTime = db.StudyTime[i];
+                    studyTimes.studysessions.push(currentStudyTime);
+                    var time = currentStudyTime.time;
+                    if(typeof time.getMonth != 'undefined'){
+                        currentStudyTime.time = longDate(time); 
+                    }
+                    break;
+                }
             }
         }
         return studyTimes;
