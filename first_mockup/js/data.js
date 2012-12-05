@@ -1,34 +1,3 @@
-// var groups = {
-//			"8ea7a781-0104-41ac-b82a-3f2cbe438c23":{
-//				id:"8ea7a781-0104-41ac-b82a-3f2cbe438c23",
-//				groupName: "Math 112",
-//				groupSubject: "Math 112",
-//				groupDescription : "The happenin place for all things Newtonian Calculus",
-//				members : [
-//					"You",
-//					"John Cassidy",
-//					"Johnny Depp"				
-//				],
-//				meetings: [
-//					{ name: "HW #3", date: "Tomorrow 3pm", meetingId:"MID-1" },
-//					{ name: "HW #4, HW #5", date: "Thurs, Jan 5th", meetingId:"MID-2"}		
-//				]
-//			},
-//			"5d2e5f19-6328-46bd-b6c4-b366d99b20e1": {
-//				id:"5d2e5f19-6328-46bd-b6c4-b366d99b20e1",
-//				groupName: "Bio 221",
-//				groupSubject: "Biology",
-//				groupDescription : "A sweet bio class",
-//				members : [
-//					"You",
-//					"Dude1"
-//				],
-//				meetings: [
-//					{ name: "HW #14", date: "Wednesday 3pm" }
-//				]
-//			}
-//		};
-  		
 
 
 var Data = {
@@ -62,7 +31,8 @@ var Data = {
 			var person = get(db.Person, memberId);
 			if(person) group.members.push(person);
 		});
-		
+
+		group.meetings = getWhere(db.Meeting, function(row){ return row.groupId==group.id; });
 		return group;
 	},
 	
@@ -95,30 +65,37 @@ var Data = {
 		}
 	},
 	meetingPage: function(meetingId){
-		var meetings = {
-			"MID-1":{
-				name:"HW#3",
-				groupId:"8ea7a781-0104-41ac-b82a-3f2cbe438c23",
-				dateTime:"Tomorrow 3pm",
-				description:"the good stuff",
-				dateRange:"Mon 24th July - Wed 26th July",
-				coordinator:"Jason Barnes",
-				groupName:"Math 112",
-				currentDay:"Wednesday July 26th",
-				times:[
-					{time:"3pm",ratio:"0/3"},
-					{time:"4pm",ratio:"1/3",checked:"true"},
-					{time:"5pm",ratio:"0/3"},
-					{time:"6pm",ratio:"2/3",checked:"true"},
-					{time:"7pm",ratio:"2/3",checked:"true"},
-					{time:"8pm",ratio:"1/3"},
-					{time:"9pm",ratio:"0/3"}
-				]
-			}
-		}
-
-		if(!meetings[meetingId]) throw "no existing meeting of id: "+meetingId;
-		return meetings[meetingId];
+		// var meetings = {
+		//	"MID-1":{
+		//		name:"HW#3",
+		//		groupId:"8ea7a781-0104-41ac-b82a-3f2cbe438c23",
+		//		dateTime:"Tomorrow 3pm",
+		//		description:"the good stuff",
+		//		dateRange:"Mon 24th July - Wed 26th July",
+		//		coordinator:"Jason Barnes",
+		//		groupName:"Math 112",
+		//		currentDay:"Wednesday July 26th",
+		//		times:[
+		//			{time:"3pm",ratio:"0/3"},
+		//			{time:"4pm",ratio:"1/3",checked:"true"},
+		//			{time:"5pm",ratio:"0/3"},
+		//			{time:"6pm",ratio:"2/3",checked:"true"},
+		//			{time:"7pm",ratio:"2/3",checked:"true"},
+		//			{time:"8pm",ratio:"1/3"},
+		//			{time:"9pm",ratio:"0/3"}
+		//		]
+		//	}
+		// }
+		var meeting = get(db.Meeting, meetingId);
+		if(!meeting) throw "no existing meeting of id: "+meetingId;
+		meeting.coordinator = get(db.Person, meeting.coordinatorId);
+		meeting.times = getWhere(db.MeetingTime, function(time){return time.meetingId == meeting.id});
+		meeting.scheduledTimeString = longDate(meeting.dateTime);
+		$.each(meeting.times, function(i,time){ 
+			time.time = justTime(time.dateTime); 
+			time.ratio = "0/3";
+		});
+		return meeting;
 	},
         
         searchPage : function(){
@@ -156,9 +133,13 @@ var Data = {
 };
 
 function get(table, id){
-	var results = $.grep(table, function(row){return row.id==id});
+	var results = getWhere(table, function(row){return row.id==id});
 	if(results.length) return results[0];
 	return null;
+}
+
+function getWhere(table, callback){
+	return $.grep(table, callback);
 }
 
 function saveNewGroup(name, subject, description){
@@ -178,9 +159,17 @@ function saveNewGroup(name, subject, description){
 }
 
 
+function shortDate(date){
+	return dateUtil.format(date, 'M d, Y');
+}
 
+function longDate(date){
+	return dateUtil.format(date, 'M d, Y (g:i a)');
+}
 
-
+function justTime(date){
+	return dateUtil.format(date, 'g:i a');
+}
 
 
 

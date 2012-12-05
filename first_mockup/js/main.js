@@ -43,6 +43,7 @@ $(document).ready(function(){
 					redirect(destination);
 				} 
 				catch(e){
+					console.error(e.stack);
 					alert("Error: "+e);
 					history.go(-1);
 				}

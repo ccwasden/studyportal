@@ -6,8 +6,9 @@
 	<title>Study Portal</title>
 	
 	<link href='http://fonts.googleapis.com/css?family=Overlock:400|Dosis:400|Crete+Round' rel='stylesheet' type='text/css'>
-	<link type="text/css" href="css/styles.css" rel="stylesheet"/>
 	<link type="text/css" href="lib/jscrollpane.css" rel="stylesheet"/>
+	<link type="text/css" href="lib/jquery-ui.min.css" rel="stylesheet"/>
+	<link type="text/css" href="css/styles.css" rel="stylesheet"/>
 
 	<script src="lib/jquery.js"></script>
 	<script src="lib/handlebars-1.0.rc.1.js"></script>
@@ -16,6 +17,7 @@
 	<script src="lib/mwheelintent.js"></script>
 	<script src="lib/jscrollpane.js"></script>
 	<script src="lib/jquerybbq.js"></script>
+	<script src="lib/jquery.ui.datepicker.js"></script>
 	
 	<script src="js/db.js"></script>
 	<script src="js/data.js"></script>

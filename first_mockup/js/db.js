@@ -20,7 +20,7 @@ var db = {
 			id:'M1',
 			groupId:'G1',
 			name:'HW #13',
-			coordinator:'P1',
+			coordinatorId:'P1',
 			description:'The lamest assignment to grace earth.',
 			dateTime:new Date(2012, 11, 13, 12, 30),
 			dateRangeStart:new Date(2012, 11, 12),
