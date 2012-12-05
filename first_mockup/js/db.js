@@ -53,7 +53,7 @@ db.Group = [
 db.Meeting=[
 	{
 		id:GetGUID(),
-		groupId:db.Group[0],
+		groupId:db.Group[0].id,
 		name:'HW #13',
 		coordinatorId:db.Person[0].id,
 		description:'The lamest assignment to grace earth.',
