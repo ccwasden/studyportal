@@ -91,7 +91,7 @@ function redirect(destination)
 			Renderer.renderSearchPage(Data.searchPage());
 			break;
 		case "profile":
-			Renderer.renderProfilePage(Data.profilePage());
+			Renderer.renderProfilePage(Data.profilePage(db.User));
 			break;
 		case "groups":
 			Renderer.renderGroupsPage(Data.groupsPage());
@@ -131,15 +131,6 @@ function redirect(destination)
 function resetScrolling(){
 	$('.pane').jScrollPane({verticalGutter: -6});
 	// $('.jspPane').css({width:'+=' + $('.jspTrack').width()});
-}
-
-function GetGUID(){
-	var GUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-		var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-		return v.toString(16);
-	});
-	
-	return GUID;
 }
 
 function attemptLoginFn(eve){
