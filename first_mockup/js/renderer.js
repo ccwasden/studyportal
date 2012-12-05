@@ -39,7 +39,7 @@ var Renderer = {
 		var source = Templates.studyschedule;
 		var template = Handlebars.compile(source);
 	
-		$("#renderedContent").html(template());	
+		$("#renderedContent").html(template(data));	
 	},
 
 	renderMeetingPage : function(data) {
@@ -52,8 +52,8 @@ var Renderer = {
 	renderSearchPage : function(data) { 
 		var source = Templates.search;
 		var template = Handlebars.compile(source);
-		
-		$("#renderedContent").html(template());		
+		console.log(data);
+		$("#renderedContent").html(template(data));		
 	},
 
 	renderStudyTimePage : function(data) {

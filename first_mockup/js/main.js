@@ -72,10 +72,10 @@ function redirect(destination)
 			$(".dialogContainer").hide();
 			break;
 		case "studyschedule":
-			Renderer.renderStudySchedulePage();
+			Renderer.renderStudySchedulePage(Data.studySchedulePage());
 			break;
 		case "search":
-			Renderer.renderSearchPage();
+			Renderer.renderSearchPage(Data.searchPage());
 			break;
 		case "profile":
 			Renderer.renderProfilePage(Data.profilePage());
