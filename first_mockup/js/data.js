@@ -138,6 +138,22 @@ function saveNewStudyTime(subject, time){
 	window.location.hash = 'studyschedule/'+newId;// TODO: Right?
 }
 
+function meetingTime(meetingId, time){
+	var size = db.MeetingTime.length;
+	db.MeetingTime = db.MeetingTime.filter(function(meet) {
+			return meet.meetingId != meetingId &&
+				meet.personId != db.User &&
+				meet.dateTime != time;
+	});
+	if(db.MeetingTime.length == size){
+		db.MeetingTime.push({
+			meetingId = meetingId,
+			personId = db.User,
+			dateTime = time
+		});	
+	}
+}
+
 function clearNotifications(){
 	db.Notifications = [];
 	window.location.hash = 'dashboard/';
