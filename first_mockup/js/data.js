@@ -1,5 +1,4 @@
 
-
 var Data = {
 	dashboard : function(){
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
@@ -51,10 +50,10 @@ var Data = {
 		var otherPersonData = {
 			name : "Stonewall Jackson",
 			major : "Bayonet studies",
-                        schedule : [
-                            {title:"HW #1 - Bayonet practive", subtitle: "Todat 4pm"},
-                            {title:"Exam #1 - Give them the bayonet", subtitle: "Tues Jan 23rd, 8am"}
-                        ]
+            schedule : [
+                {title:"HW #1 - Bayonet practive", subtitle: "Todat 4pm"},
+                {title:"Exam #1 - Give them the bayonet", subtitle: "Tues Jan 23rd, 8am"}
+            ]
 		};
 		
 		if(person == "me"){
@@ -65,27 +64,6 @@ var Data = {
 		}
 	},
 	meetingPage: function(meetingId){
-		// var meetings = {
-		//	"MID-1":{
-		//		name:"HW#3",
-		//		groupId:"8ea7a781-0104-41ac-b82a-3f2cbe438c23",
-		//		dateTime:"Tomorrow 3pm",
-		//		description:"the good stuff",
-		//		dateRange:"Mon 24th July - Wed 26th July",
-		//		coordinator:"Jason Barnes",
-		//		groupName:"Math 112",
-		//		currentDay:"Wednesday July 26th",
-		//		times:[
-		//			{time:"3pm",ratio:"0/3"},
-		//			{time:"4pm",ratio:"1/3",checked:"true"},
-		//			{time:"5pm",ratio:"0/3"},
-		//			{time:"6pm",ratio:"2/3",checked:"true"},
-		//			{time:"7pm",ratio:"2/3",checked:"true"},
-		//			{time:"8pm",ratio:"1/3"},
-		//			{time:"9pm",ratio:"0/3"}
-		//		]
-		//	}
-		// }
 		var meeting = get(db.Meeting, meetingId);
 		if(!meeting) throw "no existing meeting of id: "+meetingId;
 		meeting.coordinator = get(db.Person, meeting.coordinatorId);
@@ -98,31 +76,31 @@ var Data = {
 		return meeting;
 	},
         
-        searchPage : function(){
-            var data = {
-                people : [
-                    {title: "John Cassidy", subtitle: "Bio 100"},
-                    {title: "Yogi Bear", subtitle: "Math 112"},
-                    {title: "Chuck norris", subtitle: "Engl 316"}
-                ],
-                groups : [
-                    {title: "Math 112", subtitle: "Math 112"},
-                    {title: "Business Wanabees", subtitle: "Bus 110"},
-                    {title: "One More Group", subtitle: "Phil 110"}
-                ]
-            };
-            return data;
-        },
-        
-        studySchedulePage : function(){
-            var data = {
-                studysessions : [
-                    "BIO 100 2pm - 4pm",
-                    "STAT 212 4pm - 4:30pm"
-                ]
-            };
-            return data;
-        },
+    searchPage : function(){
+        var data = {
+            people : [
+                {title: "John Cassidy", subtitle: "Bio 100"},
+                {title: "Yogi Bear", subtitle: "Math 112"},
+                {title: "Chuck norris", subtitle: "Engl 316"}
+            ],
+            groups : [
+                {title: "Math 112", subtitle: "Math 112"},
+                {title: "Business Wanabees", subtitle: "Bus 110"},
+                {title: "One More Group", subtitle: "Phil 110"}
+            ]
+        };
+        return data;
+    },
+    
+    studySchedulePage : function(){
+        var data = {
+            studysessions : [
+                "BIO 100 2pm - 4pm",
+                "STAT 212 4pm - 4:30pm"
+            ]
+        };
+        return data;
+    },
 
 	// save group
 	// @return the group object with id, etc.
