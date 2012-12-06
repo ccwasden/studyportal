@@ -63,6 +63,7 @@
 				</form>
 			</div>
 		</div>
+		<div id="resetDb">Reset App</div>
 	</div>
 </body>
 </html>

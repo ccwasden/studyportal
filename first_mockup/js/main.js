@@ -2,8 +2,10 @@ var Templates = { } //Templates are stored here
 var currentLocation = null;
 
 if(window.localStorage) {
-	var user = localStorage.getItem('User');
-	if(user) db.User = user;
+	// var user = localStorage.getItem('User');
+	// if(user) db.User = user;
+	var persistedDb = retrieveDb();
+	if(persistedDb) db = persistedDb;
 }
 
 
@@ -22,6 +24,11 @@ $(document).ready(function(){
 		success: function(data){
 			Templates = $.parseJSON(data);
 			$('#loginform').submit(attemptLoginFn);
+			$('#resetDb').click(function(){
+				localStorage.clear(); 
+				window.location.hash = ""; 
+				window.location.reload();
+			});
 			
 
 			// on window resize, we need to make sure scrolling is still working
@@ -155,10 +162,12 @@ function redirect(destination)
 			if(destination[0] && destination[0] != "dashboard" ) 
 				alert("There is no case implemented in main.js --> redirect() for: "+destination[0]);
 			Renderer.renderDashboardPage(Data.dashboard());
-			$('#logout').on('click', function(){
-				if(window.localStorage) localStorage.removeItem('User');
+			persistDb();
+			$('#logout').on('click', function(eve){
 				db.User = "";
-				redirect();
+				persistDb();
+				redirect([]);
+				return false;
 			});
 			visible = false;
 			selectTab("");

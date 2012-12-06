@@ -130,6 +130,7 @@ html, body {
 	width: 34px;
 	height: 34px;
 	box-shadow: rgba(0, 0, 0, .4) 0 1px 3px;
+	border-radius: 3px;
 }
 .dashHeader .search:hover{ background-color: rgba(255, 255, 255, .1); border-color: rgba(255,255,255,.2); }
 .dashHeader .search:active{ 
@@ -230,6 +231,7 @@ html, body {
 .pane.dark .header{
     background: none;
     position: relative;
+    padding-top: 3px;
 }
 .pane<div class="header dark">				<h1>Notifications<span class="bubble topRight">3</span></h1>			</div>z.header{
 
@@ -269,8 +271,9 @@ html, body {
     text-shadow: rgba(0,0,0,.4) 0 -1px 0;
     box-shadow: rgba(255,255,255,.3) 0 1px 0;
 }
-.pane.dark .header button { background: rgba(0, 0, 0, 0.05); border-color: rgba(255, 255, 255, 0.1); box-shadow: inset rgba(0, 0, 0, 0.34) 0 -1px 6px; color: rgb(180, 180, 180); z-index: 2;}
-.header button.left { right:auto; left: 8px; z-index:2; }
+.pane.dark .header button:hover { background: rgba(255, 255, 255, 0.1); }
+.pane.dark .header button { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.15); box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px; color: #EBEBEB; z-index: 2; border-radius: 3px; top: 3px; right: 8px;}
+.pane.dark .header button.left { right:auto; left: 8px; z-index:2; }
 
 .pulltab img {
 
@@ -343,6 +346,7 @@ html, body {
 	position: relative;
 }
 
+.dark .listHeader h1 { text-shadow:black 0 1px 0; color: #C5AD91; }
 .listHeader h1 {
 	display: inline-block;
 	color: #887866;
@@ -772,9 +776,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
 .list.availability li:nth-last-child(2) { border-bottom:none; }
 .list.availability li:nth-child(2) { border-top:none; }
 .list.availability li:nth-child(odd){ border-right: 1px solid #E1D9CC; }
+.list.availability li:nth-child(even){ border-left: 1px solid #fff; }
 .list.availability li .ratio {
     float:right;
-    color: #948770;
 }
 .list.availability li.disabled span{ color: #CABFAE; }
 .list.availability li.selected span{ color: #327E88; }
@@ -844,4 +848,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
 	border-style: solid;
 	border-width: 6px 0 6px 7px;
 }
+
+
+#resetDb{
+    position:absolute;
+    bottom:8px;
+    right:8px;
+    display:inline-block;
+    max-width:100px;
+    padding:4px 12px;
+    background:white;
+    cursor:pointer;
+    text-align:center;
+    box-shadow:rgba(0,0,0,.2) 0 1px 4px;
+       
+    border: 1px solid #B9B1A8;
+       
+    color: #8F8477;
+    opacity: .2;
+}
+#resetDb:hover { opacity:.8 }
+
 
