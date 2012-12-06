@@ -18,6 +18,7 @@
 	<script src="lib/jscrollpane.js"></script>
 	<script src="lib/jquerybbq.js"></script>
 	<script src="lib/jquery.ui.datepicker.js"></script>
+	<script src="lib/moment.js"></script>
 	
 	<script src="js/db.js"></script>
 	<script src="js/data.js"></script>

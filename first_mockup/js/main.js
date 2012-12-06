@@ -1,5 +1,6 @@
 var Templates = { } //Templates are stored here
 var currentLocation = null;
+
 if(window.localStorage) {
 	var user = localStorage.getItem('User');
 	if(user) db.User = user;
@@ -58,18 +59,41 @@ $(document).ready(function(){
 // makes it so any element that has an "href" attribute becomes a link on click
 $(document).click(function(eve){
 	var cur = $(eve.target);
-	while(cur.prop("tagName") != "BODY"){ // traverse parent elements
+	while(cur.prop("tagName") != "BODY" && !window.skipHref){ // traverse parent elements
 		var destination = cur.attr("href");
 		if(destination) {
 			var destArray = destination.split("/");
 			if(destArray == "showPopup" || destArray == "hidePopup") // if popup/dialog, dont change hash
 				redirect(destArray);
-			else window.location.hash = destination;
+			else 
+				updateUrlHash(destination, destArray);
 			break;
 		}
 		cur = cur.parent(); //intended element was likely a few elements up
 	}
+	window.skipHref = false;
 });
+
+function updateUrlHash(destination, destArray){ // going to be used to manage animations
+	switch(destArray[0]) {
+		case "studyschedule":
+			break;
+		case "search":
+			break;
+		case "profile":
+			break;
+		case "groups":
+			break;	
+		case "group":
+			break;
+		case "meeting":
+			break;
+		case "dashboard":
+		default:
+			break;
+	}
+	window.location.hash = destination;
+}
 
 function redirect(destination)
 {
@@ -86,22 +110,23 @@ function redirect(destination)
 			break;
 		case "studyschedule":
 			Renderer.renderStudySchedulePage(Data.studySchedulePage());
-                        $("#saveMeetingBtn").click(function(){
-                            saveNewStudyTime(
-                                $("#subject").val(),
-                                $("#datepicker").val());
-                        });
-                        selectTab("schedule");
-                        $("#scheduleTab").attr('href', 'dashboard');
+            $("#saveMeetingBtn").click(function(){
+                saveNewStudyTime(
+                    $("#subject").val(),
+                    $("#datepicker").val());
+            });
+            selectTab("schedule");
 			break;
 		case "search":
 			Renderer.renderSearchPage(Data.searchPage());
-                        $("#searchBtn").live('click', function(){
-                            Renderer.renderSearchResults(Data.searchResults()); 
-                        });
+            $("#searchBtn").live('click', function(){
+                Renderer.renderSearchResults(Data.searchResults()); 
+                resetScrolling();
+            });
 			break;
 		case "profile":
 			Renderer.renderProfilePage(Data.profilePage(destination[1]));
+			selectTab("group");
 			break;
 		case "groups":
 			Renderer.renderGroupsPage(Data.groupsPage());
@@ -112,14 +137,26 @@ function redirect(destination)
 					$('#description').val());
 			});
 			selectTab("group");
-                        $("#groupsTab").attr('href', 'dashboard');
 			break;	
 		case "group":
 			Renderer.renderGroupPage(Data.groupPage(destination[1]));
 			selectTab("group");
 			break;
 		case "meeting":
-			Renderer.renderMeetingPage(Data.meetingPage(destination[1]));
+			var meetingId = destination[1];
+			Renderer.renderMeetingPage(Data.meetingPage(meetingId));
+			var onTimeRowClick = function(eve){
+				eve.stopPropagation();
+				var time = moment($(this).attr('dateTime'));
+				var added = meetingTime(meetingId, time);
+				Renderer.renderMeetingTimes(Data.meetingTimes(meetingId, time));
+				$('.timeRow').click(onTimeRowClick);
+			};
+			Renderer.renderMeetingTimes(Data.meetingTimes(meetingId));
+			$('#meetingTimeMenu').click(function(){
+				$(this).toggleClass('open');
+			});
+			$('.timeRow').click(onTimeRowClick);
 			selectTab("group");
 			break;
 		case "dashboard":
@@ -134,8 +171,6 @@ function redirect(destination)
 			});
 			visible = false;
 			selectTab("");
-                        $("#groupsTab").attr('href', 'groups');
-                        $("#scheduleTab").attr('href', 'studyschedule');
 			break;
 	}
 
@@ -146,15 +181,27 @@ function redirect(destination)
 }
 
 function resetScrolling(){
-	$('.pane').jScrollPane({verticalGutter: -6});
+	setTimeout(function(){$('.pane').jScrollPane({verticalGutter: -6})},500);
 	// $('.jspPane').css({width:'+=' + $('.jspTrack').width()});
 }
 
 function selectTab(tabName){
 	$('#groupsTab').removeClass('selected');
 	$('#scheduleTab').removeClass('selected');
-	if(tabName == "group") $('#groupsTab').addClass('selected');
-	if(tabName == "schedule") $('#scheduleTab').addClass('selected');
+	if(tabName == "group") {
+		$('#groupsTab').addClass('selected');
+		$("#groupsTab").attr('href', 'dashboard');
+		$("#scheduleTab").attr('href', 'studyschedule');
+	}
+	else if(tabName == "schedule") {
+		$('#scheduleTab').addClass('selected');
+		$("#scheduleTab").attr('href', 'dashboard');
+		$("#groupsTab").attr('href', 'groups');
+	}
+	else {
+		$("#groupsTab").attr('href', 'groups');
+		$("#scheduleTab").attr('href', 'studyschedule');
+	}
 }
 
 function attemptLoginFn(eve){
@@ -183,3 +230,5 @@ function attemptLoginFn(eve){
 	}
 	return false;
 }
+
+

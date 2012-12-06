@@ -1,0 +1,26 @@
+<div class="listHeader">
+	<h1>Set Your Availability</h1>
+	<div class="mini menu right" id="meetingTimeMenu">
+		<div id="currentDay" class="currentItem">
+			<div class="expander"><div></div></div>
+			{{day}}
+		</div>
+		<div class="listHolder">
+			<ol class="list">
+				<li>Item 1</li>
+				<li class="selected">{{day}}</li>
+				<li>Item 3</li>
+				<li>Item 4</li>
+				<li>Item 5</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<ol class="list availability">
+	{{#each times}}
+	<li class="timeRow {{#if noTakers}} disabled{{/if}}" dateTime="{{dateTime}}"><span>{{time}}</span>
+		<span class="ratio">{{ratio}}</span>
+		<div class="checkbox{{#if checked}} checked{{/if}}"></span>
+	</li>
+	{{/each}}
+</ol>

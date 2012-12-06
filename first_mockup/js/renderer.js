@@ -4,68 +4,75 @@
 //Define Renderer object
 var Renderer = {
 
-	renderDashboardPage : function(data){
+	renderDashboardPage : function(data, destination){
 		var source = Templates.dashboard;
 		var template = Handlebars.compile(source);
 
-		$("#dashboard").html(template(data));
+		$(destination || "#dashboard").html(template(data));
 	},
 
-	renderGroupsPage : function(data){
+	renderGroupsPage : function(data, destination){
 		var source = Templates.groups;
 		var template = Handlebars.compile(source);
 		
-		$("#renderedContent").html(template(data));		
+		$(destination || "#renderedContent").html(template(data));		
 	},
 
-	renderGroupPage : function(data){
+	renderGroupPage : function(data, destination){
 		var source = Templates.group;
 		var template = Handlebars.compile(source);
 		
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
 		
 
-		$("#renderedContent").html(template(data));
+		$(destination || "#renderedContent").html(template(data));
 	},
 
-	renderProfilePage : function(data) {
+	renderProfilePage : function(data, destination) {
 		var source = Templates.profile;
 		var template = Handlebars.compile(source);
 	
-		$("#renderedContent").html(template(data));		
+		$(destination || "#renderedContent").html(template(data));		
 	},
 
-	renderStudySchedulePage : function(data) {
+	renderStudySchedulePage : function(data, destination) {
 		var source = Templates.studyschedule;
 		var template = Handlebars.compile(source);
 	
-		$("#renderedContent").html(template(data));	
+		$(destination || "#renderedContent").html(template(data));	
 	},
 
-	renderMeetingPage : function(data) {
+	renderMeetingPage : function(data, destination) {
 		var source = Templates.meetingdetails;
 		var template = Handlebars.compile(source);
 		
-		$("#renderedContent").html(template(data));	
+		$(destination || "#renderedContent").html(template(data));	
+	},
+
+	renderMeetingTimes : function(data, destination) {
+		var source = Templates.meetingTimeList;
+		var template = Handlebars.compile(source);
+		
+		$(destination || "#meetingTimeList").html(template(data));	
 	},
 	
-	renderSearchPage : function(data) { 
+	renderSearchPage : function(data, destination) { 
 		var source = Templates.search;
 		var template = Handlebars.compile(source);
-		$("#renderedContent").html(template(data));		
+		$(destination || "#renderedContent").html(template(data));		
 	},
         
-        renderSearchResults : function(data) {
-            var source = Templates.searchresults;
-            var template = Handlebars.compile(source);
-            $("#searchResults").html(template(data));
-        },
+    renderSearchResults : function(data, destination) {
+        var source = Templates.searchresults;
+        var template = Handlebars.compile(source);
+        $(destination || "#searchResults").html(template(data));
+    },
 
-	renderStudyTimePage : function(data) {
+	renderStudyTimePage : function(data, destination) {
 		var source = Templates.studytime;
 		var template = Handlebars.compile(source);
 		
-		$("#renderedContent").html(template());	
+		$(destination || "#renderedContent").html(template());	
 	}
 
 	/*

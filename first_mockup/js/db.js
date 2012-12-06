@@ -66,12 +66,12 @@ db.MeetingTime = [
 	{
 		meetingId:db.Meeting[0].id,
 		personId:db.Person[0].id,
-		dateTime:new Date(2012, 11, 13, 12, 30)
+		dateTime:new Date(2012, 11, 12, 12, 30)
 	},
 	{
 		meetingId:db.Meeting[0].id,
-		personId:db.Person[0].id,
-		dateTime:new Date(2012, 11, 13, 13)
+		personId:db.Person[1].id,
+		dateTime:new Date(2012, 11, 12, 13)
 	}
 ];
 db.StudyTime = [
