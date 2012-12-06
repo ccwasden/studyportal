@@ -144,19 +144,10 @@ function redirect(destination)
 			break;
 		case "meeting":
 			var meetingId = destination[1];
+			currentMeetingId = meetingId;
 			Renderer.renderMeetingPage(Data.meetingPage(meetingId));
-			var onTimeRowClick = function(eve){
-				eve.stopPropagation();
-				var time = moment($(this).attr('dateTime'));
-				var added = meetingTime(meetingId, time);
-				Renderer.renderMeetingTimes(Data.meetingTimes(meetingId, time));
-				$('.timeRow').click(onTimeRowClick);
-			};
 			Renderer.renderMeetingTimes(Data.meetingTimes(meetingId));
-			$('#meetingTimeMenu').click(function(){
-				$(this).toggleClass('open');
-			});
-			$('.timeRow').click(onTimeRowClick);
+			rebindMeetingTimeUIEvents();
 			selectTab("group");
 			break;
 		case "dashboard":
@@ -231,4 +222,44 @@ function attemptLoginFn(eve){
 	return false;
 }
 
+
+var currentMeetingId = null
+
+function onMeetingDayMenuClick(){
+	var lHolder = $(this).find('.listHolder');
+	var open = lHolder.height();
+	lHolder.css('height', open ? 0 : $(this).find('ol').height());
+	if(open) $(this).removeClass('open');
+	else $(this).addClass('open');
+};
+
+function onTimeRowClick(eve){
+	eve.stopPropagation();
+	var time = moment($(this).attr('dateTime'));
+	meetingTime(currentMeetingId, time);
+	var timeChanged = updateMeetingTime(currentMeetingId);
+	if(timeChanged) {
+		var meeting = get(db.Meeting, currentMeetingId);
+		$('#meetingTime').text(longDate(meeting.dateTime));
+	}
+	Renderer.renderMeetingTimes(Data.meetingTimes(currentMeetingId, time));
+	rebindMeetingTimeUIEvents();
+	console.log(get(db.Meeting, currentMeetingId).dateTime);
+};
+
+function onMeetingDayClick(){
+	var dateTime = moment($(this).attr('dateTime'));
+	$(this).parent().find('li').removeClass('selected');
+	$(this).addClass("selected");
+	setTimeout(function(){
+		Renderer.renderMeetingTimes(Data.meetingTimes(currentMeetingId, dateTime));
+		rebindMeetingTimeUIEvents();
+	}, 200);
+};
+
+function rebindMeetingTimeUIEvents(){
+	$('#meetingTimeMenu').click(onMeetingDayMenuClick);
+	$('#meetingTimeMenu').find('li').click(onMeetingDayClick);
+	$('.timeRow').click(onTimeRowClick);
+}
 

@@ -59,7 +59,7 @@ db.Meeting=[
 		description:'The lamest assignment to grace earth.',
 		dateTime:new Date(2012, 11, 13, 12, 30),
 		dateRangeStart:new Date(2012, 11, 12),
-		dateRangeEnd:new Date(2012, 11, 14)
+		dateRangeEnd:new Date(2012, 11, 16)
 	}
 ];
 db.MeetingTime = [

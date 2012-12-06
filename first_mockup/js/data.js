@@ -77,11 +77,28 @@ var Data = {
 				dateTime:date.toDate().toString(),
 				ratio: (existing.length)+"/"+numMembers,
 				checked:checked,
-				noTakers:!existing.length
+				noTakers:!existing.length,
+				selectedDate:!moment(meeting.dateTime).diff(date)
 			});
 			date.add('m',30);
 		}
-		return {day:shortDate(date),times:times};
+		var days = Data.getMeetingDays(meeting, date)
+		return {days:days,day:shortDate(date),times:times};
+	},
+
+	getMeetingDays: function(meeting, selectedDate){
+		var days = [];
+		var startDate = moment(moment(meeting.dateRangeStart)).hours(0).minutes(0);
+		var endDate = moment(moment(meeting.dateRangeEnd)).hours(0).minutes(0);
+		while(startDate.diff(endDate)){
+			days.push({
+				day:shortDate(startDate), 
+				dateTime:startDate.toDate().toString(),
+				selected:!startDate.diff(moment(selectedDate).hours(0).minutes(0))
+			});
+			startDate.add('d',1);
+		}
+		return days;
 	},
 
 	// script for --> http://momentjs.com/docs/
@@ -169,6 +186,7 @@ function saveNewStudyTime(subject, time){
 function meetingTime(meetingId, time){
 	time = moment(time);
 	var size = db.MeetingTime.length;
+	var added = false;
 	db.MeetingTime = db.MeetingTime.filter(function(meet) {
 		return !(meet.meetingId == meetingId 
 			&& meet.personId == db.User 
@@ -180,7 +198,34 @@ function meetingTime(meetingId, time){
 		   	personId: db.User,
 		   	dateTime: time.toDate()
 		});	
-		return true;
+		added = true;
+	}
+	return added;
+}
+
+// loops through all the votes, finds the most popular, and sets the meeting time to the popular one.
+// @return boolean - yes if changed
+function updateMeetingTime(meetingId){
+	var times = getTimesForMeeting(meetingId);
+	var votes = [];
+	var mappedTimes = times.reduce(function(prev, cur){
+		var dateStr = moment(cur.dateTime).toDate().toString();
+		if(!prev[dateStr]) prev[dateStr] = 1;
+		else prev[dateStr] = prev[dateStr]+1;
+		return prev;
+	}, {});
+	$.each(mappedTimes, function(key, value){votes.push([key, value])});
+	votes.sort(function(a,b){
+		if (a[1]!=b[1]) return b[1]-a[1];
+		return moment(a[0]).diff(moment(b[0]))
+	});
+	if(votes.length) {
+		var meeting = get(db.Meeting, meetingId);
+		var newTime = moment(votes[0][0]);
+		if(moment(meeting.dateTime).diff(newTime)) {
+			meeting.dateTime = newTime.toDate();
+			return true;
+		}
 	}
 	return false;
 }
@@ -203,7 +248,8 @@ function longDate(date){
 
 function justTime(date){
 	// return dateUtil.format(date, 'g:i a');
-	return moment(date).format('h:mm a');
+	var time = moment(date).format('h:mma');
+	return time.substr(0, time.length-1);
 }
 
 function getTimesForMeeting(meetingId, dateTime){
@@ -215,7 +261,6 @@ function getTimesForMeeting(meetingId, dateTime){
 		      	&&	$.inArray(group.memberIds, time.personId);
 	});
 }
-
 
 
 

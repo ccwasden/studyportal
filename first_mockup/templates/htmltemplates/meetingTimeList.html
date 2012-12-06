@@ -6,19 +6,19 @@
 			{{day}}
 		</div>
 		<div class="listHolder">
-			<ol class="list">
-				<li>Item 1</li>
-				<li class="selected">{{day}}</li>
-				<li>Item 3</li>
-				<li>Item 4</li>
-				<li>Item 5</li>
+			<ol>
+				{{#each days}}
+				<li{{#if selected}} class="selected"{{/if}} dateTime="{{dateTime}}">
+					{{day}}
+				</li>
+				{{/each}}
 			</ol>
 		</div>
 	</div>
 </div>
 <ol class="list availability">
 	{{#each times}}
-	<li class="timeRow {{#if noTakers}} disabled{{/if}}" dateTime="{{dateTime}}"><span>{{time}}</span>
+	<li class="timeRow{{#if noTakers}} disabled{{/if}}{{#if selectedDate}} selected{{/if}}" dateTime="{{dateTime}}"><span>{{time}}</span>
 		<span class="ratio">{{ratio}}</span>
 		<div class="checkbox{{#if checked}} checked{{/if}}"></span>
 	</li>
