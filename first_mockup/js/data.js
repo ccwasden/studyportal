@@ -39,7 +39,11 @@ var Data = {
         for(var i = 0; i < db.StudyTime.length; i++){ //Parse through study sessions
             for(var j = 0; j < db.StudyTime[i].attendees.length; j++){
                 if(personId == db.StudyTime[i].attendees[j]){
-                    person.schedule.push({title: db.StudyTime[i].subject, subtitle: db.StudyTime[i].time, me: (personId == db.User)});
+                    person.schedule.push({
+						title: db.StudyTime[i].subject, 
+						subtitle: longDate(db.StudyTime[i].time), 
+						me: (personId == db.User)
+					});
                     break;
                 }
             }
