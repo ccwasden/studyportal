@@ -4,6 +4,7 @@ var Data = {
 		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
 		var data = {
 			userId : db.User,
+			profilePic:(get(db.Person, db.User).profilePic),
 			nextMeeting : "Tuesday at 3:00pm",
 			dashboardItems : db.Notifications
 		};

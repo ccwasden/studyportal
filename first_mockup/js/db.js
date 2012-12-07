@@ -17,49 +17,56 @@ db.Person = [
 		username:'tommy',
 		password:'1234',
 		name:'Tom Bombadil',
-		major:'Computer Science'
+		major:'Computer Science',
+		profilePic:'P1.jpg'
 	},
 	{
 		id:'P2',
 		username:'user',
 		password:'1234',
 		name:'Jason Bourne',
-		major:'Psychology'
+		major:'Psychology',
+		profilePic:'P2.jpg'
 	},
 	{
 		id:'P3',
 		username:'hello',
 		password:'1234',
 		name:'Fred Flintstone',
-		major:'Math'
+		major:'Math',
+		profilePic:'P3.jpg'
 	},
 	{
 		id:'P4',
 		username:'kelly',
 		password:'1234',
 		name:'Kelly Bluebook',
-		major:'Statistics'
+		major:'Statistics',
+		profilePic:'P4.jpg'
 	},
 	{
 		id:'P5',
 		username:'donny',
 		password:'1234',
 		name:'Donald Trump',
-		major:'Business'
+		major:'Business',
+		profilePic:'P5.jpg'
 	},
 	{
 		id:'P6',
 		username:'frankie',
 		password:'1234',
 		name:'Frank Sinatra',
-		major:'Music'
+		major:'Music',
+		profilePic:'P6.jpg'
 	},
 	{
 		id:'P7',
 		username:'billy',
 		password:'1234',
 		name:'Billy Jean',
-		major:'Math'
+		major:'Math',
+		profilePic:'P7.png'
 	}
 ];
 db.Group = [
@@ -165,7 +172,7 @@ function stripForSave(rows, fields){
 }
 
 var fieldMap = {
-	Person:['id','name','username','password','major'],
+	Person:['id','name','username','password','major','profilePic'],
 	Group:['id','name','subject','description','memberIds'],
 	Meeting:['id','groupId','name','coordinatorId','description','dateTime','dateRangeEnd','dateRangeStart'],
 	MeetingTime:['meetingId','personId','dateTime'],
