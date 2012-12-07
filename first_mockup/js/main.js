@@ -169,6 +169,11 @@ function redirect(destination)
 				redirect([]);
 				return false;
 			});
+			$('#clearNotifications').click(function(){
+				deleteNotificationsOfUser(db.User);
+				redirect(["dashboard"]);
+				return false;
+			});
 			visible = false;
 			selectTab("");
 			break;

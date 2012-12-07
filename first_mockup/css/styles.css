@@ -380,7 +380,7 @@ html, body {
 }
 
 .pane.dark .listWrapper { padding-top: 8px; }
-.pane.dark .list { background: black; background: rgba(0, 0, 0, 0.11); border-image: none; border: 1px solid rgba(255, 255, 255, 0.11); -webkit-border-image: none; -moz-border-image: none;}
+.pane.dark .list { background: black; background: rgba(0, 0, 0, 0.11); border-image: none; border: 1px solid rgba(255, 255, 255, 0.12); -webkit-border-image: none; -moz-border-image: none;}
 
 ol.list li, .menu.mini li{
 	padding: 8px 12px;
@@ -520,7 +520,7 @@ ol.list li:last-child, .menu.mini li:last-child{
 	background: url(img/icon_menu-pressed.png) no-repeat center center;	
 }
 
-.list.arrow li {
+.list.arrow li, li.arrow {
 	background:url(img/icon_rightArrow.png) no-repeat right center;
 }
 
@@ -779,10 +779,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
 	right: 19px;
 	border: 1px solid #3A2F2C;
 }
-.list.availability li:nth-last-child(2) { border-bottom:none; }
+/*.list.availability li:nth-last-child(2) { border-bottom:none; }
 .list.availability li:nth-child(2) { border-top:none; }
 .list.availability li:nth-child(odd){ border-right: 1px solid #E1D9CC; }
-.list.availability li:nth-child(even){ border-left: 1px solid #fff; }
+.list.availability li:nth-child(even){ border-left: 1px solid #fff; }*/
 .list.availability li .ratio {
     float:right;
 }
@@ -792,7 +792,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
 .list.availability li {
 	padding-right: 36px;
 	display: inline-block;
-	width: 50%;
+	/*width: 50%;*/
 	box-sizing: border-box;
 	float: left;
 }

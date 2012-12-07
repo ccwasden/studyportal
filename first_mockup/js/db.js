@@ -99,7 +99,7 @@ db.Meeting=[
 		name:'HW #13',
 		coordinatorId:db.Person[1].id,
 		description:'The lamest assignment to grace earth.',
-		dateTime:new Date(2012, 11, 13, 12, 30),
+		dateTime:new Date(2012, 11, 13, 10),
 		dateRangeStart:new Date(2012, 11, 12),
 		dateRangeEnd:new Date(2012, 11, 16)
 	}
@@ -108,22 +108,27 @@ db.MeetingTime = [
 	{
 		meetingId:db.Meeting[0].id,
 		personId:db.Person[2].id,
-		dateTime:new Date(2012, 11, 12, 12, 30)
+		dateTime:new Date(2012, 11, 13, 11)
+	},
+	{
+		meetingId:db.Meeting[0].id,
+		personId:db.Person[2].id,
+		dateTime:new Date(2012, 11, 13, 10)
 	},
 	{
 		meetingId:db.Meeting[0].id,
 		personId:db.Person[1].id,
-		dateTime:new Date(2012, 11, 12, 13)
+		dateTime:new Date(2012, 11, 13, 10)
+	},
+	{
+		meetingId:db.Meeting[0].id,
+		personId:db.Person[2].id,
+		dateTime:new Date(2012, 11, 12, 7)
 	},
 	{
 		meetingId:db.Meeting[0].id,
 		personId:db.Person[1].id,
-		dateTime:new Date(2012, 11, 12, 13, 30)
-	},
-	{
-		meetingId:db.Meeting[0].id,
-		personId:db.Person[1].id,
-		dateTime:new Date(2012, 11, 12, 14)
+		dateTime:new Date(2012, 11, 13, 9)
 	}
 ];
 db.StudyTime = [

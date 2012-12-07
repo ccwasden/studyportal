@@ -1,12 +1,12 @@
 
 var Data = {
 	dashboard : function(){
-		//FAKE DATA FOR NOW UNTIL WE GET THE BACKEND INTERFACE GOING
+		var notifications = getWhere(db.Notifications, function(n){return n.personId == db.User});
 		var data = {
 			userId : db.User,
 			profilePic:(get(db.Person, db.User).profilePic),
 			nextMeeting : "Tuesday at 3:00pm",
-			dashboardItems : db.Notifications
+			dashboardItems : notifications
 		};
 		return data;
 	},
@@ -68,7 +68,9 @@ var Data = {
 		if(!meeting) throw "no existing meeting of id: "+meetingId;
 		meeting.group = get(db.Group, meeting.groupId);
 		var numMembers = meeting.group.memberIds.length;
+
 		if(!date) date = moment(moment(meeting.dateRangeStart));
+		else date = moment(date);
 		date.hours(0);
 		date.minutes(0);
 		var times = [];
@@ -85,7 +87,7 @@ var Data = {
 				noTakers:!existing.length,
 				selectedDate:!moment(meeting.dateTime).diff(date)
 			});
-			date.add('m',30);
+			date.add('m',60);
 		}
 		var days = Data.getMeetingDays(meeting, date)
 		return {days:days,day:shortDate(date),times:times};
@@ -235,11 +237,6 @@ function updateMeetingTime(meetingId){
 	return false;
 }
 
-function clearNotifications(){
-	db.Notifications = [];
-	window.location.hash = 'dashboard/';
-}
-
 function shortDate(date){
 	// return dateUtil.format(date, 'M d, Y');
 	return moment(date).format('MMM Do')
@@ -267,6 +264,11 @@ function getTimesForMeeting(meetingId, dateTime){
 	});
 }
 
+function deleteNotificationsOfUser(personId){
+	db.Notifications = $.grep(db.Notifications, function(row){
+		return row.personId != personId;
+	});
+}
 
 
 
