@@ -4,7 +4,7 @@ var Data = {
 		var notifications = getWhere(db.Notifications, function(n){return n.personId == db.User});
 		var data = {
 			userId : db.User,
-			profilePic:(get(db.Person, db.User).profilePic),
+			profilePic:db.User ? (get(db.Person, db.User).profilePic) : null,
 			nextMeeting : "Tuesday at 3:00pm",
 			dashboardItems : notifications
 		};
