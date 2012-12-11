@@ -117,11 +117,6 @@ function redirect(destination)
 			break;
 		case "studyschedule":
 			Renderer.renderStudySchedulePage(Data.studySchedulePage());
-            $("#saveMeetingBtn").click(function(){
-                saveNewStudyTime(
-                    $("#subject").val(),
-                    $("#datepicker").val());
-            });
             selectTab("schedule");
 			break;
 		case "search":
@@ -142,12 +137,31 @@ function redirect(destination)
 					$('#name').val(),
 					$('#subject').val(),
 					$('#description').val());
+				return false;
 			});
 			selectTab("group");
 			break;	
 		case "group":
 			Renderer.renderGroupPage(Data.groupPage(destination[1]));
 			selectTab("group");
+			$('#createMeeting').click(dialogHandler('createmeetingdialog', function(){
+				$('.datepicker').datepicker();
+				$('#createMeetingForm').submit(function(){
+					var groupId = window.location.hash.split('/')[1];
+					var name = this.name.value;
+					var description = this.description.value;
+					var start = $(this.dateStart).datepicker( "getDate" );
+					var end = moment($(this.dateEnd).datepicker( "getDate" )).add('d',1).toDate();
+					saveNewMeeting(groupId, name, description, start, end);
+					hideDialog();
+					persistDb();
+					return false;
+				});
+				$('#createMeetingCancel').click(function(){
+					hideDialog();
+					return false;
+				});
+			}));
 			break;
 		case "meeting":
 			var meetingId = destination[1];
@@ -275,5 +289,40 @@ function rebindMeetingTimeUIEvents(){
 	$('#meetingTimeMenu').click(onMeetingDayMenuClick);
 	$('#meetingTimeMenu').find('li').click(onMeetingDayClick);
 	$('.timeRow').click(onTimeRowClick);
+}
+
+function dialogHandler(name, callback){
+	return function(){
+		Renderer.showDialog(name);
+		if(callback) callback();
+		return false;
+	}
+}
+
+function studyTimeDialog(){
+	Renderer.showDialog('newstudytimedialog');
+	$(".datepicker").datepicker();
+	$("#createStudyTime").submit(function(){
+		try {
+			var subject = this.subjects.value;
+			var date = moment($(this.date).datepicker('getDate'));
+			var timeSegs = this.time.value.split(' ');
+			var time = timeSegs[0].split(':');
+			var hours = parseInt(time[0]);
+			var mins = parseInt(time[1]);
+			var am = timeSegs[1] ? timeSegs[1][0].toLowerCase() == 'a' : true;
+			if((am && hours != 12) || (!am && hours == 12)) date.hours(hours);
+			else if(hours != 12) date.hours(hours+12);
+			date.minutes(mins);
+	        saveNewStudyTime(subject, date.toDate());
+	        hideDialog();
+	        persistDb();
+		}
+		catch (e){
+			alert(e);
+		}
+        return false;
+    });
+    $('#cancelStudyTime').click(function(){hideDialog();return false;});
 }
 

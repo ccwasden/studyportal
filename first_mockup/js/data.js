@@ -57,7 +57,7 @@ var Data = {
 		var meeting = get(db.Meeting, meetingId);
 		if(!meeting) throw "no existing meeting of id: "+meetingId;
 		meeting.coordinator = get(db.Person, meeting.coordinatorId);
-		meeting.scheduledTimeString = longDate(meeting.dateTime);
+		meeting.scheduledTimeString = meeting.dateTime ? longDate(meeting.dateTime) : "--";
 		meeting.group = get(db.Group, meeting.groupId);
 		meeting.dateRange = shortDate(meeting.dateRangeStart)+" - "+shortDate(meeting.dateRangeEnd);
 		return meeting;
@@ -131,9 +131,7 @@ var Data = {
                     var currentStudyTime = db.StudyTime[i];
                     studyTimes.studysessions.push(currentStudyTime);
                     var time = currentStudyTime.time;
-                    if(typeof time.getMonth != 'undefined'){
-                        currentStudyTime.time = longDate(time); 
-                    }
+                    currentStudyTime.timescheduled = longDate(time); 
                     break;
                 }
             }
@@ -172,6 +170,7 @@ function saveNewMeeting(groupId, name, description, start, end){
 		coordinatorId:db.User,
 		name:name,
 		description:description,
+		// dateTime:'',
 		dateRangeStart:start,
 		dateRangeEnd:end
 	});

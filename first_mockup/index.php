@@ -17,7 +17,7 @@
 	<script src="lib/mwheelintent.js"></script>
 	<script src="lib/jscrollpane.js"></script>
 	<script src="lib/jquerybbq.js"></script>
-	<script src="lib/jquery.ui.datepicker.js"></script>
+	<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
 	<script src="lib/moment.js"></script>
 	
 	<script src="js/db.js"></script>
@@ -65,5 +65,6 @@
 		</div>
 		<div id="resetDb">Reset App</div>
 	</div>
+	<div class="dialogContainer mainDialog"></div>
 </body>
 </html>

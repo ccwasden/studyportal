@@ -138,12 +138,12 @@ db.StudyTime = [
 		time:new Date(2012, 12, 13, 8),
 		attendees:[db.Person[1].id]
 	},
-        {
-            id:'ST2',
-            subject:"Math 112",
-            time:new Date(2012, 12, 5, 9),
-            attendees:[db.Person[1].id]
-        }
+    {
+        id:'ST2',
+        subject:"Math 112",
+        time:new Date(2012, 12, 5, 9),
+        attendees:[db.Person[1].id]
+    }
 ];
 db.Notifications = [
 	{
@@ -167,7 +167,8 @@ function stripForSave(rows, fields){
 	$.each(rows, function(i, row){
 		var newRow = {};
 		$.each(fields, function(j, field){
-			if(Object.prototype.toString.call(row[field]) === '[object Array]')
+			if (typeof row[field] == "undefined");
+			else if(Object.prototype.toString.call(row[field]) === '[object Array]')
 				 newRow[field] = row[field];
 			else newRow[field] = row[field].toString();
 		});
@@ -206,7 +207,8 @@ function retrieveDb(){
 		$.each(dateFieldMap, function(table, fields){
 			$.each(jsonObj[table], function(i,obj){
 				$.each(fields, function(j,field){
-					jsonObj[table][i][field] = new Date(jsonObj[table][i][field]);
+					if(typeof jsonObj[table][i][field] != "undefined")
+						jsonObj[table][i][field] = new Date(jsonObj[table][i][field]);
 				});
 			});
 		});

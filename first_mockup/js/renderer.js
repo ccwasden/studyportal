@@ -73,15 +73,20 @@ var Renderer = {
 		var template = Handlebars.compile(source);
 		
 		$(destination || "#renderedContent").html(template());	
+	},
+
+	showDialog: function(name){
+		var source = Templates[name];
+		if(!source) {
+			console.warn("dialog not found: ", name);
+			return false;
+		}
+		var template = Handlebars.compile(source);
+		$(".mainDialog").html(template()).fadeOut(0).fadeIn(500);
 	}
-
-	/*
-	 * Not going to do individual piece rendering for a while
-	PieceRenderer : {
-		dashboardHeader : function(){
-		},
-
-		
-	}*/
-
 }
+
+function hideDialog(){
+	$(".mainDialog").fadeOut(500);
+}
+

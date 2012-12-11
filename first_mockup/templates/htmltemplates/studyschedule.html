@@ -12,14 +12,14 @@
 				<div class="listHeader">
 					<h1>Upcoming</h1>
 						<div class="buttons">
-							<button class="btn red" href="showPopup">+</button>
+							<button class="btn red" onclick="studyTimeDialog();return false;">+</button>
 						</div>
 				</div>
 			    <ol class="list arrow">
 					{{#each studysessions}}
 					<li id="{{id}}">
 						<div class="title">{{subject}}</div> 
-						<div class="subtitle">{{time}}</div>
+						<div class="subtitle">{{timescheduled}}</div>
 					</li>
 	                {{/each}}
 			    </ol>
@@ -27,24 +27,4 @@
 		</div>
 	</div>
 
-	<div class="dialogContainer hidden">
-		<div class="dialog">
-			<div class ="description">New Study Time</div>
-			<div class="listHeader">
-						<h1>Upcoming</h1>
-							<input class="textfield" id="subject" value="subjects go here"/>
-			</div>
-			
-			<div class="listHeader">
-						<h1>Time</h1>
-						<br>
-							<input type="text" id="datepicker" />
-			</div>
-			
-			<div class="buttons">
-				<button class="btn red" id="saveMeetingBtn">Save</button>
-				<button class="btn red" href="hidePopup">Cancel</button>
-			</div>
-		</div>
-	</div>
 

@@ -5,7 +5,7 @@
 /* 											Begin Neutralizing CSS 											  */
 /*............................................................................................................*/
 
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;width: 100%;-webkit-box-sizing:border-box;box-sizing: border-box;outline: none;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;-webkit-box-sizing:border-box;box-sizing: border-box;outline: none;}
 table {border-spacing:0; width: 100%;} fieldset,img {border:0;} address,caption,cite,code,dfn,em,strong,th,var {font-style:normal;}
 ol,ul {list-style:none;} caption,th {text-align:left;} h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
 q:before,q:after {content:'';} abbr,acronym { border:0;}
@@ -56,6 +56,7 @@ html, body {
 	display: block;
 	height: 100%;
 	overflow: auto;
+	width: 100%;
 }
 .pane.dark { background: rgba(0, 0, 0, 0.09); width: 100%;}
 #dashboard {
@@ -64,6 +65,7 @@ html, body {
     position: absolute;
     height: 100%;
     padding: 57px 0 64px;
+    width: 100%;
 }
 
 
@@ -207,7 +209,7 @@ html, body {
 	z-index: 2;
 }
 #container.visible { top:0; }
-#renderedContent, #modal, .mainModal { height: 100%; box-sizing:border-box; -webkit-box-sizing: border-box; background: url(img/bg_main.png) gray; position: relative; display: inline-block; padding: 45px 0 0;}
+#renderedContent, #modal, .mainModal { height: 100%; box-sizing:border-box; -webkit-box-sizing: border-box; background: url(img/bg_main.png) gray; position: relative; display: inline-block; padding: 45px 0 0; width: 100%;}
 #container.noBottom { padding-bottom:0; }
 #modal, .mainModal { z-index:51; }
 #container, #modal, .mainModal {
@@ -550,6 +552,7 @@ ol.list li:last-child, .menu.mini li:last-child{
 	border-width: 0 1px 1px;
 	box-shadow: rgba(0,0,0,.1) 0 1px 3px;
 	z-index: 5000;
+	width: 100%;
 }
 
 
@@ -582,7 +585,7 @@ ol.list li:last-child, .menu.mini li:last-child{
     padding-bottom: 8px;
 }
 
-.menu.mini li { padding:0 8px; color: #403C34; font-size: .9em; line-height: 38px;}
+.menu.mini li { padding:0 8px; color: #403C34; font-size: .9em; line-height: 38px; width: 100%;}
 .menu.mini.open li:last-child{ padding-bottom:0; }
 .menu.mini .currentItem { 
     padding: 3px 12px 3px 0; 
@@ -609,12 +612,14 @@ background: -o-linear-gradient(top, #f7f4ee 0%,#f4edde 100%); /* Opera 11.10+ */
     z-index: 5001;
 }
 
+.mainDialog { display:none; }
+
 .dialog {
     width: 85%;
     margin: 40px auto;
     text-align:center;
     background: #f7f4ee;
-    padding:12px 16px;
+    padding: 8px 10px;
     -webkit-box-sizing:border-box;
     box-sizing:border-box;
     border-radius:3px;
@@ -795,6 +800,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
 	/*width: 50%;*/
 	box-sizing: border-box;
 	float: left;
+	width: 100%;
 }
 
 .hidden {
@@ -807,6 +813,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
 
 	padding: 4px;
 	font-size: 1.1em;
+	width: 100%;
 }
 
 .list.login .button {
@@ -875,4 +882,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
 }
 #resetDb:hover { opacity:.8 }
 
+
+.description {
+    display:block;    
+}
 
