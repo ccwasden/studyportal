@@ -15,11 +15,21 @@
 							<button class="btn red" onclick="studyTimeDialog();return false;">+</button>
 						</div>
 				</div>
-			    <ol class="list arrow">
+			    <ol class="list arrow studyScheduleList">
 					{{#each studysessions}}
-					<li id="{{id}}">
-						<div class="title">{{subject}}</div> 
-						<div class="subtitle">{{timescheduled}}</div>
+					<li id="{{id}}" href="{{href}}">
+						<div class="dateHolder">
+							<div class="day">{{day}}</div>
+							<div class="month">{{month}}</div>
+						</div>
+						<span class="time">{{hour}}</span>
+						<div class="title">{{eventtitle}}</div> 
+						<div class="subtitle">
+							{{#if isMeeting}}<div class="mtg"></div>{{/if}}{{peopleText}}
+							<!-- {{#each people}}
+								<img class="profileImg" src="./images/{{profilePic}}"/>
+							{{/each}} -->
+						</div>
 					</li>
 	                {{/each}}
 			    </ol>

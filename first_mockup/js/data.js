@@ -124,19 +124,44 @@ var Data = {
     },
     
     studySchedulePage : function(){
-        var studyTimes = {studysessions:[]};
-        for(var i = 0; i < db.StudyTime.length; i++){
-            for(var j = 0; j < db.StudyTime[i].attendees.length; j++){
-                if(db.StudyTime[i].attendees[j] == db.User){
-                    var currentStudyTime = db.StudyTime[i];
-                    studyTimes.studysessions.push(currentStudyTime);
-                    var time = currentStudyTime.time;
-                    currentStudyTime.timescheduled = longDate(time); 
-                    break;
-                }
-            }
-        }
-        return studyTimes;
+        var times = getWhere(db.StudyTime, function(st){
+			return st.attendees && st.attendees.indexOf(db.User) != -1;
+		});
+		$.each(times, function(i, st){
+            var time = moment(st.time);
+            st.day = time.date();
+            st.month = time.format('MMM');
+            st.eventtitle = st.subject;
+            st.hour = time.format('h:mma');
+            st.hour = st.hour.substr(0, st.hour.length-1);
+            st.href = "studytime/"+st.id;
+            var num = st.attendees.length
+            st.peopleText = num + " attendee" + (num!=1 ?  "s": " (you)");
+		});
+        
+
+        var meetings = getWhere(db.Meeting, function(mtg){
+			var group = get(db.Group, mtg.groupId);
+			mtg.group = group;
+			return mtg.dateTime && group && group.memberIds.indexOf(db.User) != -1;
+        });
+        $.each(meetings, function(i, mt){
+			var time = moment(mt.dateTime);
+			mt.day = time.date();
+			mt.time = time.toDate();
+			mt.month = time.format('MMM');
+			mt.eventtitle = mt.name;
+			mt.hour = time.format('h:mma');
+			mt.hour = mt.hour.substr(0, mt.hour.length-1);
+			var num = mt.group.memberIds.length;
+			mt.peopleText = num + " attendee" + (num!=1 ?  "s": " (you)");
+			mt.isMeeting = true;
+			mt.href = "meeting/"+mt.id;
+			times.push(mt);
+        });
+
+        times.sort(function(a,b){return moment(a.time).diff(moment(b.time))});
+        return {studysessions:times};
     }     
 };
 
