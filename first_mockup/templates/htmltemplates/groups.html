@@ -3,7 +3,7 @@
 			<div class="icon" href="dashboard"></div>
 		</div>
 		<h1>Groups</h1>
-		<button href="showPopup">New Group</button>
+		<button onclick="newGroupDialog();return false;">New Group</button>
 	</div>
 <div class="pane">
 	<div class="content">
@@ -14,28 +14,6 @@
 			{{/each}}
 		    </ol>
 		</div>	
-	</div>
-</div>
-<div class="dialogContainer hidden">
-	<div class="dialog form">
-		<h1>New Group</h1>
-		<ol class="leftRightDetail">
-			<li>
-				<h2>Name</h2><span><input id="name"></input></span>
-			</li>
-			<li>
-				<h2>Subject</h2><span><input id="subject"></input></span>
-			</li>
-			<li>
-				<h2>Description</h2><span><input id="description"></input></span>
-			</li>
-			<li>
-				<div class="buttons">
-					<button class="btn red" id="saveGroupBtn">Save</button>
-					<button class="btn red" href="hidePopup">Cancel</button>
-				</div>
-			</li>
-		</ol>
 	</div>
 </div>
 

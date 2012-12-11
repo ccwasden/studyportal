@@ -132,13 +132,6 @@ function redirect(destination)
 			break;
 		case "groups":
 			Renderer.renderGroupsPage(Data.groupsPage());
-			$('#saveGroupBtn').click(function(){
-				saveNewGroup(
-					$('#name').val(),
-					$('#subject').val(),
-					$('#description').val());
-				return false;
-			});
 			selectTab("group");
 			break;	
 		case "group":
@@ -162,6 +155,10 @@ function redirect(destination)
 					return false;
 				});
 			}));
+			$('#addMemberToGroup').click(function(){
+				Renderer.showDialog('addmemberdialog');
+				return false;
+			});
 			break;
 		case "meeting":
 			var meetingId = destination[1];
@@ -324,5 +321,18 @@ function studyTimeDialog(){
         return false;
     });
     $('#cancelStudyTime').click(function(){hideDialog();return false;});
+}
+
+function newGroupDialog(){
+	Renderer.showDialog('newgroupdialog');
+	$('#newgroupdialog').submit(function(){
+		saveNewGroup(
+			this.name.value,
+			this.subject.value,
+			this.description.value);
+		hideDialog();
+		persistDb();
+		return false;
+	});
 }
 
