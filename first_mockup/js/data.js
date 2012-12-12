@@ -23,7 +23,7 @@ var Data = {
 		var group = get(db.Group, id);
 		if(!group) throw "this group does not exist";
 		group.isMember = true;
-		group.organizer = get(db.Person, group.organizerId);
+		group.organizer = get(db.Person, group.memberIds[0]);
 		db.Person.sort(function(a,b){return a.name.localeCompare(b.name); });
 		group.members = getWhere(db.Person, function(p){ 
 			return group.memberIds.indexOf(p.id) != -1;

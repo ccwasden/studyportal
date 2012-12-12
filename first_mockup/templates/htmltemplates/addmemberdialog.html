@@ -6,16 +6,17 @@
         <div class="listHeader">
             <h1>Select a person to add:</h1>
         </div>
-		<ol class="list arrow" id="addMemberList">
+		<ol class="list pane" id="addMemberList">
 			{{#each people}}
 				<li class="person" id="{{id}}">
 					<img src="./images/{{profilePic}}"/>{{name}}
+					<div class="checkbox{{#if checked}} checked{{/if}}"></div>
 				</li>
 			{{/each}}
 		</ol>
 	</div>
 	<div class="buttons">
 		<!-- <button class="btn red">Save</button> -->
-		<button class="btn red" onclick="hideDialog(); return false;">Cancel</button>
+		<button class="btn red" onclick="redirect(); hideDialog(); return false;">Done</button>
 	</div>
 </div>

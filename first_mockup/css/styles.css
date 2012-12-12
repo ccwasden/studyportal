@@ -963,6 +963,10 @@ ol.list.studyScheduleList li {
 }
 
 .dialogContainer .list {
-    max-height:300px;   
+    max-height: 255px;   
     overflow-y:scroll;
+}
+
+#addMemberList .checkbox {
+    margin:4px 8px;
 }

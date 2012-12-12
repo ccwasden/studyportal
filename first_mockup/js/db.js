@@ -73,7 +73,6 @@ db.Group = [
 	{
 		id:'G1',
 		name:'Math 112',
-		organizerId:db.Person[1].id,
 		subject:'Matematicas',
 		description:'The happenin place for all things Newtonian Calculus',
 		memberIds:[db.Person[1].id,db.Person[2].id,db.Person[3].id,db.Person[4].id]
@@ -81,7 +80,6 @@ db.Group = [
 	{
 		id:'G2',
 		name:'Bio 221',
-		organizerId:db.Person[2].id,
 		subject:'Biology',
 		description:'We love biology.',
 		memberIds:[db.Person[2].id,db.Person[5].id,db.Person[6].id]
@@ -89,7 +87,6 @@ db.Group = [
 	{
 		id:'G3',
 		name:'Stats 221',
-		organizerId:db.Person[4].id,
 		subject:'Statistics',
 		description:'Math is always better when it is social',
 		memberIds:[db.Person[0].id,db.Person[4].id,db.Person[6].id]
@@ -182,7 +179,7 @@ function stripForSave(rows, fields){
 
 var fieldMap = {
 	Person:['id','name','username','password','major','profilePic'],
-	Group:['id','name','subject','description','memberIds','organizerId'],
+	Group:['id','name','subject','description','memberIds'],
 	Meeting:['id','groupId','name','coordinatorId','description','dateTime','dateRangeEnd','dateRangeStart'],
 	MeetingTime:['meetingId','personId','dateTime'],
 	StudyTime:['id','subject','time','attendees'],

@@ -162,14 +162,20 @@ function redirect(destination)
 				var gId = window.location.hash.split('/')[1];
 				var group = get(db.Group, gId);
 				var people = getWhere(db.Person, function(p){
-					return group.memberIds.indexOf(p.id) == -1;
+					if(p.id == db.User) return false;
+					p.checked = group.memberIds.indexOf(p.id) != -1;
+					return true;
 				});
 				if(people.length) {
 					Renderer.showDialog('addmemberdialog', {people:people});
 					$('#addMemberList').find('li').click(function(){
-						group.memberIds.push($(this).attr('id'));
-						redirect();
+						var id = $(this).attr('id');
+						var index = group.memberIds.indexOf(id);
+						if(index == -1) group.memberIds.push(id);
+						else group.memberIds.splice(index, 1);
+						$(this).find('.checkbox').toggleClass('checked');
 					});
+					resetScrolling();
 				}
 				else alert("Everyone is in this group already");
 				return false;
