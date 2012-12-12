@@ -22,10 +22,9 @@
 							<div class="day">{{day}}</div>
 							<div class="month">{{month}}</div>
 						</div>
-						<span class="time">{{hour}}</span>
-						<div class="title">{{eventtitle}}</div> 
+						<div class="title">{{eventtitle}}<span class="time">({{hour}})</span></div> 
 						<div class="subtitle">
-							{{#if isMeeting}}<div class="mtg"></div>{{/if}}{{peopleText}}
+							{{#if isMeeting}}<div class="mtg"></div>{{group.name}}{{else}}{{peopleText}}{{/if}}
 							<!-- {{#each people}}
 								<img class="profileImg" src="./images/{{profilePic}}"/>
 							{{/each}} -->

@@ -666,7 +666,6 @@ background: -o-linear-gradient(top, #f7f4ee 0%,#f4edde 100%); /* Opera 11.10+ */
     display:block;
     font-size:.8em;
     color: #9E8B76;  
-    vertical-align: top;
 }
 
 
@@ -918,9 +917,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
 }
 
 .studyScheduleList .time {
-    float:right;
     font-size:.8em;
-    margin: -2px 3px;
+    margin: 0 8px;
     color: #5E8F95; 
 }
 
@@ -930,10 +928,10 @@ ol.list.studyScheduleList li {
     clear:both;
     min-height:45px;   
 }
-
+.studyScheduleList .subtitle { margin-top:2px }
 .studyScheduleList .mtg {
     width: 20px;
-    height: 22px;
+    height: 18px;
     background: url(img/groups_small.png) center center;
     display: inline-block;
     margin-right: 6px;

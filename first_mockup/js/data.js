@@ -29,7 +29,16 @@ var Data = {
 			if(person) group.members.push(person);
 		});
 
-		group.meetings = getWhere(db.Meeting, function(row){ return row.groupId == id; });
+		group.meetings = getWhere(db.Meeting, function(row){ 
+			row.dateStr = row.dateTime ? longDate(row.dateTime) : "--";
+			return row.groupId == id; 
+		});
+
+		group.meetings.sort(function(a,b){
+			if(!a.dateTime) return 1;
+			if(!b.dateTime) return -1;
+			return  moment(a.dateTime).diff(moment(b.dateTime));
+		});
 		return group;
 	},
 	
@@ -136,7 +145,7 @@ var Data = {
             st.hour = st.hour.substr(0, st.hour.length-1);
             st.href = "studytime/"+st.id;
             var num = st.attendees.length
-            st.peopleText = num + " attendee" + (num!=1 ?  "s": " (you)");
+            st.peopleText = num + " attendee" + (num!=1 ?  "s": "");
 		});
         
 
