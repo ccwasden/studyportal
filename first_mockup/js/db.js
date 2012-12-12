@@ -132,18 +132,18 @@ db.MeetingTime = [
 	}
 ];
 db.StudyTime = [
-	{
-		id:'ST1',
-		subject:"Martial Arts",
-		time:new Date(2012, 12, 13, 8),
-		attendees:[db.Person[1].id]
-	},
-    {
-        id:'ST2',
-        subject:"Math 112",
-        time:new Date(2012, 12, 5, 9),
-        attendees:[db.Person[1].id]
-    }
+	// {
+	//	id:'ST1',
+	//	subject:"Martial Arts",
+	//	time:new Date(2012, 12, 13, 8),
+	//	attendees:[db.Person[1].id]
+	// },
+ //    {
+ //        id:'ST2',
+ //        subject:"Math 112",
+ //        time:new Date(2012, 12, 5, 9),
+ //        attendees:[db.Person[1].id]
+ //    }
 ];
 db.Notifications = [
 	{

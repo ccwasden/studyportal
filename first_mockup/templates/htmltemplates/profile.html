@@ -33,8 +33,8 @@
 	    				<button class="btn red">Ask to Study</button>
 	    			</div>
                                 {{/unless}}
-	    		</div>
-	    	    <ol class="list">
+			</div>
+		    <!-- <ol class="list">
                                 {{#each schedule}}
                                 <li>
                                     <div class="listHeader">
@@ -48,7 +48,21 @@
                                     <span class="subtitle">{{subtitle}}</span>
                                 </li>
                                 {{/each}}
-	    	    </ol>
+		    </ol> -->
+		    <ol class="list studyScheduleList">
+					{{#each studytimes}}
+					<li id="{{id}}" href="{{href}}" class="arrow">
+						<div class="dateHolder">
+							<div class="day">{{day}}</div>
+							<div class="month">{{month}}</div>
+						</div>
+						<div class="title">{{eventtitle}}<span class="time">({{hour}})</span></div> 
+						<div class="subtitle">
+							{{#if isMeeting}}<div class="mtg"></div>{{group.name}}{{else}}{{peopleText}}{{/if}}
+						</div>
+					</li>
+	                {{/each}}
+	    		    </ol>
 	    	</div>
 	<!--	<div class="listWrapper">
 	    		<div class="listHeader">

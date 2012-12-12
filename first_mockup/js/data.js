@@ -45,19 +45,21 @@ var Data = {
 	profilePage : function(personId) {
 		var person = get(db.Person, personId);
 		person.me = personId == db.User;  
-        person.schedule = [];
-        for(var i = 0; i < db.StudyTime.length; i++){ //Parse through study sessions
-            for(var j = 0; j < db.StudyTime[i].attendees.length; j++){
-                if(personId == db.StudyTime[i].attendees[j]){
-                    person.schedule.push({
-						title: db.StudyTime[i].subject, 
-						subtitle: longDate(db.StudyTime[i].time), 
-						me: (personId == db.User)
-					});
-                    break;
-                }
-            }
-        }
+     //    person.schedule = [];
+     //    for(var i = 0; i < db.StudyTime.length; i++){ //Parse through study sessions
+     //        for(var j = 0; j < db.StudyTime[i].attendees.length; j++){
+     //            if(personId == db.StudyTime[i].attendees[j]){
+     //                person.schedule.push({
+					//	title: db.StudyTime[i].subject, 
+					//	subtitle: longDate(db.StudyTime[i].time), 
+					//	me: (personId == db.User)
+					// });
+     //                break;
+     //            }
+     //        }
+     //    }
+
+		person.studytimes = getMeetings(personId);
                 
 		return person;
 	},
@@ -133,44 +135,24 @@ var Data = {
     },
     
     studySchedulePage : function(){
-        var times = getWhere(db.StudyTime, function(st){
-			return st.attendees && st.attendees.indexOf(db.User) != -1;
-		});
-		$.each(times, function(i, st){
-            var time = moment(st.time);
-            st.day = time.date();
-            st.month = time.format('MMM');
-            st.eventtitle = st.subject;
-            st.hour = time.format('h:mma');
-            st.hour = st.hour.substr(0, st.hour.length-1);
-            st.href = "studytime/"+st.id;
-            var num = st.attendees.length
-            st.peopleText = num + " attendee" + (num!=1 ?  "s": "");
-		});
+  //       var times = getWhere(db.StudyTime, function(st){
+		//	return st.attendees && st.attendees.indexOf(db.User) != -1;
+		// });
+		// $.each(times, function(i, st){
+  //           var time = moment(st.time);
+  //           st.day = time.date();
+  //           st.month = time.format('MMM');
+  //           st.eventtitle = st.subject;
+  //           st.hour = time.format('h:mma');
+  //           st.hour = st.hour.substr(0, st.hour.length-1);
+  //           st.href = "studytime/"+st.id;
+  //           var num = st.attendees.length
+  //           st.peopleText = num + " attendee" + (num!=1 ?  "s": "");
+		// });
         
 
-        var meetings = getWhere(db.Meeting, function(mtg){
-			var group = get(db.Group, mtg.groupId);
-			mtg.group = group;
-			return mtg.dateTime && group && group.memberIds.indexOf(db.User) != -1;
-        });
-        $.each(meetings, function(i, mt){
-			var time = moment(mt.dateTime);
-			mt.day = time.date();
-			mt.time = time.toDate();
-			mt.month = time.format('MMM');
-			mt.eventtitle = mt.name;
-			mt.hour = time.format('h:mma');
-			mt.hour = mt.hour.substr(0, mt.hour.length-1);
-			var num = mt.group.memberIds.length;
-			mt.peopleText = num + " attendee" + (num!=1 ?  "s": " (you)");
-			mt.isMeeting = true;
-			mt.href = "meeting/"+mt.id;
-			times.push(mt);
-        });
-
-        times.sort(function(a,b){return moment(a.time).diff(moment(b.time))});
-        return {studysessions:times};
+        var meetings = getMeetings(db.User);
+        return {studysessions:meetings};
     }     
 };
 
@@ -285,6 +267,29 @@ function justTime(date){
 	// return dateUtil.format(date, 'g:i a');
 	var time = moment(date).format('h:mma');
 	return time.substr(0, time.length-1);
+}
+
+function getMeetings(personId){
+	var meetings = getWhere(db.Meeting, function(mt){
+		var group = get(db.Group, mt.groupId);
+		mt.group = group;
+		if(!mt.dateTime || !group || group.memberIds.indexOf(personId) == -1) 
+			return false;
+		var time = moment(mt.dateTime);
+		mt.day = time.date();
+		// mt.time = time.toDate();
+		mt.month = time.format('MMM');
+		mt.eventtitle = mt.name;
+		mt.hour = time.format('h:mma');
+		mt.hour = mt.hour.substr(0, mt.hour.length-1);
+		var num = group.memberIds.length;
+		mt.peopleText = num + " attendee" + (num!=1 ?  "s": " (you)");
+		mt.isMeeting = true;
+		mt.href = "meeting/"+mt.id;
+		return true;
+    });
+	meetings.sort(function(a,b){return moment(a.dateTime).diff(moment(b.dateTime))});
+    return meetings;
 }
 
 function getTimesForMeeting(meetingId, dateTime){
