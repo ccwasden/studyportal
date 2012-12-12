@@ -18,11 +18,11 @@
 		<button id="clearNotifications">Clear All</button>
 	</div>
 	<div class="content">
-		<div class="listWrapper dark">
+		<div class="listWrapper dark" id="notificationList">
                     {{#if dashboardItems}}
                     <ol class="list arrow">
                         {{#each dashboardItems }}
-                            <li href="{{hashURL}}">{{title}}<span class="subtitle">{{subtitle}}</span></li>
+                            <li id="{{id}}" href="{{hashURL}}">{{title}}<span class="subtitle">{{subtitle}}</span></li>
                         {{/each}}
                     </ol>
                     {{else}}

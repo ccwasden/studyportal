@@ -22,7 +22,7 @@ db.Person = [
 	},
 	{
 		id:'P2',
-		username:'user',
+		username:'bourne',
 		password:'1234',
 		name:'Jason Bourne',
 		major:'Psychology',
@@ -30,7 +30,7 @@ db.Person = [
 	},
 	{
 		id:'P3',
-		username:'hello',
+		username:'freddy',
 		password:'1234',
 		name:'Fred Flintstone',
 		major:'Math',
@@ -73,13 +73,15 @@ db.Group = [
 	{
 		id:'G1',
 		name:'Math 112',
-		subject:'Math 112',
+		organizerId:db.Person[1].id,
+		subject:'Matematicas',
 		description:'The happenin place for all things Newtonian Calculus',
 		memberIds:[db.Person[1].id,db.Person[2].id,db.Person[3].id,db.Person[4].id]
 	},
 	{
 		id:'G2',
 		name:'Bio 221',
+		organizerId:db.Person[2].id,
 		subject:'Biology',
 		description:'We love biology.',
 		memberIds:[db.Person[2].id,db.Person[5].id,db.Person[6].id]
@@ -87,6 +89,7 @@ db.Group = [
 	{
 		id:'G3',
 		name:'Stats 221',
+		organizerId:db.Person[4].id,
 		subject:'Statistics',
 		description:'Math is always better when it is social',
 		memberIds:[db.Person[0].id,db.Person[4].id,db.Person[6].id]
@@ -123,7 +126,7 @@ db.MeetingTime = [
 	{
 		meetingId:db.Meeting[0].id,
 		personId:db.Person[2].id,
-		dateTime:new Date(2012, 11, 12, 7)
+		dateTime:new Date(2012, 11, 13, 9)
 	},
 	{
 		meetingId:db.Meeting[0].id,
@@ -146,19 +149,19 @@ db.StudyTime = [
  //    }
 ];
 db.Notifications = [
-	{
-		id:'N1',
-		hashURL:"profile/" + db.Person[1].id,
-		personId:db.Person[1].id,
-		title:"Study Request",
-		subtitle:"Jason Bourne"
-	},
+	// {
+	//	id:'N1',
+	//	hashURL:"profile/" + db.Person[1].id,
+	//	personId:db.Person[1].id,
+	//	title:"Study Request",
+	//	subtitle:"Jason Bourne"
+	// },
 	{
 		id:'N2',
 		hashURL:"meeting/" + db.Meeting[0].id,
 		personId:db.Person[1].id,
 		title:"Meeting Time Change",
-		subtitle:"Math 112 - Tomorrow, 3pm"
+		subtitle:"Math 112 -- Dec 13th (10:00 am)"
 	}
 ]
 
@@ -179,7 +182,7 @@ function stripForSave(rows, fields){
 
 var fieldMap = {
 	Person:['id','name','username','password','major','profilePic'],
-	Group:['id','name','subject','description','memberIds'],
+	Group:['id','name','subject','description','memberIds','organizerId'],
 	Meeting:['id','groupId','name','coordinatorId','description','dateTime','dateRangeEnd','dateRangeStart'],
 	MeetingTime:['meetingId','personId','dateTime'],
 	StudyTime:['id','subject','time','attendees'],

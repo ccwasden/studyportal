@@ -10,21 +10,30 @@
 
 <div class="pane">
 	<div class="content">
-		<div class="listWrapper">
-		    <ol class="list leftRightDetail">
-				<li class="arrow" href="profile/{{coordinator.id}}"><h2>Coordinator</h2><span>{{coordinator.name}}</span></li>
-				<li><h2>Subject</h2><span>{{name}}</span><span class="description">{{description}}</span></li>
-				<li href="group/{{group.id}}" class="arrow"><h2>Group</h2><span>{{group.name}}</span></li>
-				<li><h2>Date Range</h2><span>{{dateRange}}</span></li>
-				<li><h2>Selected Time</h2><span id="meetingTime">{{scheduledTimeString}}</span></li>
-		    </ol>
+		<div class="profileDetail">
+			<div class="dateHolder large">
+				<div class="month" id="month">{{month}}</div>
+				<div class="day" id="day">{{day}}</div>
+			</div>
+			<div class="listWrapper">
+			    <ol class="list leftRightDetail">
+					<li><h2>Subject</h2><span>{{name}}</span><span class="description">{{description}}</span></li>
+			    </ol>
+			</div>
 		</div>
+		<div class="listWrapper">
+			    <ol class="list leftRightDetail">
+					<li href="group/{{group.id}}" class="arrow"><h2>Group</h2><span>{{group.name}}</span></li><li class="arrow" href="profile/{{coordinator.id}}"><h2>Coordinator</h2><span>{{coordinator.name}}</span></li>
+					<li><h2>Date Range</h2><span>{{dateRange}}</span></li>
+					<li><h2>Selected Time</h2><span id="meetingTime">{{scheduledTimeString}}</span></li>
+			    </ol>
+			</div>
 		<div class="listWrapper" id="meetingTimeList"></div>
 	</div>
 </div>
 
 
-<div class="dialogContainer hidden">
+<!-- <div class="dialogContainer hidden">
 	<div class="dialog">
 		<div style="padding: 5px" class="datepicker">
 			<span  style="float:left">Select Date:</span>
@@ -39,5 +48,5 @@
 			<button class="btn red">Cancel</button>
 		</div>
 	</div>
-</div>
+</div> -->
 

@@ -47,7 +47,6 @@ $(document).ready(function(){
 				var url = $.param.fragment(); // get the hash url
 				var destination = url.split("/"); // split on '/', this way we can store multilevel hashes
 				try {
-					currentLocation = destination;
 					redirect(destination);
 				} 
 				catch(e){
@@ -104,6 +103,10 @@ function updateUrlHash(destination, destArray){ // going to be used to manage an
 
 function redirect(destination)
 {
+	if(!destination) destination = currentLocation;
+	else currentLocation = destination;
+	
+	hideDialog();
 	if(!db.User){
 		$('#loginModal').css('top',0);
 	}
@@ -156,7 +159,19 @@ function redirect(destination)
 				});
 			}));
 			$('#addMemberToGroup').click(function(){
-				Renderer.showDialog('addmemberdialog');
+				var gId = window.location.hash.split('/')[1];
+				var group = get(db.Group, gId);
+				var people = getWhere(db.Person, function(p){
+					return group.memberIds.indexOf(p.id) == -1;
+				});
+				if(people.length) {
+					Renderer.showDialog('addmemberdialog', {people:people});
+					$('#addMemberList').find('li').click(function(){
+						group.memberIds.push($(this).attr('id'));
+						redirect();
+					});
+				}
+				else alert("Everyone is in this group already");
 				return false;
 			});
 			break;
@@ -184,6 +199,10 @@ function redirect(destination)
 				deleteNotificationsOfUser(db.User);
 				redirect(["dashboard"]);
 				return false;
+			});
+			$('#notificationList').find('li').click(function(){
+				var index = db.Notifications.indexOf(get(db.Notifications, $(this).attr('id')));
+				if(index != -1) db.Notifications.splice(index, 1);
 			});
 			visible = false;
 			selectTab("");
@@ -265,7 +284,10 @@ function onTimeRowClick(eve){
 	var timeChanged = updateMeetingTime(currentMeetingId);
 	if(timeChanged) {
 		var meeting = get(db.Meeting, currentMeetingId);
-		$('#meetingTime').text(longDate(meeting.dateTime));
+		var date = moment(meeting.dateTime);
+		$('#meetingTime').text(longDate(date));
+		$('#month').text(date.format('MMM').toUpperCase());
+		$('#day').text(date.date());
 	}
 	Renderer.renderMeetingTimes(Data.meetingTimes(currentMeetingId, time));
 	rebindMeetingTimeUIEvents();

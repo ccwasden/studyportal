@@ -30,8 +30,8 @@
 	    			<h1>Study Schedule</h1>
                                 {{#unless me}}
                                 <div class="buttons">
-	    				<button class="btn red">Ask to Study</button>
-	    			</div>
+					<!-- <button class="btn red">Ask to Study</button> -->
+				</div>
                                 {{/unless}}
 			</div>
 		    <!-- <ol class="list">
@@ -51,7 +51,7 @@
 		    </ol> -->
 		    <ol class="list studyScheduleList">
 					{{#each studytimes}}
-					<li id="{{id}}" href="{{href}}" class="arrow">
+					<li id="{{id}}" {{#if href}}href="{{href}}" class="arrow"{{/if}}>
 						<div class="dateHolder">
 							<div class="day">{{day}}</div>
 							<div class="month">{{month}}</div>

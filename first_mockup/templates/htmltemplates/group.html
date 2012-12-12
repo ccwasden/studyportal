@@ -13,11 +13,13 @@
 		<div class="listWrapper">
 		    <ol class="list leftRightDetail">
 			<li>
-				<h2>Subject</h2><span>{{subject}}</span>
+				<h2>Group</h2><span>{{name}}</span>
 			</li>
-
+			<li class="arrow" href="profile/{{organizerId}}">
+				<h2>Organizer</h2><span>{{organizer.name}}</span>
+			</li>
 			<li>
-				<h2>Description</h2><span>{{description}}</span>
+				<h2>Subject</h2><span>{{subject}}</span><span class="description">{{description}}</span>
 			</li>
 		    </ol>
 		</div>

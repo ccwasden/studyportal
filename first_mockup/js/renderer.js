@@ -75,14 +75,14 @@ var Renderer = {
 		$(destination || "#renderedContent").html(template());	
 	},
 
-	showDialog: function(name){
+	showDialog: function(name, data){
 		var source = Templates[name];
 		if(!source) {
 			console.warn("dialog not found: ", name);
 			return false;
 		}
 		var template = Handlebars.compile(source);
-		$(".mainDialog").html(template()).fadeOut(0).fadeIn(500);
+		$(".mainDialog").html(template(data)).fadeOut(0).fadeIn(500);
 	}
 }
 

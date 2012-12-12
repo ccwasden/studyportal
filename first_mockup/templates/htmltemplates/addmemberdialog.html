@@ -1,8 +1,21 @@
 <div class="dialog">
-	<div class ="description">Enter Name:</div>
+	<!-- <div class ="description">Enter Name:</div>
 	<input class="textfield" value="Tom Bombadil"/>
+	 -->
+	<div class="listWrapper">
+        <div class="listHeader">
+            <h1>Select a person to add:</h1>
+        </div>
+		<ol class="list arrow" id="addMemberList">
+			{{#each people}}
+				<li class="person" id="{{id}}">
+					<img src="./images/{{profilePic}}"/>{{name}}
+				</li>
+			{{/each}}
+		</ol>
+	</div>
 	<div class="buttons">
-		<button class="btn red">Save</button>
+		<!-- <button class="btn red">Save</button> -->
 		<button class="btn red" onclick="hideDialog(); return false;">Cancel</button>
 	</div>
 </div>

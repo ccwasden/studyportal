@@ -502,6 +502,18 @@ ol.list li:last-child, .menu.mini li:last-child{
 	padding: 0 0px;
 }
 
+#meetingTime {
+    color: #327E88;   
+}
+
+.list.leftRightDetail .description{
+    display:block;
+    font-size:.9em;
+    border-top: 1px dashed #E1D9CC;
+    margin-top: 6px;
+    padding-top: 6px;
+}
+
 
 .icon.right {
 	width: 50px;
@@ -669,7 +681,7 @@ background: -o-linear-gradient(top, #f7f4ee 0%,#f4edde 100%); /* Opera 11.10+ */
 }
 
 
-.list li.person {padding: 10px 46px 11px;}
+.list li.person {padding: 10px 46px 11px;text-align: left;}
 .list li.person.tall { padding-left: 53px; }
 .list li.person.tall img { top:10px; left: 8px;}
 .list li.person:last-child {padding-bottom:11px;}
@@ -887,7 +899,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
     display:block;    
 }
 
-.studyScheduleList .dateHolder {
+.dateHolder {
     float:left;
     width: 45px;
     height:45px;
@@ -898,14 +910,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
     border: 1px solid #D3C1AD;
 }
 
+.dateHolder.large {
+    float: none;   
+    display: inline-block;
+    position: absolute;
+    left: 18px;
+    top: 22px;
+    width: 60px;
+    height: 60px;
+}
+
 .studyScheduleList .profileImg { width: 20px; border: 1px solid #D3C1AD; margin-bottom: -4px;}
-.studyScheduleList .dateHolder .day { 
+.dateHolder .day { 
     color: #437980;
     font-size: 1.3em;
     line-height: 24px;
     margin-top: 17px;
 }
-.studyScheduleList .dateHolder .month { 
+.dateHolder.large .day { font-size:33px; padding: 10px 0;}
+.dateHolder .month { 
     color: #5E8F95;
     font-size:.7em;
     position:absolute;
@@ -915,6 +938,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4a43', end
     border-bottom: 1px solid #E9DCCE;
     line-height: 13px;
 }
+.dateHolder.large .month { font-size:1em; line-height:18px; padding: 2px 0 1px;}
 
 .studyScheduleList .time {
     font-size:.8em;
@@ -936,4 +960,9 @@ ol.list.studyScheduleList li {
     display: inline-block;
     margin-right: 6px;
     float: left;
+}
+
+.dialogContainer .list {
+    max-height:300px;   
+    overflow-y:scroll;
 }

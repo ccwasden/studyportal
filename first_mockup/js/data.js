@@ -22,11 +22,11 @@ var Data = {
 	groupPage : function(id){
 		var group = get(db.Group, id);
 		if(!group) throw "this group does not exist";
-		group.members = [];
 		group.isMember = true;
-		$.each(group.memberIds, function(i,memberId){
-			var person = get(db.Person, memberId);
-			if(person) group.members.push(person);
+		group.organizer = get(db.Person, group.organizerId);
+		db.Person.sort(function(a,b){return a.name.localeCompare(b.name); });
+		group.members = getWhere(db.Person, function(p){ 
+			return group.memberIds.indexOf(p.id) != -1;
 		});
 
 		group.meetings = getWhere(db.Meeting, function(row){ 
@@ -60,6 +60,10 @@ var Data = {
      //    }
 
 		person.studytimes = getMeetings(personId);
+		$.each(person.studytimes, function(i,time){
+			if(time.group.memberIds.indexOf(db.User) == -1) 
+				time.href = null;
+		});
                 
 		return person;
 	},
@@ -71,6 +75,12 @@ var Data = {
 		meeting.scheduledTimeString = meeting.dateTime ? longDate(meeting.dateTime) : "--";
 		meeting.group = get(db.Group, meeting.groupId);
 		meeting.dateRange = shortDate(meeting.dateRangeStart)+" - "+shortDate(meeting.dateRangeEnd);
+		if(meeting.dateTime) {
+			var date = moment(meeting.dateTime);
+			meeting.month = date.format("MMM").toUpperCase();
+			meeting.day = date.date();
+		}
+		else meeting.month = "Date Not Set";
 		return meeting;
 	},
 
@@ -171,6 +181,7 @@ function saveNewGroup(name, subject, description){
 	db.Group.push({
 		id:newId,
 		name:name,
+		organizerId:db.User,
 		subject:subject,
 		description:description,
 		memberIds:[db.User]
@@ -180,7 +191,7 @@ function saveNewGroup(name, subject, description){
 
 function saveNewMeeting(groupId, name, description, start, end){
 	var newId = GetGUID();
-	db.Meeting.push({
+	var meeting = {
 		id:newId,
 		groupId:groupId,
 		coordinatorId:db.User,
@@ -189,6 +200,19 @@ function saveNewMeeting(groupId, name, description, start, end){
 		// dateTime:'',
 		dateRangeStart:start,
 		dateRangeEnd:end
+	};
+	db.Meeting.push(meeting);
+	var group = get(db.Group, groupId);
+	$.each(group.memberIds, function(i,id){
+		if(id != db.User){
+			db.Notifications.push({
+				id:GetGUID(),
+				hashURL:"meeting/" + meeting.id,
+				personId:id,
+				title:"New Meeting Scheduled",
+				subtitle:group.name
+			});
+		}
 	});
 	window.location.hash = 'meeting/'+newId;
 }
@@ -246,10 +270,35 @@ function updateMeetingTime(meetingId){
 		var newTime = moment(votes[0][0]);
 		if(moment(meeting.dateTime).diff(newTime)) {
 			meeting.dateTime = newTime.toDate();
+			notifyAllMeetingTimeChange(meetingId);
 			return true;
 		}
 	}
 	return false;
+}
+
+function notifyAllMeetingTimeChange(meetingId){
+	var meeting = get(db.Meeting, meetingId);
+	var group = get(db.Group, meeting.groupId);
+	var members = getWhere(db.Person, function(p){
+		return p.id != db.User && group.memberIds.indexOf(p.id) != -1;
+	});
+	$.each(members, function(i,p){
+		var notification = getWhere(db.Notifications, function(n){
+			var href = n.hashURL.split('/');
+			return n.personId == p.id && href[0] == 'meeting' && href[1] == meetingId;
+		})[0];
+		if(!notification) {
+			notification = {
+				id:GetGUID(),
+				hashURL:"meeting/" + meetingId,
+				personId:p.id,
+				title:"Meeting Time Change"
+			}
+			db.Notifications.push(notification);
+		}
+		notification.subtitle = group.name + " -- " + longDate(meeting.dateTime);
+	});
 }
 
 function shortDate(date){
@@ -278,7 +327,7 @@ function getMeetings(personId){
 		var time = moment(mt.dateTime);
 		mt.day = time.date();
 		// mt.time = time.toDate();
-		mt.month = time.format('MMM');
+		mt.month = time.format('MMM').toUpperCase();
 		mt.eventtitle = mt.name;
 		mt.hour = time.format('h:mma');
 		mt.hour = mt.hour.substr(0, mt.hour.length-1);
