@@ -124,10 +124,11 @@ function redirect(destination)
 			break;
 		case "search":
 			Renderer.renderSearchPage(Data.searchPage());
-            $("#searchBtn").live('click', function(){
-                Renderer.renderSearchResults(Data.searchResults()); 
-                resetScrolling();
-            });
+                        $("#searchBtn").live('click', function(){
+                            var searchTerm = $(".textfield").val();
+                            Renderer.renderSearchResults(Data.searchResults(searchTerm.toLowerCase())); 
+                            resetScrolling();
+                        });
 			break;
 		case "profile":
 			Renderer.renderProfilePage(Data.profilePage(destination[1]));

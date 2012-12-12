@@ -136,12 +136,44 @@ var Data = {
         return {};
     },
     
-    searchResults : function(){
+    searchResults : function(searchParam){
         var data = {
-            people : db.Person,
-            groups : db.Group
+            people : Data.searchPeople(searchParam),
+            groups : Data.searchGroups(searchParam)
         };
         return data;
+    },
+    
+    searchPeople : function(searchParam){
+        var people = [];
+        for(var i = 0; i < db.Person.length; i++){
+            if(db.Person[i].username.toLowerCase().indexOf(searchParam) !== -1){
+                people.push(db.Person[i]);
+            }
+            else if(db.Person[i].name.toLowerCase().indexOf(searchParam) !== -1){
+                people.push(db.Person[i]);
+            }
+            else if(db.Person[i].major.toLowerCase().indexOf(searchParam) !== -1){
+                people.push(db.Person[i]);
+            }
+        }
+        return people;
+    },
+    
+    searchGroups : function(searchParam){
+        var groups = [];
+        for(var i = 0; i < db.Group.length; i++){
+            if(db.Group[i].name.toLowerCase().indexOf(searchParam) !== -1){
+                groups.push(db.Group[i]);
+            }
+            else if(db.Group[i].subject.toLowerCase().indexOf(searchParam) !== -1){
+                groups.push(db.Group[i]);
+            }
+            else if(db.Group[i].description.toLowerCase().indexOf(searchParam) !== -1){
+                groups.push(db.Group[i]);
+            }
+        }
+        return groups;
     },
     
     studySchedulePage : function(){
