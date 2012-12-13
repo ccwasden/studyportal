@@ -108,6 +108,7 @@ function redirect(destination)
 	
 	hideDialog();
 	if(!db.User){
+		$('#loginModal').show();
 		$('#loginModal').css('top',0);
 	}
 	var visible = true;
@@ -268,6 +269,7 @@ function attemptLoginFn(eve){
 		var remember = $('#rememberMe').attr('checked');
 		if(remember && window.localStorage) 
 			localStorage.setItem('User', window.db.User);
+		setTimeout(function(){$('#loginModal').hide()},200);
 		$('#loginModal').css('top','100%');
 	}
 	return false;
